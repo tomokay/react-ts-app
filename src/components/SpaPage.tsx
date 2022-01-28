@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container } from "@mui/material";
-import SpaList from "./SpaList";
-import Header from "./Header";
+import Header from "components/Header";
+import SpaList from "components/SpaList";
 
 export type Spa = {
   id: number;

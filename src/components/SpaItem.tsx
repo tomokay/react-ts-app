@@ -1,5 +1,5 @@
 import React from "react";
-import { Spa } from "./SpaPage";
+import { Spa } from "components/SpaPage";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
