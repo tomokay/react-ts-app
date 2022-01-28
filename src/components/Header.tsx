@@ -9,7 +9,7 @@ const Header = (props: HeaderProps) => {
   const { HeaderTitle } = props;
 
   return (
-    <React.Fragment>
+    <>
       <Toolbar sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Typography
           component="h2"
@@ -25,7 +25,7 @@ const Header = (props: HeaderProps) => {
           Sign up
         </Button>
       </Toolbar>
-    </React.Fragment>
+    </>
   );
 };
 
