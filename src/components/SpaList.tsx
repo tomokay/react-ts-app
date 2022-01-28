@@ -1,6 +1,6 @@
 import React from "react";
-import SpaItem from "./SpaItem";
-import { Spa } from "./SpaPage";
+import SpaItem from "src/components/SpaItem";
+import { Spa } from "src/components/SpaPage";
 
 type SpaListProps = {
   spas: Spa[];

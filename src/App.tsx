@@ -1,5 +1,5 @@
 import React from "react";
-import Top from "./components/Top";
+import Top from "src/components/Top";
 
 const App = () => {
   return <Top />;
