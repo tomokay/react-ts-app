@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "@mui/material";
 
 const Top = () => {
   return (
@@ -6,8 +7,12 @@ const Top = () => {
       <div>
         <header>
           温泉検索サイト
-          <button>ログイン</button>
-          <button>新規登録</button>
+          <Button variant="outlined" size="small">
+            LOGIN
+          </Button>
+          <Button variant="outlined" size="small">
+            SGIN UP
+          </Button>
         </header>
       </div>
     </>
