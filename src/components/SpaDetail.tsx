@@ -12,38 +12,50 @@ type SpaDetailProps = {
 };
 
 const SpaDetailPage = (props: SpaDetailProps) => {
+  const basicInformations = [
+    {
+      type: "basic",
+      title: "基本情報",
+      component: <SpaBasicInformation spa={props.spa} />,
+    },
+    {
+      type: "price",
+      title: "料金",
+      component: <SpaPrice spa={props.spa} />,
+    },
+    {
+      type: "amanity",
+      title: "備品",
+      component: <SpaAmenities spa={props.spa} />,
+    },
+    {
+      type: "spaFacility",
+      title: "温泉施設",
+      component: <SpaFacilities spa={props.spa} />,
+    },
+    {
+      type: "anothorFacility",
+      title: "その他施設",
+      component: <AnothreFacilities spa={props.spa} />,
+    },
+  ];
   return (
     <div>
       <Typography variant="h2">{props.spa.name}</Typography>
-      <Typography variant="h5" gutterBottom component="div">
-        基本情報
-      </Typography>
-      <SpaBasicInformation spa={props.spa} />
-      <Typography variant="h5" gutterBottom component="div">
-        入浴料
-      </Typography>
-      <SpaPrice spa={props.spa} />
-      <Typography variant="h5" gutterBottom component="div">
-        備品
-      </Typography>
-      <SpaAmenities spa={props.spa} />
-      <Typography variant="h5" gutterBottom component="div">
-        温泉施設
-      </Typography>
-      <SpaFacilities spa={props.spa} />
-      <Typography variant="h5" gutterBottom component="div">
-        その他施設
-      </Typography>
-      <AnothreFacilities spa={props.spa} />
-      <Typography variant="h5" gutterBottom component="div">
-        写真
-      </Typography>
-      <Typography variant="h5" gutterBottom component="div">
-        Map
-      </Typography>
-      <Typography variant="h5" gutterBottom component="div">
-        口コミ
-      </Typography>
+      {basicInformations.map((basicInfo) => {
+        return (
+          <Typography
+            id={basicInfo.type}
+            key={basicInfo.type}
+            variant="h5"
+            gutterBottom
+            component="div"
+          >
+            {basicInfo.title}
+            {basicInfo.component}
+          </Typography>
+        );
+      })}
     </div>
   );
 };

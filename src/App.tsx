@@ -1,11 +1,11 @@
 import React from "react";
 import SpaPage from "src/components/SpaPage";
-// import Top from "src/components/Top";
+import Top from "src/components/Top";
 
 const App = () => {
   return (
     <>
-      {/* <Top /> */}
+      <Top />
       <SpaPage />
     </>
   );

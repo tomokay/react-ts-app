@@ -22,7 +22,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
   },
-  // hide last border
   "&:last-child td, &:last-child th": {
     border: 0,
   },
@@ -32,46 +31,29 @@ type SpaBasicInformationProps = {
   spa: Spa;
 };
 
-const addressRow = (address: string) => {
-  return address;
-};
-
-const phoneNumberRow = (address: string) => {
-  return address;
-};
-
-const businessHoursRow = (address: string) => {
-  return address;
-};
-
-const regularHolidayRow = (address: string) => {
-  return address;
-};
-
 const SpaBasicInformation = (props: SpaBasicInformationProps) => {
-  console.log(props.spa.phoneNumber);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableBody>
           <StyledTableRow>
-            {addressRow("住所")}
+            {"住所"}
             <StyledTableCell align="left">{props.spa.address}</StyledTableCell>
           </StyledTableRow>
           <StyledTableRow>
-            {phoneNumberRow("電話番号")}
+            {"電話番号"}
             <StyledTableCell align="left">
               {props.spa.phoneNumber}
             </StyledTableCell>
           </StyledTableRow>
           <StyledTableRow>
-            {businessHoursRow("営業時間")}
+            {"営業時間"}
             <StyledTableCell align="left">
               {props.spa.businessHours}
             </StyledTableCell>
           </StyledTableRow>
           <StyledTableRow>
-            {regularHolidayRow("定休日")}
+            {"定休日"}
             <StyledTableCell align="left">
               {props.spa.regularHoliday}
             </StyledTableCell>

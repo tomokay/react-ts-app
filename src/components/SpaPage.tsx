@@ -77,16 +77,6 @@ const initialState: Spa[] = [
     hasStore: true,
     customFacilities: "トレーニングルーム",
   },
-  // {
-  //   id: 2,
-  //   name: "ふじ銭湯",
-  //   address: "鹿児島県",
-  //   phoneNumber: "080-000-0000",
-  //   businessHours: "10:00~20:00",
-  //   regularHoliday: "木曜日",
-  //   adultPrice: 300,
-  //   childPrice: 150,
-  // },
 ];
 
 const SpaPage = () => {

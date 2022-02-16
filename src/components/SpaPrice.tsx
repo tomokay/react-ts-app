@@ -23,19 +23,10 @@ type SpaPriceProps = {
   spa: Spa;
 };
 
-const adultPriceRow = (address: string) => {
-  return address;
-};
-
-const childPriceRow = (address: string) => {
-  return address;
-};
-
 const SpaPrice = (props: SpaPriceProps) => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        {/* <TableBody> */}
         <TableHead>
           <TableRow>
             <StyledTableCell align="left"></StyledTableCell>
@@ -46,7 +37,7 @@ const SpaPrice = (props: SpaPriceProps) => {
 
         <TableBody>
           <TableRow>
-            {adultPriceRow("大人")}
+            {"大人"}
             <StyledTableCell align="left">
               {props.spa.adultPrice}円
             </StyledTableCell>
@@ -55,7 +46,7 @@ const SpaPrice = (props: SpaPriceProps) => {
             </StyledTableCell>
           </TableRow>
           <TableRow>
-            {childPriceRow("子ども")}
+            {"子ども"}
             <StyledTableCell align="left">
               {props.spa.childPrice}円
             </StyledTableCell>
