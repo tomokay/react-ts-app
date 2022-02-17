@@ -32,32 +32,40 @@ type SpaBasicInformationProps = {
 };
 
 const SpaBasicInformation = (props: SpaBasicInformationProps) => {
+  const spaBasicInformaions = [
+    {
+      type: "address",
+      title: "住所",
+      informaion: props.spa.address,
+    },
+    {
+      type: "phoneNumber",
+      title: "電話番号",
+      informaion: props.spa.phoneNumber,
+    },
+    {
+      type: "businessHours",
+      title: "営業時間",
+      informaion: props.spa.businessHours,
+    },
+    {
+      type: "regularHoliday",
+      title: "定休日",
+      informaion: props.spa.regularHoliday,
+    },
+  ];
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableBody>
-          <StyledTableRow>
-            {"住所"}
-            <StyledTableCell align="left">{props.spa.address}</StyledTableCell>
-          </StyledTableRow>
-          <StyledTableRow>
-            {"電話番号"}
-            <StyledTableCell align="left">
-              {props.spa.phoneNumber}
-            </StyledTableCell>
-          </StyledTableRow>
-          <StyledTableRow>
-            {"営業時間"}
-            <StyledTableCell align="left">
-              {props.spa.businessHours}
-            </StyledTableCell>
-          </StyledTableRow>
-          <StyledTableRow>
-            {"定休日"}
-            <StyledTableCell align="left">
-              {props.spa.regularHoliday}
-            </StyledTableCell>
-          </StyledTableRow>
+          {spaBasicInformaions.map((spaBasicInfo) => {
+            return (
+              <StyledTableRow key={spaBasicInfo.type}>
+                {spaBasicInfo.title}
+                <StyledTableCell>{spaBasicInfo.informaion}</StyledTableCell>
+              </StyledTableRow>
+            );
+          })}
         </TableBody>
       </Table>
     </TableContainer>

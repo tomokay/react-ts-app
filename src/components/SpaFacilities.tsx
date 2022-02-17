@@ -7,19 +7,69 @@ type SpaFacilitiesProps = {
 };
 
 const SpaFacilities = (props: SpaFacilitiesProps) => {
+  const spaFacilityInformations = [
+    {
+      type: "opneAirBath",
+      title: "露天風呂",
+      exist: props.spa.hasOpenAirBath,
+    },
+    {
+      type: "waterBath",
+      title: "水風呂",
+      exist: props.spa.hasWaterBath,
+    },
+    {
+      type: "sauna",
+      title: "サウナ",
+      exist: props.spa.hasSauna,
+    },
+    {
+      type: "bubbleBath",
+      title: "泡風呂",
+      exist: props.spa.hasBubbleBath,
+    },
+    {
+      type: "jetBathSpa",
+      title: "ジェットバス",
+      exist: props.spa.hasJetBathSpa,
+    },
+    {
+      type: "shoulderHittingShower",
+      title: "打たせ湯",
+      exist: props.spa.hasShoulderHittingShower,
+    },
+    {
+      type: "sleepingBath",
+      title: "寝湯",
+      exist: props.spa.hasSleepingBath,
+    },
+    {
+      type: "cypressBath",
+      title: "檜風呂",
+      exist: props.spa.hasCypressBath,
+    },
+    {
+      type: "bedrockBath",
+      title: "岩盤浴",
+      exist: props.spa.hasBedrockBath,
+    },
+    {
+      type: "electricBath",
+      title: "電気風呂",
+      exist: props.spa.hasElectricBath,
+    },
+    {
+      type: "familyBath ",
+      title: "家族風呂",
+      exist: props.spa.hasFamilyBath,
+    },
+  ];
   return (
     <>
-      {props.spa.hasOpenAirBath && <li>露天風呂</li>}
-      {props.spa.hasWaterBath && <li>水風呂</li>}
-      {props.spa.hasSauna && <li>サウナ</li>}
-      {props.spa.hasBubbleBath && <li>泡風呂</li>}
-      {props.spa.hasJetBathSpa && <li>ジェットバス</li>}
-      {props.spa.hasShoulderHittingShower && <li>打たせ湯</li>}
-      {props.spa.hasSleepingBath && <li>寝湯</li>}
-      {props.spa.hasCypressBath && <li>檜風呂</li>}
-      {props.spa.hasBedrockBath && <li>岩盤浴</li>}
-      {props.spa.hasElectricBath && <li>電気風呂</li>}
-      {props.spa.hasFamilyBath && <li>家族風呂</li>}
+      {spaFacilityInformations.map((spaFacilityInfo) => {
+        if (spaFacilityInfo.exist)
+          return <li key={spaFacilityInfo.type}>{spaFacilityInfo.title}</li>;
+      })}
       <Typography variant="h6" gutterBottom component="div">
         {props.spa.customSpa}
       </Typography>

@@ -6,14 +6,44 @@ type SpaAmenitiesProps = {
 };
 
 const SpaAmenities = (props: SpaAmenitiesProps) => {
+  const spaAmenityInformations = [
+    {
+      type: "freeShampoo",
+      title: "無料シャンプー",
+      exist: props.spa.hasFreeShampoo,
+    },
+    {
+      type: "paidShampoo",
+      title: "有料シャンプー",
+      exist: props.spa.hasPaidShampoo,
+    },
+    {
+      type: "towel",
+      title: "貸し出しタオル",
+      exist: props.spa.hasTowel,
+    },
+    {
+      type: "freeHairdryer",
+      title: "無料ドライヤー",
+      exist: props.spa.hasFreeHairdryer,
+    },
+    {
+      type: "paidHairdryer",
+      title: "有料ドライヤー",
+      exist: props.spa.hasPaidHairdryer,
+    },
+    {
+      type: "creditCard",
+      title: "クレジットカードOK",
+      exist: props.spa.hasCreditCard,
+    },
+  ];
   return (
     <>
-      {props.spa.hasFreeShampoo && <li>無料シャンプー類</li>}
-      {props.spa.hasPaidShampoo && <li>有料シャンプー類</li>}
-      {props.spa.hasTowel && <li>タオル貸し出し</li>}
-      {props.spa.hasFreeHairdryer && <li>無料ドライヤー</li>}
-      {props.spa.hasPaidHairdryer && <li>有料ドライヤー</li>}
-      {props.spa.hasCreditCard && <li>クレジットカード決済OK</li>}
+      {spaAmenityInformations.map((spaAmenityInfo) => {
+        if (spaAmenityInfo.exist)
+          return <li key={spaAmenityInfo.type}>{spaAmenityInfo.title}</li>;
+      })}
     </>
   );
 };
