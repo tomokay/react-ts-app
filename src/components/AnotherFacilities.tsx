@@ -9,27 +9,27 @@ type AnothreFacilitiesProps = {
 const AnothreFacilities = (props: AnothreFacilitiesProps) => {
   const anotherFacilityInformations = [
     {
-      type: "restaurant",
+      type: "hasRestaurant",
       title: "レストラン",
       exist: props.spa.hasRestaurant,
     },
     {
-      type: "breakPlace",
+      type: "hasBreakPlace",
       title: "休憩所",
       exist: props.spa.hasBreakPlace,
     },
     {
-      type: "massageMachine",
+      type: "hasMassageMachine",
       title: "マッサージ機",
       exist: props.spa.hasMassageMachine,
     },
     {
-      type: "vendingMachine",
+      type: "hasVendingMachine",
       title: "自動販売機",
       exist: props.spa.hasVendingMachine,
     },
     {
-      type: "store",
+      type: "hasStore",
       title: "売店",
       exist: props.spa.hasStore,
     },

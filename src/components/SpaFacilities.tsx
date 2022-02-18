@@ -9,57 +9,57 @@ type SpaFacilitiesProps = {
 const SpaFacilities = (props: SpaFacilitiesProps) => {
   const spaFacilityInformations = [
     {
-      type: "opneAirBath",
+      type: "hasOpneAirBath",
       title: "露天風呂",
       exist: props.spa.hasOpenAirBath,
     },
     {
-      type: "waterBath",
+      type: "hasWaterBath",
       title: "水風呂",
       exist: props.spa.hasWaterBath,
     },
     {
-      type: "sauna",
+      type: "hasSauna",
       title: "サウナ",
       exist: props.spa.hasSauna,
     },
     {
-      type: "bubbleBath",
+      type: "hasBubbleBath",
       title: "泡風呂",
       exist: props.spa.hasBubbleBath,
     },
     {
-      type: "jetBathSpa",
+      type: "hasJetBathSpa",
       title: "ジェットバス",
       exist: props.spa.hasJetBathSpa,
     },
     {
-      type: "shoulderHittingShower",
+      type: "hasShoulderHittingShower",
       title: "打たせ湯",
       exist: props.spa.hasShoulderHittingShower,
     },
     {
-      type: "sleepingBath",
+      type: "hasSleepingBath",
       title: "寝湯",
       exist: props.spa.hasSleepingBath,
     },
     {
-      type: "cypressBath",
+      type: "hasCypressBath",
       title: "檜風呂",
       exist: props.spa.hasCypressBath,
     },
     {
-      type: "bedrockBath",
+      type: "hasBedrockBath",
       title: "岩盤浴",
       exist: props.spa.hasBedrockBath,
     },
     {
-      type: "electricBath",
+      type: "hasElectricBath",
       title: "電気風呂",
       exist: props.spa.hasElectricBath,
     },
     {
-      type: "familyBath ",
+      type: "hasFamilyBath ",
       title: "家族風呂",
       exist: props.spa.hasFamilyBath,
     },

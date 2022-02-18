@@ -8,32 +8,32 @@ type SpaAmenitiesProps = {
 const SpaAmenities = (props: SpaAmenitiesProps) => {
   const spaAmenityInformations = [
     {
-      type: "freeShampoo",
+      type: "hasFreeShampoo",
       title: "無料シャンプー",
       exist: props.spa.hasFreeShampoo,
     },
     {
-      type: "paidShampoo",
+      type: "hasPaidShampoo",
       title: "有料シャンプー",
       exist: props.spa.hasPaidShampoo,
     },
     {
-      type: "towel",
+      type: "hasTowel",
       title: "貸し出しタオル",
       exist: props.spa.hasTowel,
     },
     {
-      type: "freeHairdryer",
+      type: "hasFreeHairdryer",
       title: "無料ドライヤー",
       exist: props.spa.hasFreeHairdryer,
     },
     {
-      type: "paidHairdryer",
+      type: "hasPaidHairdryer",
       title: "有料ドライヤー",
       exist: props.spa.hasPaidHairdryer,
     },
     {
-      type: "creditCard",
+      type: "hasCreditCard",
       title: "クレジットカードOK",
       exist: props.spa.hasCreditCard,
     },
