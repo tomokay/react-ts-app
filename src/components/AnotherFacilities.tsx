@@ -9,35 +9,35 @@ type AnothreFacilitiesProps = {
 const AnothreFacilities = (props: AnothreFacilitiesProps) => {
   const anotherFacilityInformations = [
     {
-      type: "hasRestaurant",
+      type: "restaurant",
       title: "レストラン",
-      exist: props.spa.hasRestaurant,
+      isExist: props.spa.hasRestaurant,
     },
     {
-      type: "hasBreakPlace",
+      type: "breakPlace",
       title: "休憩所",
-      exist: props.spa.hasBreakPlace,
+      isExist: props.spa.hasBreakPlace,
     },
     {
-      type: "hasMassageMachine",
+      type: "massageMachine",
       title: "マッサージ機",
-      exist: props.spa.hasMassageMachine,
+      isExist: props.spa.hasMassageMachine,
     },
     {
-      type: "hasVendingMachine",
+      type: "vendingMachine",
       title: "自動販売機",
-      exist: props.spa.hasVendingMachine,
+      isExist: props.spa.hasVendingMachine,
     },
     {
-      type: "hasStore",
+      type: "store",
       title: "売店",
-      exist: props.spa.hasStore,
+      isExist: props.spa.hasStore,
     },
   ];
   return (
     <>
       {anotherFacilityInformations.map((anotherFacilityInfo) => {
-        if (anotherFacilityInfo.exist)
+        if (anotherFacilityInfo.isExist)
           return (
             <li key={anotherFacilityInfo.type}>{anotherFacilityInfo.title}</li>
           );

@@ -9,65 +9,65 @@ type SpaFacilitiesProps = {
 const SpaFacilities = (props: SpaFacilitiesProps) => {
   const spaFacilityInformations = [
     {
-      type: "hasOpneAirBath",
+      type: "opneAirBath",
       title: "露天風呂",
-      exist: props.spa.hasOpenAirBath,
+      isExist: props.spa.hasOpenAirBath,
     },
     {
-      type: "hasWaterBath",
+      type: "waterBath",
       title: "水風呂",
-      exist: props.spa.hasWaterBath,
+      isExist: props.spa.hasWaterBath,
     },
     {
-      type: "hasSauna",
+      type: "sauna",
       title: "サウナ",
-      exist: props.spa.hasSauna,
+      isExist: props.spa.hasSauna,
     },
     {
-      type: "hasBubbleBath",
+      type: "bubbleBath",
       title: "泡風呂",
-      exist: props.spa.hasBubbleBath,
+      isExist: props.spa.hasBubbleBath,
     },
     {
-      type: "hasJetBathSpa",
+      type: "jetBathSpa",
       title: "ジェットバス",
-      exist: props.spa.hasJetBathSpa,
+      isExist: props.spa.hasJetBathSpa,
     },
     {
-      type: "hasShoulderHittingShower",
+      type: "shoulderHittingShower",
       title: "打たせ湯",
-      exist: props.spa.hasShoulderHittingShower,
+      isExist: props.spa.hasShoulderHittingShower,
     },
     {
-      type: "hasSleepingBath",
+      type: "sleepingBath",
       title: "寝湯",
-      exist: props.spa.hasSleepingBath,
+      isExist: props.spa.hasSleepingBath,
     },
     {
-      type: "hasCypressBath",
+      type: "cypressBath",
       title: "檜風呂",
-      exist: props.spa.hasCypressBath,
+      isExist: props.spa.hasCypressBath,
     },
     {
-      type: "hasBedrockBath",
+      type: "bedrockBath",
       title: "岩盤浴",
-      exist: props.spa.hasBedrockBath,
+      isExist: props.spa.hasBedrockBath,
     },
     {
-      type: "hasElectricBath",
+      type: "electricBath",
       title: "電気風呂",
-      exist: props.spa.hasElectricBath,
+      isExist: props.spa.hasElectricBath,
     },
     {
-      type: "hasFamilyBath ",
+      type: "familyBath ",
       title: "家族風呂",
-      exist: props.spa.hasFamilyBath,
+      isExist: props.spa.hasFamilyBath,
     },
   ];
   return (
     <>
       {spaFacilityInformations.map((spaFacilityInfo) => {
-        if (spaFacilityInfo.exist)
+        if (spaFacilityInfo.isExist)
           return <li key={spaFacilityInfo.type}>{spaFacilityInfo.title}</li>;
       })}
       <Typography variant="h6" gutterBottom component="div">
