@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "@mui/material";
+import { NavLink } from "react-router-dom";
 
 const Top = () => {
   return (
@@ -11,8 +12,9 @@ const Top = () => {
             LOGIN
           </Button>
           <Button variant="outlined" size="small">
-            SGIN UP
+            SIGN UP
           </Button>
+          <NavLink to="/spa">温泉一覧</NavLink>
         </header>
       </div>
     </>

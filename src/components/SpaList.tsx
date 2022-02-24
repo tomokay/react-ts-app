@@ -1,10 +1,10 @@
 import React from "react";
+import { SpaListType } from "src/components/SpaPage";
 import SpaItem from "src/components/SpaItem";
-import { Spa } from "src/components/SpaPage";
 
 type SpaListProps = {
-  spas: Spa[];
-  setSpas: React.Dispatch<React.SetStateAction<Spa[]>>;
+  spas: SpaListType[];
+  setSpas: React.Dispatch<React.SetStateAction<SpaListType[]>>;
 };
 
 const SpaList = (props: SpaListProps) => {

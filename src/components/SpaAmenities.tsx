@@ -1,5 +1,5 @@
 import React from "react";
-import { Spa } from "src/components/SpaPage";
+import { Spa } from "src/components/SpaDetailPage";
 
 type SpaAmenitiesProps = {
   spa: Spa;
