@@ -1,5 +1,5 @@
 import React from "react";
-import { Spa } from "src/components/SpaPage";
+import { Spa } from "src/components/SpaDetailPage";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableHead from "@mui/material/TableHead";

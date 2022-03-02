@@ -1,5 +1,5 @@
 import React from "react";
-import { Spa } from "src/components/SpaPage";
+import { Spa } from "src/components/SpaDetailPage";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -55,20 +55,22 @@ const SpaBasicInformation = (props: SpaBasicInformationProps) => {
     },
   ];
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableBody>
-          {spaBasicInformaions.map((spaBasicInfo) => {
-            return (
-              <StyledTableRow key={spaBasicInfo.type}>
-                {spaBasicInfo.title}
-                <StyledTableCell>{spaBasicInfo.informaion}</StyledTableCell>
-              </StyledTableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <TableBody>
+            {spaBasicInformaions.map((spaBasicInfo) => {
+              return (
+                <StyledTableRow key={spaBasicInfo.type}>
+                  {spaBasicInfo.title}
+                  <StyledTableCell>{spaBasicInfo.informaion}</StyledTableCell>
+                </StyledTableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   );
 };
 
