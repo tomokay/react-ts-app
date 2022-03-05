@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Toolbar, Typography } from "@mui/material";
+import { NavLink } from "react-router-dom";
 
 type HeaderProps = {
   HeaderTitle: string;
@@ -21,6 +22,7 @@ const Header = (props: HeaderProps) => {
         >
           {HeaderTitle}
         </Typography>
+        <NavLink to="/spainput">温泉登録</NavLink>
         <Button variant="outlined" size="small">
           Sign up
         </Button>
