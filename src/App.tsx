@@ -12,9 +12,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Top />} />
           <Route path="spainput/*" element={<SpaEntryPage />} />
-          <Route path="/spa" element={<SpaPage />}>
-            <Route path="spadetail/*" element={<SpaDetailPage />} />
-          </Route>
+          <Route path="/spa" element={<SpaPage />} />
+          <Route path="spadetail/*" element={<SpaDetailPage />} />
         </Routes>
       </Router>
     </>

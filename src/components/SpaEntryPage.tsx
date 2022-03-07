@@ -11,16 +11,15 @@ import {
   AnothreFacility,
   Basic,
   Price,
-  SpaCreate,
+  Spa,
   SpaFacility,
 } from "src/components/Types";
 import { NavLink } from "react-router-dom";
 
 const SpaEntryPage = () => {
   const [activeStep, setActiveStep] = useState<number>(0);
-  const [spa, setSpa] = useState<SpaCreate[]>([]);
+  const [spa, setSpa] = useState<Spa[]>([]);
 
-  const [count, setCount] = useState(spa.length + 1);
   const [spaName, setSpaName] = useState<string>("");
   const [spaAddress, setSpaAddress] = useState<string>("");
   const [spaPhoneNumber, setSpaPhoneNumber] = useState<string>("");
@@ -274,7 +273,7 @@ const SpaEntryPage = () => {
     };
   };
 
-  const createAnothreFacilityObj = (
+  const createAnotherFacilityObj = (
     hasRestaurant: boolean,
     hasBreakPlace: boolean,
     hasMassageMachine: boolean,
@@ -293,7 +292,6 @@ const SpaEntryPage = () => {
   };
 
   const handleInputSpaData = () => {
-    setCount(count + 1);
     const basicObj = createBasicObj(
       spaName,
       spaAddress,
@@ -333,7 +331,7 @@ const SpaEntryPage = () => {
       customSpa
     );
 
-    const anothreFacilityObj = createAnothreFacilityObj(
+    const anothreFacilityObj = createAnotherFacilityObj(
       hasRestaurant,
       hasBreakPlace,
       hasMassageMachine,
@@ -342,8 +340,7 @@ const SpaEntryPage = () => {
       customFacility
     );
 
-    const newSpa: SpaCreate = {
-      id: count,
+    const newSpa: Spa = {
       basic: basicObj,
       price: priceObj,
       amenity: amenityObj,

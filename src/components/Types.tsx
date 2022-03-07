@@ -1,5 +1,5 @@
-export type SpaCreate = {
-  id: number;
+export type Spa = {
+  id?: number;
   basic: Basic;
   price: Price;
   amenity: Amenity;

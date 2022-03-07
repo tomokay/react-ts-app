@@ -1,5 +1,5 @@
 import React from "react";
-import { Spa } from "src/components/SpaDetailPage";
+import { Spa } from "src/components/Types";
 import Typography from "@mui/material/Typography";
 
 type AnothreFacilitiesProps = {
@@ -11,27 +11,27 @@ const AnothreFacilities = (props: AnothreFacilitiesProps) => {
     {
       type: "restaurant",
       title: "レストラン",
-      isExist: props.spa.hasRestaurant,
+      isExist: props.spa.anothreFacility.hasRestaurant,
     },
     {
       type: "breakPlace",
       title: "休憩所",
-      isExist: props.spa.hasBreakPlace,
+      isExist: props.spa.anothreFacility.hasBreakPlace,
     },
     {
       type: "massageMachine",
       title: "マッサージ機",
-      isExist: props.spa.hasMassageMachine,
+      isExist: props.spa.anothreFacility.hasMassageMachine,
     },
     {
       type: "vendingMachine",
       title: "自動販売機",
-      isExist: props.spa.hasVendingMachine,
+      isExist: props.spa.anothreFacility.hasVendingMachine,
     },
     {
       type: "store",
       title: "売店",
-      isExist: props.spa.hasStore,
+      isExist: props.spa.anothreFacility.hasStore,
     },
   ];
   return (
@@ -43,7 +43,7 @@ const AnothreFacilities = (props: AnothreFacilitiesProps) => {
           );
       })}
       <Typography variant="h6" gutterBottom component="div">
-        {props.spa.customFacilities}
+        {props.spa.anothreFacility.customFacilities}
       </Typography>
     </>
   );

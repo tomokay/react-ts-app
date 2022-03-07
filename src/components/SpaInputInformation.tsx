@@ -11,11 +11,11 @@ import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import { CardActionArea } from "@mui/material";
-import { SpaCreate } from "src/components/Types";
+import { Spa } from "src/components/Types";
 
 type SpaInputInfomationProps = {
-  spa: SpaCreate[];
-  setSpa: React.Dispatch<React.SetStateAction<SpaCreate[]>>;
+  spa: Spa[];
+  setSpa: React.Dispatch<React.SetStateAction<Spa[]>>;
   spaName: string;
   setSpaName: React.Dispatch<React.SetStateAction<string>>;
   spaAddress: string;
@@ -323,6 +323,7 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
             label="大人料金：平日"
             variant="outlined"
             value={props.adultPrice}
+            type="number"
             onChange={handleInputAdultPrice}
             InputProps={{
               endAdornment: <InputAdornment position="end">円</InputAdornment>,
@@ -333,6 +334,7 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
             label="子ども料金：平日"
             variant="outlined"
             value={props.childPrice}
+            type="number"
             onChange={handleInputChildPrice}
             InputProps={{
               endAdornment: <InputAdornment position="end">円</InputAdornment>,
@@ -343,6 +345,7 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
             label="大人料金：休日"
             variant="outlined"
             value={props.adultWeekendPrice}
+            type="number"
             onChange={handleInputAdultWeekendPrice}
             InputProps={{
               endAdornment: <InputAdornment position="end">円</InputAdornment>,
@@ -353,6 +356,7 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
             label="子ども料金：休日"
             variant="outlined"
             value={props.childWeekendPrice}
+            type="number"
             onChange={handleInputChildWeekendPrice}
             InputProps={{
               endAdornment: <InputAdornment position="end">円</InputAdornment>,

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Container } from "@mui/material";
 import Header from "src/components/Header";
 import SpaList from "src/components/SpaList";
-import { Outlet } from "react-router-dom";
 
 export type SpaListType = {
   id: number;
@@ -31,7 +30,6 @@ const SpaPage = () => {
         <Header HeaderTitle="温泉一覧" />
         <SpaList spas={spas} setSpas={setSpas} />
       </Container>
-      <Outlet />
     </div>
   );
 };
