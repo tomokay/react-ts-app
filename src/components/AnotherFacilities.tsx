@@ -43,7 +43,7 @@ const AnothreFacilities = (props: AnothreFacilitiesProps) => {
           );
       })}
       <Typography variant="h6" gutterBottom component="div">
-        {props.spa.anotherFacility.customFacilities}
+        {props.spa.anotherFacility.customFacility}
       </Typography>
     </>
   );

@@ -6,7 +6,7 @@ import { Grid } from "@mui/material";
 import SpaInputInfomation from "src/components/SpaInputInformation";
 import SpaInputConfirm from "src/components/SpaInputConfirm";
 import { Spa } from "src/components/Types";
-import { CREATE_SPA } from "src/lib/createSpa";
+import { CREATE_SPA } from "src/graphql/createSpa";
 import { useMutation } from "@apollo/client";
 import { NavLink } from "react-router-dom";
 

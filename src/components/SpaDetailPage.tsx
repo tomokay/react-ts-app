@@ -52,12 +52,11 @@ const initialSpaDetailState: Spa = {
     hasMassageMachine: false,
     hasVendingMachine: true,
     hasStore: true,
-    customFacilities: "トレーニングルーム",
+    customFacility: "トレーニングルーム",
   },
   picture: "///",
-  goodCount: 2,
-  lat: 123.5,
-  lng: 123.2,
+  lat: "123.5",
+  lng: "123.2",
 };
 
 const SpaDetailPage = () => {

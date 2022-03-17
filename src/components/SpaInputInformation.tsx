@@ -298,8 +298,8 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
             rules={{
               required: "温泉名を入力してください",
               maxLength: {
-                value: 15,
-                message: "15字以内で入力してください",
+                value: 50,
+                message: "50字以内で入力してください",
               },
               onBlur: handleInputSpaNameChange,
             }}
@@ -329,8 +329,8 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
             rules={{
               required: "住所を入力してください",
               maxLength: {
-                value: 15,
-                message: "15字以内で入力してください",
+                value: 50,
+                message: "50字以内で入力してください",
               },
               onBlur: handleInputSpaAddressChange,
             }}
@@ -355,8 +355,8 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
             rules={{
               required: "電話番号を入力してください",
               maxLength: {
-                value: 15,
-                message: "15字以内で入力してください",
+                value: 30,
+                message: "30字以内で入力してください",
               },
               onBlur: handleInputSpaPhoneNumberChange,
               pattern: {
@@ -390,8 +390,8 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
             rules={{
               required: "営業時間を入力してください",
               maxLength: {
-                value: 15,
-                message: "15字以内で入力してください",
+                value: 50,
+                message: "50字以内で入力してください",
               },
               onBlur: handleInputSpaBusinessHoursChange,
             }}
@@ -421,8 +421,8 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
             rules={{
               required: "定休日を入力してください",
               maxLength: {
-                value: 15,
-                message: "15字以内で入力してください",
+                value: 50,
+                message: "50字以内で入力してください",
               },
               onBlur: handleInputSpaRegularHolidayChange,
             }}
@@ -456,10 +456,10 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
             rules={{
               required: "入力してください",
               maxLength: {
-                value: 6,
-                message: "10万円以内で入力してください",
+                value: 7,
+                message: "9999999円以内で入力してください",
               },
-              onBlur: handleInputAdultPrice,
+              onChange: handleInputAdultPrice,
               pattern: {
                 value: /^[0-9\b]+$/,
                 message: "半角数字のみの入力",
@@ -495,8 +495,8 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
             rules={{
               required: "入力してください",
               maxLength: {
-                value: 6,
-                message: "10万円以内で入力してください",
+                value: 7,
+                message: "9999999円以内で入力してください",
               },
               onBlur: handleInputChildPrice,
               pattern: {
@@ -534,8 +534,8 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
             rules={{
               required: "入力してください",
               maxLength: {
-                value: 6,
-                message: "10万円以内で入力してください",
+                value: 7,
+                message: "9999999円以内で入力してください",
               },
               onBlur: handleInputAdultWeekendPrice,
               pattern: {
@@ -573,8 +573,8 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
             rules={{
               required: "入力してください",
               maxLength: {
-                value: 6,
-                message: "10万円以内で入力してください",
+                value: 7,
+                message: "9999999円以内で入力してください",
               },
               onBlur: handleInputChildWeekendPrice,
               pattern: {
@@ -739,8 +739,8 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
             control={control}
             rules={{
               maxLength: {
-                value: 15,
-                message: "15字以内で入力してください",
+                value: 50,
+                message: "50字以内で入力してください",
               },
               onBlur: handleInputCustomSpa,
             }}
@@ -804,8 +804,8 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
             control={control}
             rules={{
               maxLength: {
-                value: 15,
-                message: "15字以内で入力してください",
+                value: 50,
+                message: "50字以内で入力してください",
               },
               onBlur: handleInputCustomFacility,
             }}

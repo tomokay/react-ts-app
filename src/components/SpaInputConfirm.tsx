@@ -306,7 +306,7 @@ const SpaInputConfirm = (props: SpaInputConfilmProps) => {
       hasMassageMachine: boolean,
       hasVendingMachine: boolean,
       hasStore: boolean,
-      customFacilities: string | null
+      customFacility: string | null
     ): AnotherFacility => {
       return {
         hasRestaurant: hasRestaurant,
@@ -314,7 +314,7 @@ const SpaInputConfirm = (props: SpaInputConfilmProps) => {
         hasMassageMachine: hasMassageMachine,
         hasVendingMachine: hasVendingMachine,
         hasStore: hasStore,
-        customFacilities: customFacilities,
+        customFacility: customFacility,
       };
     };
 
@@ -374,50 +374,8 @@ const SpaInputConfirm = (props: SpaInputConfilmProps) => {
       spaFacility: spaFacilityObj,
       anotherFacility: anotherFacilityObj,
       picture: "http",
-      goodCount: 2,
-      lat: 123,
-      lng: 123,
-    };
-
-    const newSpaObj = {
-      id: 10,
-      spaName: "さくら温泉",
-      address: "東京都",
-      phoneNumber: "080-000-0000",
-      businessHours: "10:00~19:00",
-      regularHoliday: "木曜日",
-      adultPrice: 500,
-      childPrice: 300,
-      adultWeekendPrice: 800,
-      childWeekendPrice: 500,
-      hasFreeShampoo: true,
-      hasPaidShampoo: false,
-      hasTowel: false,
-      hasFreeHairdryer: true,
-      hasPaidHairdryer: false,
-      hasCreditCard: true,
-      hasOpenAirBath: true,
-      hasWaterBath: true,
-      hasSauna: false,
-      hasBubbleBath: false,
-      hasJetBathSpa: false,
-      hasShoulderHittingShower: true,
-      hasSleepingBath: false,
-      hasCypressBath: false,
-      hasBedrockBath: false,
-      hasElectricBath: true,
-      hasFamilyBath: false,
-      customSpa: null,
-      hasRestaurant: true,
-      hasBreakPlace: true,
-      hasMassageMachine: false,
-      hasVendingMachine: true,
-      hasStore: true,
-      customFacilities: "トレーニングルーム",
-      picture: "///",
-      goodCount: 2,
-      lat: 123,
-      lng: 123,
+      lat: "123",
+      lng: "123",
     };
 
     props.createSpa({ variables: { input: newSpa } });

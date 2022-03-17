@@ -6,9 +6,8 @@ export type Spa = {
   spaFacility: SpaFacility;
   anotherFacility: AnotherFacility;
   picture: string;
-  goodCount: number;
-  lat: number;
-  lng: number;
+  lat: string;
+  lng: string;
 };
 
 //基本情報
@@ -60,5 +59,5 @@ export type AnotherFacility = {
   hasMassageMachine: boolean;
   hasVendingMachine: boolean;
   hasStore: boolean;
-  customFacilities: string | null;
+  customFacility: string | null;
 };
