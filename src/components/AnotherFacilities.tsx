@@ -11,27 +11,27 @@ const AnothreFacilities = (props: AnothreFacilitiesProps) => {
     {
       type: "restaurant",
       title: "レストラン",
-      isExist: props.spa.anothreFacility.hasRestaurant,
+      isExist: props.spa.anotherFacility.hasRestaurant,
     },
     {
       type: "breakPlace",
       title: "休憩所",
-      isExist: props.spa.anothreFacility.hasBreakPlace,
+      isExist: props.spa.anotherFacility.hasBreakPlace,
     },
     {
       type: "massageMachine",
       title: "マッサージ機",
-      isExist: props.spa.anothreFacility.hasMassageMachine,
+      isExist: props.spa.anotherFacility.hasMassageMachine,
     },
     {
       type: "vendingMachine",
       title: "自動販売機",
-      isExist: props.spa.anothreFacility.hasVendingMachine,
+      isExist: props.spa.anotherFacility.hasVendingMachine,
     },
     {
       type: "store",
       title: "売店",
-      isExist: props.spa.anothreFacility.hasStore,
+      isExist: props.spa.anotherFacility.hasStore,
     },
   ];
   return (
@@ -43,7 +43,7 @@ const AnothreFacilities = (props: AnothreFacilitiesProps) => {
           );
       })}
       <Typography variant="h6" gutterBottom component="div">
-        {props.spa.anothreFacility.customFacilities}
+        {props.spa.anotherFacility.customFacilities}
       </Typography>
     </>
   );

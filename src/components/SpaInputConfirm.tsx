@@ -1,6 +1,14 @@
 import React from "react";
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { CardActionArea } from "@mui/material";
+import {
+  Amenity,
+  AnotherFacility,
+  Basic,
+  Price,
+  Spa,
+  SpaFacility,
+} from "src/components/Types";
 
 type SpaInputConfilmProps = {
   spaName: string;
@@ -37,6 +45,9 @@ type SpaInputConfilmProps = {
   hasStore: boolean;
   customFacility: string;
   picture: string;
+  createSpa: any;
+  handleBack: any;
+  handleNext: any;
 };
 
 const SpaInputConfirm = (props: SpaInputConfilmProps) => {
@@ -210,6 +221,211 @@ const SpaInputConfirm = (props: SpaInputConfilmProps) => {
     },
   ];
 
+  const onSubmit = () => {
+    const createBasicObj = (
+      spaName: string,
+      spaAddress: string,
+      spaPhoneNumber: string,
+      spaBusinessHours: string,
+      spaRegularHoliday: string
+    ): Basic => {
+      return {
+        spaName: spaName,
+        address: spaAddress,
+        phoneNumber: spaPhoneNumber,
+        businessHours: spaBusinessHours,
+        regularHoliday: spaRegularHoliday,
+      };
+    };
+
+    const createPriceObj = (
+      adultPrice: number,
+      childPrice: number,
+      adultWeekendPrice: number,
+      childWeekendPrice: number
+    ): Price => {
+      return {
+        adultPrice: adultPrice,
+        childPrice: childPrice,
+        adultWeekendPrice: adultWeekendPrice,
+        childWeekendPrice: childWeekendPrice,
+      };
+    };
+
+    const createAmenity = (
+      hasFreeShampoo: boolean,
+      hasPaidShampoo: boolean,
+      hasTowel: boolean,
+      hasFreeHairdryer: boolean,
+      hasPaidHairdryer: boolean,
+      hasCreditCard: boolean
+    ): Amenity => {
+      return {
+        hasFreeShampoo: hasFreeShampoo,
+        hasPaidShampoo: hasPaidShampoo,
+        hasTowel: hasTowel,
+        hasFreeHairdryer: hasFreeHairdryer,
+        hasPaidHairdryer: hasPaidHairdryer,
+        hasCreditCard: hasCreditCard,
+      };
+    };
+
+    const createSpaFacility = (
+      hasOpenAirBath: boolean,
+      hasWaterBath: boolean,
+      hasSauna: boolean,
+      hasBubbleBath: boolean,
+      hasJetBathSpa: boolean,
+      hasShoulderHittingShower: boolean,
+      hasSleepingBath: boolean,
+      hasCypressBath: boolean,
+      hasBedrockBath: boolean,
+      hasElectricBath: boolean,
+      hasFamilyBath: boolean,
+      customSpa: string | null
+    ): SpaFacility => {
+      return {
+        hasOpenAirBath: hasOpenAirBath,
+        hasWaterBath: hasWaterBath,
+        hasSauna: hasSauna,
+        hasBubbleBath: hasBubbleBath,
+        hasJetBathSpa: hasJetBathSpa,
+        hasShoulderHittingShower: hasShoulderHittingShower,
+        hasSleepingBath: hasSleepingBath,
+        hasCypressBath: hasCypressBath,
+        hasBedrockBath: hasBedrockBath,
+        hasElectricBath: hasElectricBath,
+        hasFamilyBath: hasFamilyBath,
+        customSpa: customSpa,
+      };
+    };
+
+    const createAnotherFacilityObj = (
+      hasRestaurant: boolean,
+      hasBreakPlace: boolean,
+      hasMassageMachine: boolean,
+      hasVendingMachine: boolean,
+      hasStore: boolean,
+      customFacilities: string | null
+    ): AnotherFacility => {
+      return {
+        hasRestaurant: hasRestaurant,
+        hasBreakPlace: hasBreakPlace,
+        hasMassageMachine: hasMassageMachine,
+        hasVendingMachine: hasVendingMachine,
+        hasStore: hasStore,
+        customFacilities: customFacilities,
+      };
+    };
+
+    const basicObj = createBasicObj(
+      props.spaName,
+      // props.basicStateObj.spaName,
+      props.spaAddress,
+      props.spaPhoneNumber,
+      props.spaBusinessHours,
+      props.spaRegularHoliday
+    );
+
+    const priceObj = createPriceObj(
+      props.adultPrice,
+      props.childPrice,
+      props.adultWeekendPrice,
+      props.childWeekendPrice
+    );
+
+    const amenityObj = createAmenity(
+      props.hasFreeShampoo,
+      props.hasPaidShampoo,
+      props.hasTowel,
+      props.hasFreeHairdryer,
+      props.hasPaidHairdryer,
+      props.hasCreditCard
+    );
+
+    const spaFacilityObj = createSpaFacility(
+      props.hasOpenAirBath,
+      props.hasWaterBath,
+      props.hasSauna,
+      props.hasBubbleBath,
+      props.hasJetBathSpa,
+      props.hasShoulderHittingShower,
+      props.hasSleepingBath,
+      props.hasCypressBath,
+      props.hasBedrockBath,
+      props.hasElectricBath,
+      props.hasFamilyBath,
+      props.customSpa
+    );
+
+    const anotherFacilityObj = createAnotherFacilityObj(
+      props.hasRestaurant,
+      props.hasBreakPlace,
+      props.hasMassageMachine,
+      props.hasVendingMachine,
+      props.hasStore,
+      props.customFacility
+    );
+
+    const newSpa: Spa = {
+      basic: basicObj,
+      price: priceObj,
+      amenity: amenityObj,
+      spaFacility: spaFacilityObj,
+      anotherFacility: anotherFacilityObj,
+      picture: "http",
+      goodCount: 2,
+      lat: 123,
+      lng: 123,
+    };
+
+    const newSpaObj = {
+      id: 10,
+      spaName: "さくら温泉",
+      address: "東京都",
+      phoneNumber: "080-000-0000",
+      businessHours: "10:00~19:00",
+      regularHoliday: "木曜日",
+      adultPrice: 500,
+      childPrice: 300,
+      adultWeekendPrice: 800,
+      childWeekendPrice: 500,
+      hasFreeShampoo: true,
+      hasPaidShampoo: false,
+      hasTowel: false,
+      hasFreeHairdryer: true,
+      hasPaidHairdryer: false,
+      hasCreditCard: true,
+      hasOpenAirBath: true,
+      hasWaterBath: true,
+      hasSauna: false,
+      hasBubbleBath: false,
+      hasJetBathSpa: false,
+      hasShoulderHittingShower: true,
+      hasSleepingBath: false,
+      hasCypressBath: false,
+      hasBedrockBath: false,
+      hasElectricBath: true,
+      hasFamilyBath: false,
+      customSpa: null,
+      hasRestaurant: true,
+      hasBreakPlace: true,
+      hasMassageMachine: false,
+      hasVendingMachine: true,
+      hasStore: true,
+      customFacilities: "トレーニングルーム",
+      picture: "///",
+      goodCount: 2,
+      lat: 123,
+      lng: 123,
+    };
+
+    props.createSpa({ variables: { input: newSpa } });
+    console.log("newSpa:", newSpa);
+
+    props.handleNext();
+  };
+
   return (
     <>
       <Typography variant="h4" gutterBottom component="div">
@@ -266,6 +482,10 @@ const SpaInputConfirm = (props: SpaInputConfilmProps) => {
       <CardActionArea>
         <img width="50%" src={props.picture} />
       </CardActionArea>
+      <Button onClick={props.handleBack}>戻る</Button>
+      <Button variant="contained" color="primary" onClick={onSubmit}>
+        送信
+      </Button>
     </>
   );
 };

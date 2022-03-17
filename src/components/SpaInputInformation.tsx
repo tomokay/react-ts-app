@@ -1,5 +1,4 @@
 import React from "react";
-import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -10,8 +9,9 @@ import Checkbox from "@mui/material/Checkbox";
 import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
-import { CardActionArea } from "@mui/material";
+import { CardActionArea, FormControl, FormHelperText } from "@mui/material";
 import { Spa } from "src/components/Types";
+import { useForm, Controller } from "react-hook-form";
 
 type SpaInputInfomationProps = {
   spa: Spa[];
@@ -84,9 +84,16 @@ type SpaInputInfomationProps = {
   setCustomFacility: React.Dispatch<React.SetStateAction<string>>;
   picture: string;
   setPicture: React.Dispatch<React.SetStateAction<string>>;
+  handleNext: any;
 };
 
 const SpaInputInfomation = (props: SpaInputInfomationProps) => {
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
+
   //基本情報関数
   const handleInputSpaNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     props.setSpaName(e.target.value);
@@ -212,6 +219,7 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
     props.setCustomFacility(e.target.value);
   };
 
+  //画像関数
   const handleInputPicture = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
 
@@ -254,115 +262,340 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
     );
   };
 
+  const onSubmit = handleSubmit(() => {
+    props.handleNext();
+  });
+
   return (
     <>
-      <Container>
+      <Box
+        component="form"
+        onSubmit={onSubmit}
+        sx={{
+          "& .MuiTextField-root": { m: 1, width: "60ch" },
+        }}
+        noValidate
+        autoComplete="off"
+      >
         <Typography variant="h2" gutterBottom component="div">
           温泉情報入力
         </Typography>
         <Typography variant="h5" gutterBottom component="div">
           基本情報
         </Typography>
-        <Box
-          component="form"
-          sx={{
-            "& .MuiTextField-root": { m: 1, width: "60ch" },
-          }}
-          noValidate
-          autoComplete="off"
+        <FormControl
+          required
+          error={errors?.hasOwnProperty("spaName")}
+          component="fieldset"
+          fullWidth
         >
-          <TextField
-            id="spaName"
-            label="温泉名"
-            variant="outlined"
-            value={props.spaName}
-            onChange={handleInputSpaNameChange}
+          <FormHelperText>
+            {errors?.spaName && errors?.spaName.message}
+          </FormHelperText>
+          <Controller
+            name="spaName"
+            control={control}
+            rules={{
+              required: "温泉名を入力してください",
+              maxLength: {
+                value: 15,
+                message: "15字以内で入力してください",
+              },
+              onBlur: handleInputSpaNameChange,
+            }}
+            defaultValue={props.spaName}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                variant="outlined"
+                label="温泉名"
+                required
+              />
+            )}
           />
-          <TextField
-            id="spaAddress"
-            label="住所"
-            variant="outlined"
-            value={props.spaAddress}
-            onChange={handleInputSpaAddressChange}
+        </FormControl>
+        <FormControl
+          required
+          error={errors?.hasOwnProperty("spaAddress")}
+          component="fieldset"
+          fullWidth
+        >
+          <FormHelperText>
+            {errors?.spaAddress && errors?.spaAddress.message}
+          </FormHelperText>
+          <Controller
+            name="spaAddress"
+            control={control}
+            rules={{
+              required: "住所を入力してください",
+              maxLength: {
+                value: 15,
+                message: "15字以内で入力してください",
+              },
+              onBlur: handleInputSpaAddressChange,
+            }}
+            defaultValue={props.spaAddress}
+            render={({ field }) => (
+              <TextField {...field} variant="outlined" label="住所" required />
+            )}
           />
-          <TextField
-            id="spaphoneNumber"
-            label="電話番号"
-            variant="outlined"
-            value={props.spaPhoneNumber}
-            onChange={handleInputSpaPhoneNumberChange}
+        </FormControl>
+        <FormControl
+          required
+          error={errors?.hasOwnProperty("spaPhoneNumber")}
+          component="fieldset"
+          fullWidth
+        >
+          <FormHelperText>
+            {errors?.spaPhoneNumber && errors?.spaPhoneNumber.message}
+          </FormHelperText>
+          <Controller
+            name="spaPhoneNumber"
+            control={control}
+            rules={{
+              required: "電話番号を入力してください",
+              maxLength: {
+                value: 15,
+                message: "15字以内で入力してください",
+              },
+              onBlur: handleInputSpaPhoneNumberChange,
+              pattern: {
+                value: /[0-9]{4}/,
+                message: "数字とハイフンで入力してください",
+              },
+            }}
+            defaultValue={props.spaPhoneNumber}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                variant="outlined"
+                label="電話番号"
+                required
+              />
+            )}
           />
-          <TextField
-            id="spaBusinessHours"
-            label="営業時間"
-            variant="outlined"
-            value={props.spaBusinessHours}
-            onChange={handleInputSpaBusinessHoursChange}
+        </FormControl>
+        <FormControl
+          required
+          error={errors?.hasOwnProperty("spaBusinessHours")}
+          component="fieldset"
+          fullWidth
+        >
+          <FormHelperText>
+            {errors?.spaBusinessHours && errors?.spaBusinessHours.message}
+          </FormHelperText>
+          <Controller
+            name="spaBusinessHours"
+            control={control}
+            rules={{
+              required: "営業時間を入力してください",
+              maxLength: {
+                value: 15,
+                message: "15字以内で入力してください",
+              },
+              onBlur: handleInputSpaBusinessHoursChange,
+            }}
+            defaultValue={props.spaBusinessHours}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                variant="outlined"
+                label="営業時間"
+                required
+              />
+            )}
           />
-          <TextField
-            id="spaRegularHoliday"
-            label="定休日"
-            variant="outlined"
-            value={props.spaRegularHoliday}
-            onChange={handleInputSpaRegularHolidayChange}
+        </FormControl>
+        <FormControl
+          required
+          error={errors?.hasOwnProperty("spaRegularHoliday")}
+          component="fieldset"
+          fullWidth
+        >
+          <FormHelperText>
+            {errors?.spaRegularHoliday && errors?.spaRegularHoliday.message}
+          </FormHelperText>
+          <Controller
+            name="spaRegularHoliday"
+            control={control}
+            rules={{
+              required: "定休日を入力してください",
+              maxLength: {
+                value: 15,
+                message: "15字以内で入力してください",
+              },
+              onBlur: handleInputSpaRegularHolidayChange,
+            }}
+            defaultValue={props.spaRegularHoliday}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                variant="outlined"
+                label="定休日"
+                required
+              />
+            )}
           />
-        </Box>
+        </FormControl>
         <Typography variant="h5" gutterBottom component="div">
           入浴料
         </Typography>
-        <Box
-          component="form"
-          sx={{
-            "& .MuiTextField-root": { m: 1, width: "50ch" },
-          }}
-          noValidate
-          autoComplete="off"
+        <FormControl
+          required
+          error={errors?.hasOwnProperty("adultPrice")}
+          component="fieldset"
+          fullWidth
         >
-          <TextField
-            id="outlined-basic"
-            label="大人料金：平日"
-            variant="outlined"
-            value={props.adultPrice}
-            type="number"
-            onChange={handleInputAdultPrice}
-            InputProps={{
-              endAdornment: <InputAdornment position="end">円</InputAdornment>,
+          <FormHelperText>
+            {errors?.adultPrice && errors?.adultPrice.message}
+          </FormHelperText>
+          <Controller
+            name="adultPrice"
+            control={control}
+            defaultValue={props.adultPrice}
+            rules={{
+              required: "入力してください",
+              maxLength: {
+                value: 6,
+                message: "10万円以内で入力してください",
+              },
+              onBlur: handleInputAdultPrice,
+              pattern: {
+                value: /^[0-9\b]+$/,
+                message: "半角数字のみの入力",
+              },
             }}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                variant="outlined"
+                label="大人料金：平日"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">円</InputAdornment>
+                  ),
+                }}
+              />
+            )}
           />
-          <TextField
-            id="outlined-basic"
-            label="子ども料金：平日"
-            variant="outlined"
-            value={props.childPrice}
-            type="number"
-            onChange={handleInputChildPrice}
-            InputProps={{
-              endAdornment: <InputAdornment position="end">円</InputAdornment>,
+        </FormControl>
+        <FormControl
+          required
+          error={errors?.hasOwnProperty("childPrice")}
+          component="fieldset"
+          fullWidth
+        >
+          <FormHelperText>
+            {errors?.childPrice && errors?.childPrice.message}
+          </FormHelperText>
+          <Controller
+            name="childPrice"
+            control={control}
+            defaultValue={props.childPrice}
+            rules={{
+              required: "入力してください",
+              maxLength: {
+                value: 6,
+                message: "10万円以内で入力してください",
+              },
+              onBlur: handleInputChildPrice,
+              pattern: {
+                value: /^[0-9\b]+$/,
+                message: "半角数字のみの入力",
+              },
             }}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                variant="outlined"
+                label="子ども料金：平日"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">円</InputAdornment>
+                  ),
+                }}
+              />
+            )}
           />
-          <TextField
-            id="outlined-basic"
-            label="大人料金：休日"
-            variant="outlined"
-            value={props.adultWeekendPrice}
-            type="number"
-            onChange={handleInputAdultWeekendPrice}
-            InputProps={{
-              endAdornment: <InputAdornment position="end">円</InputAdornment>,
+        </FormControl>
+        <FormControl
+          required
+          error={errors?.hasOwnProperty("adultWeekendPrice")}
+          component="fieldset"
+          fullWidth
+        >
+          <FormHelperText>
+            {errors?.adultWeekendPrice && errors?.adultWeekendPrice.message}
+          </FormHelperText>
+          <Controller
+            name="adultWeekendPrice"
+            control={control}
+            defaultValue={props.adultWeekendPrice}
+            rules={{
+              required: "入力してください",
+              maxLength: {
+                value: 6,
+                message: "10万円以内で入力してください",
+              },
+              onBlur: handleInputAdultWeekendPrice,
+              pattern: {
+                value: /[0-9_]/,
+                message: "半角数字のみの入力",
+              },
             }}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                variant="outlined"
+                label="大人料金：休日"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">円</InputAdornment>
+                  ),
+                }}
+              />
+            )}
           />
-          <TextField
-            id="outlined-basic"
-            label="子ども料金：休日"
-            variant="outlined"
-            value={props.childWeekendPrice}
-            type="number"
-            onChange={handleInputChildWeekendPrice}
-            InputProps={{
-              endAdornment: <InputAdornment position="end">円</InputAdornment>,
+        </FormControl>
+        <FormControl
+          required
+          error={errors?.hasOwnProperty("childWeekendPrice")}
+          component="fieldset"
+          fullWidth
+        >
+          <FormHelperText>
+            {errors?.childWeekendPrice && errors?.childWeekendPrice.message}
+          </FormHelperText>
+          <Controller
+            name="childWeekendPrice"
+            control={control}
+            defaultValue={props.childWeekendPrice}
+            rules={{
+              required: "入力してください",
+              maxLength: {
+                value: 6,
+                message: "10万円以内で入力してください",
+              },
+              onBlur: handleInputChildWeekendPrice,
+              pattern: {
+                value: /[0-9_]/,
+                message: "半角数字のみの入力",
+              },
             }}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                variant="outlined"
+                label="子ども料金：休日"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">円</InputAdornment>
+                  ),
+                }}
+              />
+            )}
           />
-        </Box>
+        </FormControl>
         <Typography variant="h5" gutterBottom component="div">
           備品
         </Typography>
@@ -492,22 +725,31 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
             value={props.hasFamilyBath}
           />
         </FormGroup>
-        <Box
-          component="form"
-          sx={{
-            "& .MuiTextField-root": { m: 1, width: "60ch" },
-          }}
-          noValidate
-          autoComplete="off"
+        <FormControl
+          required
+          error={errors?.hasOwnProperty("customSpa")}
+          component="fieldset"
+          fullWidth
         >
-          <TextField
-            id="outlined-basic"
-            label="独自施設"
-            variant="outlined"
-            value={props.customSpa}
-            onChange={handleInputCustomSpa}
+          <FormHelperText>
+            {errors?.customSpa && errors?.customSpa.message}
+          </FormHelperText>
+          <Controller
+            name="customSpa"
+            control={control}
+            rules={{
+              maxLength: {
+                value: 15,
+                message: "15字以内で入力してください",
+              },
+              onBlur: handleInputCustomSpa,
+            }}
+            defaultValue={props.customSpa}
+            render={({ field }) => (
+              <TextField {...field} variant="outlined" label="独自施設" />
+            )}
           />
-        </Box>
+        </FormControl>
         <Typography variant="h5" gutterBottom component="div">
           その他の施設
         </Typography>
@@ -548,33 +790,46 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
             value={props.hasStore}
           />
         </FormGroup>
-        <Box
-          component="form"
-          sx={{
-            "& .MuiTextField-root": { m: 1, width: "60ch" },
-          }}
-          noValidate
-          autoComplete="off"
+        <FormControl
+          required
+          error={errors?.hasOwnProperty("customFacility")}
+          component="fieldset"
+          fullWidth
         >
-          <TextField
-            id="outlined-basic"
-            label="独自施設"
-            variant="outlined"
-            onChange={handleInputCustomFacility}
-            value={props.customFacility}
+          <FormHelperText>
+            {errors?.customFacility && errors?.customFacility.message}
+          </FormHelperText>
+          <Controller
+            name="customFacility"
+            control={control}
+            rules={{
+              maxLength: {
+                value: 15,
+                message: "15字以内で入力してください",
+              },
+              onBlur: handleInputCustomFacility,
+            }}
+            defaultValue={props.customFacility}
+            render={({ field }) => (
+              <TextField {...field} variant="outlined" label="独自施設" />
+            )}
           />
-        </Box>
-      </Container>
-      <Typography variant="h5" gutterBottom component="div">
-        写真
-      </Typography>
-      <UploadButtons />
-      <CardActionArea>
-        <img width="50%" src={props.picture} />
-      </CardActionArea>
-      <Typography variant="h5" gutterBottom component="div">
-        MAP
-      </Typography>
+        </FormControl>
+        <Typography variant="h5" gutterBottom component="div">
+          写真
+        </Typography>
+        <UploadButtons />
+        <CardActionArea>
+          <img width="50%" src={props.picture} />
+        </CardActionArea>
+        <Typography variant="h5" gutterBottom component="div">
+          MAP
+        </Typography>
+
+        <Button variant="contained" color="primary" type="submit">
+          次へ
+        </Button>
+      </Box>
     </>
   );
 };

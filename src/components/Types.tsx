@@ -4,17 +4,20 @@ export type Spa = {
   price: Price;
   amenity: Amenity;
   spaFacility: SpaFacility;
-  anothreFacility: AnothreFacility;
+  anotherFacility: AnotherFacility;
   picture: string;
+  goodCount: number;
+  lat: number;
+  lng: number;
 };
 
 //基本情報
 export type Basic = {
   spaName: string;
-  spaAddress: string;
-  spaPhoneNumber: string;
-  spaBusinessHours: string;
-  spaRegularHoliday: string;
+  address: string;
+  phoneNumber: string;
+  businessHours: string;
+  regularHoliday: string;
 };
 
 //料金
@@ -51,7 +54,7 @@ export type SpaFacility = {
   customSpa: string | null;
 };
 //その他施設
-export type AnothreFacility = {
+export type AnotherFacility = {
   hasRestaurant: boolean;
   hasBreakPlace: boolean;
   hasMassageMachine: boolean;
