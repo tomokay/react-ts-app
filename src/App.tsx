@@ -4,18 +4,22 @@ import Top from "src/components/Top";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SpaDetailPage from "src/components/SpaDetailPage";
 import SpaEntryPage from "src/components/SpaEntryPage";
+import { ApolloProvider } from "@apollo/client";
+import client from "src/apollo-client";
 
 const App = () => {
   return (
     <>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Top />} />
-          <Route path="spainput/*" element={<SpaEntryPage />} />
-          <Route path="/spa" element={<SpaPage />} />
-          <Route path="spadetail/*" element={<SpaDetailPage />} />
-        </Routes>
-      </Router>
+      <ApolloProvider client={client}>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Top />} />
+            <Route path="spainput/*" element={<SpaEntryPage />} />
+            <Route path="/spa" element={<SpaPage />} />
+            <Route path="spadetail/*" element={<SpaDetailPage />} />
+          </Routes>
+        </Router>
+      </ApolloProvider>
     </>
   );
 };

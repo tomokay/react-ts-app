@@ -1,19 +1,13 @@
 import React, { useState } from "react";
-import Button from "@mui/material/Button";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import { Grid } from "@mui/material";
 import SpaInputInfomation from "src/components/SpaInputInformation";
 import SpaInputConfirm from "src/components/SpaInputConfirm";
-import {
-  Amenity,
-  AnothreFacility,
-  Basic,
-  Price,
-  Spa,
-  SpaFacility,
-} from "src/components/Types";
+import { Spa } from "src/components/Types";
+import { CREATE_SPA } from "src/graphql/createSpa";
+import { useMutation } from "@apollo/client";
 import { NavLink } from "react-router-dom";
 
 const SpaEntryPage = () => {
@@ -61,8 +55,10 @@ const SpaEntryPage = () => {
 
   const [picture, setPicture] = useState<any>();
 
+  const [createSpa, { loading, error }] = useMutation(CREATE_SPA);
+
   const getSteps = () => {
-    return ["入力画面", "確認"];
+    return ["入力画面", "確認", "完了"];
   };
 
   const getStepContent = (stepIndex: number) => {
@@ -140,6 +136,7 @@ const SpaEntryPage = () => {
             setCustomFacility={setCustomFacility}
             picture={picture}
             setPicture={setPicture}
+            handleNext={handleNext}
           />
         );
       case 1:
@@ -179,7 +176,17 @@ const SpaEntryPage = () => {
             hasStore={hasStore}
             customFacility={customFacility}
             picture={picture}
+            handleNext={handleNext}
+            handleBack={handleBack}
+            createSpa={createSpa}
           />
+        );
+      case 2:
+        return (
+          <>
+            <span>登録完了</span>
+            <NavLink to="/spa">温泉一覧</NavLink>
+          </>
         );
       default:
         return "Unknown stepIndex";
@@ -187,171 +194,12 @@ const SpaEntryPage = () => {
   };
 
   const steps = getSteps();
+
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    handleInputSpaData();
   };
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const createBasicObj = (
-    spaName: string,
-    spaAddress: string,
-    spaPhoneNumber: string,
-    spaBusinessHours: string,
-    spaRegularHoliday: string
-  ): Basic => {
-    return {
-      spaName: spaName,
-      spaAddress: spaAddress,
-      spaPhoneNumber: spaPhoneNumber,
-      spaBusinessHours: spaBusinessHours,
-      spaRegularHoliday: spaRegularHoliday,
-    };
-  };
-
-  const createPriceObj = (
-    adultPrice: number,
-    childPrice: number,
-    adultWeekendPrice: number,
-    childWeekendPrice: number
-  ): Price => {
-    return {
-      adultPrice: adultPrice,
-      childPrice: childPrice,
-      adultWeekendPrice: adultWeekendPrice,
-      childWeekendPrice: childWeekendPrice,
-    };
-  };
-
-  const createAmenity = (
-    hasFreeShampoo: boolean,
-    hasPaidShampoo: boolean,
-    hasTowel: boolean,
-    hasFreeHairdryer: boolean,
-    hasPaidHairdryer: boolean,
-    hasCreditCard: boolean
-  ): Amenity => {
-    return {
-      hasFreeShampoo: hasFreeShampoo,
-      hasPaidShampoo: hasPaidShampoo,
-      hasTowel: hasTowel,
-      hasFreeHairdryer: hasFreeHairdryer,
-      hasPaidHairdryer: hasPaidHairdryer,
-      hasCreditCard: hasCreditCard,
-    };
-  };
-
-  const createSpaFacility = (
-    hasOpenAirBath: boolean,
-    hasWaterBath: boolean,
-    hasSauna: boolean,
-    hasBubbleBath: boolean,
-    hasJetBathSpa: boolean,
-    hasShoulderHittingShower: boolean,
-    hasSleepingBath: boolean,
-    hasCypressBath: boolean,
-    hasBedrockBath: boolean,
-    hasElectricBath: boolean,
-    hasFamilyBath: boolean,
-    customSpa: string | null
-  ): SpaFacility => {
-    return {
-      hasOpenAirBath: hasOpenAirBath,
-      hasWaterBath: hasWaterBath,
-      hasSauna: hasSauna,
-      hasBubbleBath: hasBubbleBath,
-      hasJetBathSpa: hasJetBathSpa,
-      hasShoulderHittingShower: hasShoulderHittingShower,
-      hasSleepingBath: hasSleepingBath,
-      hasCypressBath: hasCypressBath,
-      hasBedrockBath: hasBedrockBath,
-      hasElectricBath: hasElectricBath,
-      hasFamilyBath: hasFamilyBath,
-      customSpa: customSpa,
-    };
-  };
-
-  const createAnotherFacilityObj = (
-    hasRestaurant: boolean,
-    hasBreakPlace: boolean,
-    hasMassageMachine: boolean,
-    hasVendingMachine: boolean,
-    hasStore: boolean,
-    customFacilities: string | null
-  ): AnothreFacility => {
-    return {
-      hasRestaurant: hasRestaurant,
-      hasBreakPlace: hasBreakPlace,
-      hasMassageMachine: hasMassageMachine,
-      hasVendingMachine: hasVendingMachine,
-      hasStore: hasStore,
-      customFacilities: customFacilities,
-    };
-  };
-
-  const handleInputSpaData = () => {
-    const basicObj = createBasicObj(
-      spaName,
-      spaAddress,
-      spaPhoneNumber,
-      spaBusinessHours,
-      spaRegularHoliday
-    );
-
-    const priceObj = createPriceObj(
-      adultPrice,
-      childPrice,
-      adultWeekendPrice,
-      childWeekendPrice
-    );
-
-    const amenityObj = createAmenity(
-      hasFreeShampoo,
-      hasPaidShampoo,
-      hasTowel,
-      hasFreeHairdryer,
-      hasPaidHairdryer,
-      hasCreditCard
-    );
-
-    const spaFacilityObj = createSpaFacility(
-      hasOpenAirBath,
-      hasWaterBath,
-      hasSauna,
-      hasBubbleBath,
-      hasJetBathSpa,
-      hasShoulderHittingShower,
-      hasSleepingBath,
-      hasCypressBath,
-      hasBedrockBath,
-      hasElectricBath,
-      hasFamilyBath,
-      customSpa
-    );
-
-    const anothreFacilityObj = createAnotherFacilityObj(
-      hasRestaurant,
-      hasBreakPlace,
-      hasMassageMachine,
-      hasVendingMachine,
-      hasStore,
-      customFacility
-    );
-
-    const newSpa: Spa = {
-      basic: basicObj,
-      price: priceObj,
-      amenity: amenityObj,
-      spaFacility: spaFacilityObj,
-      anothreFacility: anothreFacilityObj,
-      picture: picture,
-    };
-
-    setSpa([newSpa, ...spa]);
-
-    console.log("newSpa:", newSpa);
   };
 
   return (
@@ -364,22 +212,7 @@ const SpaEntryPage = () => {
             </Step>
           ))}
         </Stepper>
-        {activeStep === steps.length ? (
-          <>
-            <span>登録完了</span>
-            <NavLink to="/spa">温泉一覧</NavLink>
-          </>
-        ) : (
-          <>
-            <span>{getStepContent(activeStep)}</span>
-            <Button disabled={activeStep === 0} onClick={handleBack}>
-              戻る
-            </Button>
-            <Button variant="contained" color="primary" onClick={handleNext}>
-              {activeStep === steps.length - 1 ? "送信" : "次へ"}
-            </Button>
-          </>
-        )}
+        {getStepContent(activeStep)}
       </Grid>
     </>
   );

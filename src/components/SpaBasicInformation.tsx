@@ -36,22 +36,22 @@ const SpaBasicInformation = (props: SpaBasicInformationProps) => {
     {
       type: "address",
       title: "住所",
-      informaion: props.spa.basic.spaAddress,
+      informaion: props.spa.basic.address,
     },
     {
       type: "phoneNumber",
       title: "電話番号",
-      informaion: props.spa.basic.spaPhoneNumber,
+      informaion: props.spa.basic.phoneNumber,
     },
     {
       type: "businessHours",
       title: "営業時間",
-      informaion: props.spa.basic.spaBusinessHours,
+      informaion: props.spa.basic.businessHours,
     },
     {
       type: "regularHoliday",
       title: "定休日",
-      informaion: props.spa.basic.spaRegularHoliday,
+      informaion: props.spa.basic.regularHoliday,
     },
   ];
   return (

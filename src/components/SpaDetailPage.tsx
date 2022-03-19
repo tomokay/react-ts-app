@@ -13,10 +13,10 @@ const initialSpaDetailState: Spa = {
   id: 1,
   basic: {
     spaName: "さくら温泉",
-    spaAddress: "東京都",
-    spaPhoneNumber: "080-000-0000",
-    spaBusinessHours: "10:00~19:00",
-    spaRegularHoliday: "木曜日",
+    address: "東京都",
+    phoneNumber: "080-000-0000",
+    businessHours: "10:00~19:00",
+    regularHoliday: "木曜日",
   },
   price: {
     adultPrice: 500,
@@ -46,15 +46,17 @@ const initialSpaDetailState: Spa = {
     hasFamilyBath: false,
     customSpa: null,
   },
-  anothreFacility: {
+  anotherFacility: {
     hasRestaurant: true,
     hasBreakPlace: true,
     hasMassageMachine: false,
     hasVendingMachine: true,
     hasStore: true,
-    customFacilities: "トレーニングルーム",
+    customFacility: "トレーニングルーム",
   },
   picture: "///",
+  lat: "123.5",
+  lng: "123.2",
 };
 
 const SpaDetailPage = () => {
