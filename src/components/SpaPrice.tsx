@@ -1,5 +1,5 @@
 import React from "react";
-import { Spa } from "src/components/SpaDetailPage";
+import { Spa } from "src/components/Types";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableHead from "@mui/material/TableHead";
@@ -24,15 +24,15 @@ const SpaPrice = (props: SpaPriceProps) => {
     {
       type: "adultPrice",
       title: "大人",
-      price: props.spa.adultPrice,
-      weekendPrice: props.spa.adultWeekendPrice,
+      price: props.spa.price.adultPrice,
+      weekendPrice: props.spa.price.adultWeekendPrice,
     },
 
     {
       type: "childPrice",
       title: "子ども",
-      price: props.spa.childPrice,
-      weekendPrice: props.spa.childWeekendPrice,
+      price: props.spa.price.childPrice,
+      weekendPrice: props.spa.price.childWeekendPrice,
     },
   ];
   return (

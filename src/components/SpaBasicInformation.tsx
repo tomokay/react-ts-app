@@ -1,5 +1,5 @@
 import React from "react";
-import { Spa } from "src/components/SpaDetailPage";
+import { Spa } from "src/components/Types";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -36,22 +36,22 @@ const SpaBasicInformation = (props: SpaBasicInformationProps) => {
     {
       type: "address",
       title: "住所",
-      informaion: props.spa.address,
+      informaion: props.spa.basic.address,
     },
     {
       type: "phoneNumber",
       title: "電話番号",
-      informaion: props.spa.phoneNumber,
+      informaion: props.spa.basic.phoneNumber,
     },
     {
       type: "businessHours",
       title: "営業時間",
-      informaion: props.spa.businessHours,
+      informaion: props.spa.basic.businessHours,
     },
     {
       type: "regularHoliday",
       title: "定休日",
-      informaion: props.spa.regularHoliday,
+      informaion: props.spa.basic.regularHoliday,
     },
   ];
   return (

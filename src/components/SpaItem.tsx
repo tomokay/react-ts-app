@@ -28,7 +28,7 @@ const SpaItem = (props: SpaItemProps) => {
               </Typography>
               <Link
                 to={{
-                  pathname: "/spa/spadetail",
+                  pathname: "/spadetail",
                   search: `?id=${props.spa.id}`,
                 }}
               >
