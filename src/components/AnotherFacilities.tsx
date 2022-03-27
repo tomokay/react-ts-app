@@ -1,9 +1,9 @@
 import React from "react";
-import { Spa } from "src/components/Types";
+import { AnotherFacility } from "src/components/Types";
 import Typography from "@mui/material/Typography";
 
 type AnothreFacilitiesProps = {
-  spa: Spa;
+  spa: AnotherFacility;
 };
 
 const AnothreFacilities = (props: AnothreFacilitiesProps) => {
@@ -11,27 +11,27 @@ const AnothreFacilities = (props: AnothreFacilitiesProps) => {
     {
       type: "restaurant",
       title: "レストラン",
-      isExist: props.spa.anotherFacility.hasRestaurant,
+      isExist: props.spa.hasRestaurant,
     },
     {
       type: "breakPlace",
       title: "休憩所",
-      isExist: props.spa.anotherFacility.hasBreakPlace,
+      isExist: props.spa.hasBreakPlace,
     },
     {
       type: "massageMachine",
       title: "マッサージ機",
-      isExist: props.spa.anotherFacility.hasMassageMachine,
+      isExist: props.spa.hasMassageMachine,
     },
     {
       type: "vendingMachine",
       title: "自動販売機",
-      isExist: props.spa.anotherFacility.hasVendingMachine,
+      isExist: props.spa.hasVendingMachine,
     },
     {
       type: "store",
       title: "売店",
-      isExist: props.spa.anotherFacility.hasStore,
+      isExist: props.spa.hasStore,
     },
   ];
   return (
@@ -43,7 +43,7 @@ const AnothreFacilities = (props: AnothreFacilitiesProps) => {
           );
       })}
       <Typography variant="h6" gutterBottom component="div">
-        {props.spa.anotherFacility.customFacility}
+        {props.spa.customFacility}
       </Typography>
     </>
   );

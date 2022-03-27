@@ -1,24 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import { Grid } from "@mui/material";
 import SpaInputInfomation from "src/components/SpaInputInformation";
 import SpaInputConfirm from "src/components/SpaInputConfirm";
-import { Spa } from "src/components/Types";
 import { CREATE_SPA } from "src/graphql/createSpa";
 import { useMutation } from "@apollo/client";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+import { fetchSpa } from "src/lib/fetchSpa";
+import { UPDATE_SPA } from "src/graphql/updateSpa";
 
 const SpaEntryPage = () => {
   const [activeStep, setActiveStep] = useState<number>(0);
-  const [spa, setSpa] = useState<Spa[]>([]);
+
+  const [spaId, setSpaId] = useState<number | undefined>(undefined);
 
   const [spaName, setSpaName] = useState<string>("");
-  const [spaAddress, setSpaAddress] = useState<string>("");
-  const [spaPhoneNumber, setSpaPhoneNumber] = useState<string>("");
-  const [spaBusinessHours, setSpaBusinessHours] = useState<string>("");
-  const [spaRegularHoliday, setSpaRegularHoliday] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
+  const [phoneNumber, setPhoneNumber] = useState<string>("");
+  const [businessHours, setBusinessHours] = useState<string>("");
+  const [regularHoliday, setRegularHoliday] = useState<string>("");
 
   const [adultPrice, setAdultPrice] = useState<number>(0);
   const [childPrice, setChildPrice] = useState<number>(0);
@@ -44,18 +46,70 @@ const SpaEntryPage = () => {
   const [hasBedrockBath, setHasBedrockBath] = useState<boolean>(false);
   const [hasElectricBath, setHasElectricBath] = useState<boolean>(false);
   const [hasFamilyBath, setHasFamilyBath] = useState<boolean>(false);
-  const [customSpa, setCustomSpa] = useState<string>("");
+  const [customSpa, setCustomSpa] = useState<string | null>("");
 
   const [hasRestaurant, setHasRestaurant] = useState<boolean>(false);
   const [hasBreakPlace, setHasBreakPlace] = useState<boolean>(false);
   const [hasMassageMachine, setHasMassageMachine] = useState<boolean>(false);
   const [hasVendingMachine, setHasVendingMachine] = useState<boolean>(false);
   const [hasStore, setHasStore] = useState<boolean>(false);
-  const [customFacility, setCustomFacility] = useState<string>("");
-
+  const [customFacility, setCustomFacility] = useState<string | null>("");
   const [picture, setPicture] = useState<any>();
 
-  const [createSpa, { loading, error }] = useMutation(CREATE_SPA);
+  const [createSpa] = useMutation(CREATE_SPA);
+  const [updateSpa] = useMutation(UPDATE_SPA);
+
+  const location = useLocation() as any;
+  const id: string | null =
+    new URLSearchParams(location.search).get("id") || null;
+
+  useEffect(() => {
+    console.log("id: ", id);
+    const fetchInitialSpa = async () => {
+      if (!Number(id)) {
+        return;
+      }
+      const result = await fetchSpa(Number(id));
+      console.log("result: ", result);
+      console.log("resultSPANAME: ", result.basic.spaName);
+      setSpaId(result.id);
+      setSpaName(result.basic.spaName);
+      setAddress(result.basic.address);
+      setPhoneNumber(result.basic.phoneNumber);
+      setBusinessHours(result.basic.regularHoliday);
+      setRegularHoliday(result.basic.regularHoliday);
+      setAdultPrice(result.price.adultPrice);
+      setChildPrice(result.price.childPrice);
+      setAdultWeekendPrice(result.price.adultWeekendPrice);
+      setChildWeekendPrice(result.price.childWeekendPrice);
+      setHasFreeShampoo(result.amenity.hasFreeShampoo);
+      setHasPaidShampoo(result.amenity.hasPaidShampoo);
+      setHasTowel(result.amenity.hasTowel);
+      setHasFreeHairdryer(result.amenity.hasFreeHairdryer);
+      setHasPaidHairdryer(result.amenity.hasPaidHairdryer);
+      setHasCreditCard(result.amenity.hasCreditCard);
+      setHasOpenAirBath(result.spaFacility.hasOpenAirBath);
+      setHasWaterBath(result.spaFacility.hasWaterBath);
+      setHasSauna(result.spaFacility.hasSauna);
+      setHasBubbleBath(result.spaFacility.hasBubbleBath);
+      setHasJetBathSpa(result.spaFacility.hasJetBathSpa);
+      setHasShoulderHittingShower(result.spaFacility.hasShoulderHittingShower);
+      setHasSleepingBath(result.spaFacility.hasSleepingBath);
+      setHasCypressBath(result.spaFacility.hasCypressBath);
+      setHasBedrockBath(result.spaFacility.hasBedrockBath);
+      setHasElectricBath(result.spaFacility.hasElectricBath);
+      setHasFamilyBath(result.spaFacility.hasFamilyBath);
+      setCustomSpa(result.spaFacility.customSpa);
+      setHasRestaurant(result.anotherFacility.hasRestaurant);
+      setHasBreakPlace(result.anotherFacility.hasBreakPlace);
+      setHasMassageMachine(result.anotherFacility.hasMassageMachine);
+      setHasVendingMachine(result.anotherFacility.hasVendingMachine);
+      setHasStore(result.anotherFacility.hasStore);
+      setCustomFacility(result.anotherFacility.customFacility);
+    };
+    fetchInitialSpa();
+    console.log("call");
+  }, []);
 
   const getSteps = () => {
     return ["入力画面", "確認", "完了"];
@@ -66,18 +120,16 @@ const SpaEntryPage = () => {
       case 0:
         return (
           <SpaInputInfomation
-            spa={spa || []}
-            setSpa={setSpa}
             spaName={spaName}
             setSpaName={setSpaName}
-            spaAddress={spaAddress}
-            setSpaAddress={setSpaAddress}
-            spaPhoneNumber={spaPhoneNumber}
-            setSpaPhoneNumber={setSpaPhoneNumber}
-            spaBusinessHours={spaBusinessHours}
-            setSpaBusinessHours={setSpaBusinessHours}
-            spaRegularHoliday={spaRegularHoliday}
-            setSpaRegularHoliday={setSpaRegularHoliday}
+            address={address}
+            setAddress={setAddress}
+            phoneNumber={phoneNumber}
+            setPhoneNumber={setPhoneNumber}
+            businessHours={businessHours}
+            setBusinessHours={setBusinessHours}
+            regularHoliday={regularHoliday}
+            setRegularHoliday={setRegularHoliday}
             adultPrice={adultPrice}
             setAdultPrice={setAdultPrice}
             childPrice={childPrice}
@@ -142,11 +194,12 @@ const SpaEntryPage = () => {
       case 1:
         return (
           <SpaInputConfirm
+            spaId={spaId}
             spaName={spaName}
-            spaAddress={spaAddress}
-            spaPhoneNumber={spaPhoneNumber}
-            spaBusinessHours={spaBusinessHours}
-            spaRegularHoliday={spaRegularHoliday}
+            address={address}
+            phoneNumber={phoneNumber}
+            businessHours={businessHours}
+            regularHoliday={regularHoliday}
             adultPrice={adultPrice}
             childPrice={childPrice}
             adultWeekendPrice={adultWeekendPrice}
@@ -179,6 +232,7 @@ const SpaEntryPage = () => {
             handleNext={handleNext}
             handleBack={handleBack}
             createSpa={createSpa}
+            updateSpa={updateSpa}
           />
         );
       case 2:

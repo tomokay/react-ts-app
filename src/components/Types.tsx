@@ -10,6 +10,13 @@ export type Spa = {
   lng: string;
 };
 
+export type SpaListModel = {
+  id?: number;
+  spaName: string;
+  address: string;
+  picture: string;
+};
+
 //基本情報
 export type Basic = {
   spaName: string;

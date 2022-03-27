@@ -11,11 +11,12 @@ import {
 } from "src/components/Types";
 
 type SpaInputConfilmProps = {
+  spaId: number | undefined;
   spaName: string;
-  spaAddress: string;
-  spaPhoneNumber: string;
-  spaBusinessHours: string;
-  spaRegularHoliday: string;
+  address: string;
+  phoneNumber: string;
+  businessHours: string;
+  regularHoliday: string;
   adultPrice: number;
   childPrice: number;
   adultWeekendPrice: number;
@@ -37,15 +38,16 @@ type SpaInputConfilmProps = {
   hasBedrockBath: boolean;
   hasElectricBath: boolean;
   hasFamilyBath: boolean;
-  customSpa: string;
+  customSpa: string | null;
   hasRestaurant: boolean;
   hasBreakPlace: boolean;
   hasMassageMachine: boolean;
   hasVendingMachine: boolean;
   hasStore: boolean;
-  customFacility: string;
+  customFacility: string | null;
   picture: string;
   createSpa: any;
+  updateSpa: any;
   handleBack: any;
   handleNext: any;
 };
@@ -60,22 +62,22 @@ const SpaInputConfirm = (props: SpaInputConfilmProps) => {
     {
       type: "address",
       title: "住所",
-      props: props.spaAddress,
+      props: props.address,
     },
     {
       type: "phoneNumber",
       title: "電話番号",
-      props: props.spaPhoneNumber,
+      props: props.phoneNumber,
     },
     {
       type: "businessHours",
       title: "営業時間",
-      props: props.spaBusinessHours,
+      props: props.businessHours,
     },
     {
       type: "regularHoliday",
       title: "定休日",
-      props: props.spaRegularHoliday,
+      props: props.regularHoliday,
     },
   ];
 
@@ -126,7 +128,7 @@ const SpaInputConfirm = (props: SpaInputConfilmProps) => {
     {
       type: "paidHairdryer",
       title: "有料ドライヤー",
-      cheked: props.hasPaidShampoo,
+      cheked: props.hasPaidHairdryer,
     },
     {
       type: "creditCard",
@@ -135,7 +137,7 @@ const SpaInputConfirm = (props: SpaInputConfilmProps) => {
     },
   ];
 
-  const spaInputFacility = [
+  const spaInputSpaFacility = [
     {
       type: "opneAirBath",
       title: "露天風呂",
@@ -224,17 +226,17 @@ const SpaInputConfirm = (props: SpaInputConfilmProps) => {
   const onSubmit = () => {
     const createBasicObj = (
       spaName: string,
-      spaAddress: string,
-      spaPhoneNumber: string,
-      spaBusinessHours: string,
-      spaRegularHoliday: string
+      address: string,
+      phoneNumber: string,
+      businessHours: string,
+      regularHoliday: string
     ): Basic => {
       return {
         spaName: spaName,
-        address: spaAddress,
-        phoneNumber: spaPhoneNumber,
-        businessHours: spaBusinessHours,
-        regularHoliday: spaRegularHoliday,
+        address: address,
+        phoneNumber: phoneNumber,
+        businessHours: businessHours,
+        regularHoliday: regularHoliday,
       };
     };
 
@@ -317,14 +319,12 @@ const SpaInputConfirm = (props: SpaInputConfilmProps) => {
         customFacility: customFacility,
       };
     };
-
     const basicObj = createBasicObj(
       props.spaName,
-      // props.basicStateObj.spaName,
-      props.spaAddress,
-      props.spaPhoneNumber,
-      props.spaBusinessHours,
-      props.spaRegularHoliday
+      props.address,
+      props.phoneNumber,
+      props.businessHours,
+      props.regularHoliday
     );
 
     const priceObj = createPriceObj(
@@ -378,10 +378,76 @@ const SpaInputConfirm = (props: SpaInputConfilmProps) => {
       lng: "123",
     };
 
-    props.createSpa({ variables: { input: newSpa } });
-    console.log("newSpa:", newSpa);
+    const basicUpdateObj = createBasicObj(
+      props.spaName,
+      props.address,
+      props.phoneNumber,
+      props.businessHours,
+      props.regularHoliday
+    );
 
-    props.handleNext();
+    const priceUpdateObj = createPriceObj(
+      props.adultPrice,
+      props.childPrice,
+      props.adultWeekendPrice,
+      props.childWeekendPrice
+    );
+
+    const amenityUpdateObj = createAmenity(
+      props.hasFreeShampoo,
+      props.hasPaidShampoo,
+      props.hasTowel,
+      props.hasFreeHairdryer,
+      props.hasPaidHairdryer,
+      props.hasCreditCard
+    );
+
+    const spaFacilityUpdateObj = createSpaFacility(
+      props.hasOpenAirBath,
+      props.hasWaterBath,
+      props.hasSauna,
+      props.hasBubbleBath,
+      props.hasJetBathSpa,
+      props.hasShoulderHittingShower,
+      props.hasSleepingBath,
+      props.hasCypressBath,
+      props.hasBedrockBath,
+      props.hasElectricBath,
+      props.hasFamilyBath,
+      props.customSpa
+    );
+
+    const anotherFacilityUpdateObj = createAnotherFacilityObj(
+      props.hasRestaurant,
+      props.hasBreakPlace,
+      props.hasMassageMachine,
+      props.hasVendingMachine,
+      props.hasStore,
+      props.customFacility
+    );
+
+    const editSpa: Spa = {
+      id: props.spaId,
+      basic: basicUpdateObj,
+      price: priceUpdateObj,
+      amenity: amenityUpdateObj,
+      spaFacility: spaFacilityUpdateObj,
+      anotherFacility: anotherFacilityUpdateObj,
+      picture: "httpp//",
+      lat: "123.5",
+      lng: "123.5",
+    };
+
+    if (props.spaId === undefined) {
+      console.log("newSpa:", newSpa);
+      props.handleNext();
+      return props.createSpa({ variables: { input: newSpa } });
+    }
+    if (props.spaId) {
+      console.log("editSpa:", editSpa);
+      props.handleNext();
+      return props.updateSpa({ variables: { update: editSpa } });
+    }
   };
 
   return (
@@ -419,7 +485,7 @@ const SpaInputConfirm = (props: SpaInputConfilmProps) => {
       <Typography variant="h5" gutterBottom component="div">
         温泉施設
       </Typography>
-      {spaInputFacility.map((spaFacility) => {
+      {spaInputSpaFacility.map((spaFacility) => {
         if (spaFacility.cheked === true)
           return <p key={spaFacility.type}>{spaFacility.title}</p>;
       })}

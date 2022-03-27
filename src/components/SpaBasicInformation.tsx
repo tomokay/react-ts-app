@@ -1,5 +1,5 @@
 import React from "react";
-import { Spa } from "src/components/Types";
+import { Basic } from "src/components/Types";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -28,7 +28,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 type SpaBasicInformationProps = {
-  spa: Spa;
+  spa: Basic;
 };
 
 const SpaBasicInformation = (props: SpaBasicInformationProps) => {
@@ -36,22 +36,22 @@ const SpaBasicInformation = (props: SpaBasicInformationProps) => {
     {
       type: "address",
       title: "住所",
-      informaion: props.spa.basic.address,
+      informaion: props.spa.address,
     },
     {
       type: "phoneNumber",
       title: "電話番号",
-      informaion: props.spa.basic.phoneNumber,
+      informaion: props.spa.phoneNumber,
     },
     {
       type: "businessHours",
       title: "営業時間",
-      informaion: props.spa.basic.businessHours,
+      informaion: props.spa.businessHours,
     },
     {
       type: "regularHoliday",
       title: "定休日",
-      informaion: props.spa.basic.regularHoliday,
+      informaion: props.spa.regularHoliday,
     },
   ];
   return (
