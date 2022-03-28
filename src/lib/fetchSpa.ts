@@ -42,8 +42,6 @@ export type FetchSpaResponse = {
 };
 
 export const fetchSpa = async (id: number): Promise<Spa> => {
-  console.log("fetchSpaID:", id);
-
   // validateFetchSpa(idはnumber型のみ undefinedや０はエラーをだす)
   const validateFetchSpa = (id: number) => {
     if (id === undefined && 0) {
@@ -53,10 +51,8 @@ export const fetchSpa = async (id: number): Promise<Spa> => {
   validateFetchSpa(id);
 
   const fetchedSpa = await fetchSpaFromDB(id);
-  console.log("fetchedSpa:", fetchedSpa.data.spa);
 
   const adjustedSpa = shapeFetchSpa(fetchedSpa.data.spa);
-  console.log("adjustedSpa: ", adjustedSpa);
 
   return adjustedSpa;
 };

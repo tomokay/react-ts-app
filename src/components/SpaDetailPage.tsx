@@ -15,7 +15,6 @@ const SpaDetailPage = () => {
   const id: string | null =
     new URLSearchParams(location.search).get("id") || null;
 
-  console.log("id:", id);
   const NumberId = Number(id);
 
   const { loading, data } = useQuery(GET_SPA, {

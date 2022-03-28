@@ -439,15 +439,12 @@ const SpaInputConfirm = (props: SpaInputConfilmProps) => {
     };
 
     if (props.spaId === undefined) {
-      console.log("newSpa:", newSpa);
       props.handleNext();
       return props.createSpa({ variables: { input: newSpa } });
     }
-    if (props.spaId) {
-      console.log("editSpa:", editSpa);
-      props.handleNext();
-      return props.updateSpa({ variables: { update: editSpa } });
-    }
+
+    props.handleNext();
+    return props.updateSpa({ variables: { update: editSpa } });
   };
 
   return (

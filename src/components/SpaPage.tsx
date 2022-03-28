@@ -10,7 +10,6 @@ const SpaPage = () => {
   useEffect(() => {
     const fetchInitialSpaList = async () => {
       const result = await fetchSpaList();
-      console.log("result: ", result);
       setSpas(result);
     };
     fetchInitialSpaList();

@@ -64,14 +64,11 @@ const SpaEntryPage = () => {
     new URLSearchParams(location.search).get("id") || null;
 
   useEffect(() => {
-    console.log("id: ", id);
     const fetchInitialSpa = async () => {
       if (!Number(id)) {
         return;
       }
       const result = await fetchSpa(Number(id));
-      console.log("result: ", result);
-      console.log("resultSPANAME: ", result.basic.spaName);
       setSpaId(result.id);
       setSpaName(result.basic.spaName);
       setAddress(result.basic.address);
@@ -108,7 +105,6 @@ const SpaEntryPage = () => {
       setCustomFacility(result.anotherFacility.customFacility);
     };
     fetchInitialSpa();
-    console.log("call");
   }, []);
 
   const getSteps = () => {

@@ -11,8 +11,6 @@ export type FetchSpaListResponse = {
 export const fetchSpaList = async (): Promise<SpaListModel[]> => {
   const fetchedSpaList = await fetchSpaListFromDB();
 
-  console.log("fetchedSpaList.data: ", fetchedSpaList.data);
-
   return fetchedSpaList.data.spaList.map((spa: FetchSpaListResponse) => {
     return {
       id: spa.id,

@@ -63,7 +63,6 @@ export const GET_SPA = gql`
 `;
 
 export const fetchSpaFromDB = async (id: number) => {
-  console.log("fromDBID:", id);
   return await client.query({
     query: GET_SPA,
     variables: { spaId: id },
