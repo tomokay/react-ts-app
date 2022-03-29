@@ -57,7 +57,7 @@ const SpaBasicInformation = (props: SpaBasicInformationProps) => {
   return (
     <>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+        <Table sx={{ minWidth: 100 }} aria-label="customized table">
           <TableBody>
             {spaBasicInformaions.map((spaBasicInfo) => {
               return (

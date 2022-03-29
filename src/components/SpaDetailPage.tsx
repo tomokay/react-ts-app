@@ -5,7 +5,7 @@ import SpaBasicInformation from "src/components/SpaBasicInformation";
 import SpaAmenities from "src/components/SpaAmenities";
 import SpaFacilities from "src/components/SpaFacilities";
 import AnothreFacilities from "src/components/AnotherFacilities";
-import { Button } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_SPA } from "src/graphql/query";
@@ -197,7 +197,9 @@ const SpaDetailPage = () => {
 
   return (
     <div>
-      <Typography variant="h2">{data.spa.spaName}</Typography>
+      <Grid item xs>
+        <Typography variant="h2">{data.spa.spaName}</Typography>
+      </Grid>
       {basicInformations.map((basicInfo) => {
         return (
           <Typography

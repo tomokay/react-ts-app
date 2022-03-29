@@ -16,7 +16,7 @@ type SpaItemProps = {
 const SpaItem = (props: SpaItemProps) => {
   return (
     <>
-      <Grid item xs={6} md={8}>
+      <Grid item xs={9}>
         <CardActionArea>
           <Card sx={{ display: "flex" }}>
             <CardContent sx={{ flex: 1 }}>
@@ -37,7 +37,7 @@ const SpaItem = (props: SpaItemProps) => {
             </CardContent>
             <CardMedia
               component="img"
-              sx={{ width: 160, display: { xs: "none", sm: "block" } }}
+              sx={{ width: 151, display: { xs: "none", sm: "block" } }}
             />
           </Card>
         </CardActionArea>

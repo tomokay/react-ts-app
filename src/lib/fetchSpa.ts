@@ -44,7 +44,7 @@ export type FetchSpaResponse = {
 export const fetchSpa = async (id: number): Promise<Spa> => {
   // validateFetchSpa(idはnumber型のみ undefinedや０はエラーをだす)
   const validateFetchSpa = (id: number) => {
-    if (id === undefined && 0) {
+    if (id === undefined) {
       throw new Error(`Can't　find Spa data`);
     }
   };
