@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -10,22 +10,19 @@ import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import { CardActionArea, FormControl, FormHelperText } from "@mui/material";
-import { Spa } from "src/components/Types";
 import { useForm, Controller } from "react-hook-form";
 
 type SpaInputInfomationProps = {
-  spa: Spa[];
-  setSpa: React.Dispatch<React.SetStateAction<Spa[]>>;
   spaName: string;
   setSpaName: React.Dispatch<React.SetStateAction<string>>;
-  spaAddress: string;
-  setSpaAddress: React.Dispatch<React.SetStateAction<string>>;
-  spaPhoneNumber: string;
-  setSpaPhoneNumber: React.Dispatch<React.SetStateAction<string>>;
-  spaBusinessHours: string;
-  setSpaBusinessHours: React.Dispatch<React.SetStateAction<string>>;
-  spaRegularHoliday: string;
-  setSpaRegularHoliday: React.Dispatch<React.SetStateAction<string>>;
+  address: string;
+  setAddress: React.Dispatch<React.SetStateAction<string>>;
+  phoneNumber: string;
+  setPhoneNumber: React.Dispatch<React.SetStateAction<string>>;
+  businessHours: string;
+  setBusinessHours: React.Dispatch<React.SetStateAction<string>>;
+  regularHoliday: string;
+  setRegularHoliday: React.Dispatch<React.SetStateAction<string>>;
   adultPrice: number;
   setAdultPrice: React.Dispatch<React.SetStateAction<number>>;
   childPrice: number;
@@ -68,8 +65,8 @@ type SpaInputInfomationProps = {
   setHasElectricBath: React.Dispatch<React.SetStateAction<boolean>>;
   hasFamilyBath: boolean;
   setHasFamilyBath: React.Dispatch<React.SetStateAction<boolean>>;
-  customSpa: string;
-  setCustomSpa: React.Dispatch<React.SetStateAction<string>>;
+  customSpa: string | null;
+  setCustomSpa: React.Dispatch<React.SetStateAction<string | null>>;
   hasRestaurant: boolean;
   setHasRestaurant: React.Dispatch<React.SetStateAction<boolean>>;
   hasBreakPlace: boolean;
@@ -80,8 +77,8 @@ type SpaInputInfomationProps = {
   setHasVendingMachine: React.Dispatch<React.SetStateAction<boolean>>;
   hasStore: boolean;
   setHasStore: React.Dispatch<React.SetStateAction<boolean>>;
-  customFacility: string;
-  setCustomFacility: React.Dispatch<React.SetStateAction<string>>;
+  customFacility: string | null;
+  setCustomFacility: React.Dispatch<React.SetStateAction<string | null>>;
   picture: string;
   setPicture: React.Dispatch<React.SetStateAction<string>>;
   handleNext: any;
@@ -91,8 +88,84 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
   const {
     handleSubmit,
     control,
+    setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    shouldUnregister: false,
+    defaultValues: {
+      spaName: props.spaName,
+      address: props.address,
+      phoneNumber: props.phoneNumber,
+      businessHours: props.businessHours,
+      regularHoliday: props.regularHoliday,
+      adultPrice: props.adultPrice,
+      childPrice: props.childPrice,
+      adultWeekendPrice: props.adultWeekendPrice,
+      childWeekendPrice: props.childWeekendPrice,
+      hasFreeShampoo: props.hasFreeShampoo,
+      hasPaidShampoo: props.hasPaidShampoo,
+      hasTowel: props.hasTowel,
+      hasFreeHairdryer: props.hasFreeHairdryer,
+      hasPaidHairdryer: props.hasPaidHairdryer,
+      hasCreditCard: props.hasCreditCard,
+      hasOpenAirBath: props.hasOpenAirBath,
+      hasWaterBath: props.hasWaterBath,
+      hasSauna: props.hasSauna,
+      hasBubbleBath: props.hasBubbleBath,
+      hasJetBathSpa: props.hasJetBathSpa,
+      hasShoulderHittingShower: props.hasShoulderHittingShower,
+      hasSleepingBath: props.hasSleepingBath,
+      hasCypressBath: props.hasCypressBath,
+      hasBedrockBath: props.hasBedrockBath,
+      hasElectricBath: props.hasElectricBath,
+      hasFamilyBath: props.hasFamilyBath,
+      customSpa: props.customSpa,
+      hasRestaurant: props.hasRestaurant,
+      hasBreakPlace: props.hasBreakPlace,
+      hasMassageMachine: props.hasMassageMachine,
+      hasVendingMachine: props.hasVendingMachine,
+      hasStore: props.hasStore,
+      customFacility: props.customFacility,
+      picture: props.picture,
+    },
+  });
+  useEffect(() => {
+    if (props) {
+      setValue("spaName", props.spaName);
+      setValue("address", props.address);
+      setValue("phoneNumber", props.phoneNumber);
+      setValue("businessHours", props.businessHours);
+      setValue("regularHoliday", props.regularHoliday);
+      setValue("adultPrice", props.adultPrice);
+      setValue("childPrice", props.childPrice);
+      setValue("adultWeekendPrice", props.adultWeekendPrice);
+      setValue("childWeekendPrice", props.childWeekendPrice);
+      setValue("hasFreeShampoo", props.hasFreeShampoo);
+      setValue("hasPaidShampoo", props.hasPaidShampoo);
+      setValue("hasTowel", props.hasTowel);
+      setValue("hasFreeHairdryer", props.hasFreeHairdryer);
+      setValue("hasPaidHairdryer", props.hasPaidHairdryer);
+      setValue("hasCreditCard", props.hasCreditCard);
+      setValue("hasOpenAirBath", props.hasOpenAirBath);
+      setValue("hasWaterBath", props.hasWaterBath);
+      setValue("hasSauna", props.hasSauna);
+      setValue("hasBubbleBath", props.hasBubbleBath);
+      setValue("hasJetBathSpa", props.hasJetBathSpa);
+      setValue("hasShoulderHittingShower", props.hasShoulderHittingShower);
+      setValue("hasSleepingBath", props.hasSleepingBath);
+      setValue("hasCypressBath", props.hasCypressBath);
+      setValue("hasBedrockBath", props.hasBedrockBath);
+      setValue("hasElectricBath", props.hasElectricBath);
+      setValue("hasFamilyBath", props.hasFamilyBath);
+      setValue("customSpa", props.customSpa);
+      setValue("hasRestaurant", props.hasRestaurant);
+      setValue("hasBreakPlace", props.hasBreakPlace);
+      setValue("hasMassageMachine", props.hasMassageMachine);
+      setValue("hasVendingMachine", props.hasVendingMachine);
+      setValue("hasStore", props.hasStore);
+      setValue("customFacility", props.customFacility);
+    }
+  }, [props]);
 
   //基本情報関数
   const handleInputSpaNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -102,24 +175,24 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
   const handleInputSpaAddressChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    props.setSpaAddress(e.target.value);
+    props.setAddress(e.target.value);
   };
 
   const handleInputSpaPhoneNumberChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    props.setSpaPhoneNumber(e.target.value);
+    props.setPhoneNumber(e.target.value);
   };
 
   const handleInputSpaBusinessHoursChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    props.setSpaBusinessHours(e.target.value);
+    props.setBusinessHours(e.target.value);
   };
   const handleInputSpaRegularHolidayChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    props.setSpaRegularHoliday(e.target.value);
+    props.setRegularHoliday(e.target.value);
   };
   //料金関数
   const handleInputAdultPrice = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -303,7 +376,6 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
               },
               onBlur: handleInputSpaNameChange,
             }}
-            defaultValue={props.spaName}
             render={({ field }) => (
               <TextField
                 {...field}
@@ -316,15 +388,15 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
         </FormControl>
         <FormControl
           required
-          error={errors?.hasOwnProperty("spaAddress")}
+          error={errors?.hasOwnProperty("address")}
           component="fieldset"
           fullWidth
         >
           <FormHelperText>
-            {errors?.spaAddress && errors?.spaAddress.message}
+            {errors?.address && errors?.address.message}
           </FormHelperText>
           <Controller
-            name="spaAddress"
+            name="address"
             control={control}
             rules={{
               required: "住所を入力してください",
@@ -334,7 +406,6 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
               },
               onBlur: handleInputSpaAddressChange,
             }}
-            defaultValue={props.spaAddress}
             render={({ field }) => (
               <TextField {...field} variant="outlined" label="住所" required />
             )}
@@ -342,15 +413,15 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
         </FormControl>
         <FormControl
           required
-          error={errors?.hasOwnProperty("spaPhoneNumber")}
+          error={errors?.hasOwnProperty("phoneNumber")}
           component="fieldset"
           fullWidth
         >
           <FormHelperText>
-            {errors?.spaPhoneNumber && errors?.spaPhoneNumber.message}
+            {errors?.phoneNumber && errors?.phoneNumber.message}
           </FormHelperText>
           <Controller
-            name="spaPhoneNumber"
+            name="phoneNumber"
             control={control}
             rules={{
               required: "電話番号を入力してください",
@@ -364,7 +435,6 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
                 message: "数字とハイフンで入力してください",
               },
             }}
-            defaultValue={props.spaPhoneNumber}
             render={({ field }) => (
               <TextField
                 {...field}
@@ -377,15 +447,15 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
         </FormControl>
         <FormControl
           required
-          error={errors?.hasOwnProperty("spaBusinessHours")}
+          error={errors?.hasOwnProperty("businessHours")}
           component="fieldset"
           fullWidth
         >
           <FormHelperText>
-            {errors?.spaBusinessHours && errors?.spaBusinessHours.message}
+            {errors?.businessHours && errors?.businessHours.message}
           </FormHelperText>
           <Controller
-            name="spaBusinessHours"
+            name="businessHours"
             control={control}
             rules={{
               required: "営業時間を入力してください",
@@ -395,7 +465,6 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
               },
               onBlur: handleInputSpaBusinessHoursChange,
             }}
-            defaultValue={props.spaBusinessHours}
             render={({ field }) => (
               <TextField
                 {...field}
@@ -408,15 +477,15 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
         </FormControl>
         <FormControl
           required
-          error={errors?.hasOwnProperty("spaRegularHoliday")}
+          error={errors?.hasOwnProperty("regularHoliday")}
           component="fieldset"
           fullWidth
         >
           <FormHelperText>
-            {errors?.spaRegularHoliday && errors?.spaRegularHoliday.message}
+            {errors?.regularHoliday && errors?.regularHoliday.message}
           </FormHelperText>
           <Controller
-            name="spaRegularHoliday"
+            name="regularHoliday"
             control={control}
             rules={{
               required: "定休日を入力してください",
@@ -426,7 +495,6 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
               },
               onBlur: handleInputSpaRegularHolidayChange,
             }}
-            defaultValue={props.spaRegularHoliday}
             render={({ field }) => (
               <TextField
                 {...field}
@@ -452,14 +520,13 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
           <Controller
             name="adultPrice"
             control={control}
-            defaultValue={props.adultPrice}
             rules={{
               required: "入力してください",
-              maxLength: {
-                value: 7,
+              max: {
+                value: 9999999,
                 message: "9999999円以内で入力してください",
               },
-              onChange: handleInputAdultPrice,
+              onBlur: handleInputAdultPrice,
               pattern: {
                 value: /^[0-9\b]+$/,
                 message: "半角数字のみの入力",
@@ -491,11 +558,10 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
           <Controller
             name="childPrice"
             control={control}
-            defaultValue={props.childPrice}
             rules={{
               required: "入力してください",
-              maxLength: {
-                value: 7,
+              max: {
+                value: 9999999,
                 message: "9999999円以内で入力してください",
               },
               onBlur: handleInputChildPrice,
@@ -530,11 +596,10 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
           <Controller
             name="adultWeekendPrice"
             control={control}
-            defaultValue={props.adultWeekendPrice}
             rules={{
               required: "入力してください",
-              maxLength: {
-                value: 7,
+              max: {
+                value: 9999999,
                 message: "9999999円以内で入力してください",
               },
               onBlur: handleInputAdultWeekendPrice,
@@ -569,11 +634,10 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
           <Controller
             name="childWeekendPrice"
             control={control}
-            defaultValue={props.childWeekendPrice}
             rules={{
               required: "入力してください",
-              maxLength: {
-                value: 7,
+              max: {
+                value: 9999999,
                 message: "9999999円以内で入力してください",
               },
               onBlur: handleInputChildWeekendPrice,
@@ -601,46 +665,106 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
         </Typography>
         <FormGroup>
           <FormControlLabel
-            control={<Checkbox />}
-            id="freeShampoo"
+            name="hasFreeShampoo"
             label="無料シャンプー"
-            onChange={handleInputHasFreeShampoo}
-            value={props.hasFreeShampoo}
+            onClick={handleInputHasFreeShampoo}
+            control={
+              <Controller
+                name="hasFreeShampoo"
+                control={control}
+                render={(props) => (
+                  <Checkbox
+                    checked={props.field.value}
+                    onClick={props.field.onChange}
+                  />
+                )}
+              />
+            }
           />
           <FormControlLabel
-            control={<Checkbox />}
-            id="paidShampoo"
+            name="hasPaidShampoo"
             label="有料シャンプー"
-            onChange={handleInputHasPaidShampoo}
-            value={props.hasPaidShampoo}
+            onClick={handleInputHasPaidShampoo}
+            control={
+              <Controller
+                name="hasPaidShampoo"
+                control={control}
+                render={(props) => (
+                  <Checkbox
+                    checked={props.field.value}
+                    onClick={props.field.onChange}
+                  />
+                )}
+              />
+            }
           />
           <FormControlLabel
-            control={<Checkbox />}
-            id="towel"
+            name="hasTowel"
             label="タオル"
-            onChange={handleInputHasTowel}
-            value={props.hasTowel}
+            onClick={handleInputHasTowel}
+            control={
+              <Controller
+                name="hasTowel"
+                control={control}
+                render={(props) => (
+                  <Checkbox
+                    checked={props.field.value}
+                    onClick={props.field.onChange}
+                  />
+                )}
+              />
+            }
           />
           <FormControlLabel
-            control={<Checkbox />}
-            id="freeHairdryer"
+            name="hasFreeHairdryer"
             label="無料ドライヤー"
-            onChange={handleInputHasFreeHairdryer}
-            value={props.hasFreeHairdryer}
+            onClick={handleInputHasFreeHairdryer}
+            control={
+              <Controller
+                name="hasFreeHairdryer"
+                control={control}
+                render={(props) => (
+                  <Checkbox
+                    checked={props.field.value}
+                    onClick={props.field.onChange}
+                  />
+                )}
+              />
+            }
           />
           <FormControlLabel
-            control={<Checkbox />}
-            id="paidHairdryer"
+            name="hasPaidHairdryer"
             label="有料ドライヤー"
-            onChange={handleInputHasPaidHairdryer}
-            value={props.hasPaidHairdryer}
+            onClick={handleInputHasPaidHairdryer}
+            control={
+              <Controller
+                name="hasPaidHairdryer"
+                control={control}
+                render={(props) => (
+                  <Checkbox
+                    checked={props.field.value}
+                    onClick={props.field.onChange}
+                  />
+                )}
+              />
+            }
           />
           <FormControlLabel
-            control={<Checkbox />}
-            id="creditCard"
+            name="hasCreditCard"
             label="クレジットカード"
-            onChange={handleInputHasCreditCard}
-            value={props.hasCreditCard}
+            onClick={handleInputHasCreditCard}
+            control={
+              <Controller
+                name="hasCreditCard"
+                control={control}
+                render={(props) => (
+                  <Checkbox
+                    checked={props.field.value}
+                    onClick={props.field.onChange}
+                  />
+                )}
+              />
+            }
           />
         </FormGroup>
         <Typography variant="h5" gutterBottom component="div">
@@ -648,81 +772,191 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
         </Typography>
         <FormGroup>
           <FormControlLabel
-            control={<Checkbox />}
-            id="opneAirBath"
+            name="hasOpenAirBath"
             label="露天風呂"
-            onChange={handleInputHasOpenAirBath}
-            value={props.hasOpenAirBath}
+            onClick={handleInputHasOpenAirBath}
+            control={
+              <Controller
+                name="hasOpenAirBath"
+                control={control}
+                render={(props) => (
+                  <Checkbox
+                    checked={props.field.value}
+                    onClick={props.field.onChange}
+                  />
+                )}
+              />
+            }
           />
           <FormControlLabel
-            control={<Checkbox />}
-            id="waterBath"
+            name="hasWaterBath"
             label="水風呂"
-            onChange={handleInputHasWaterBath}
-            value={props.hasWaterBath}
+            onClick={handleInputHasWaterBath}
+            control={
+              <Controller
+                name="hasWaterBath"
+                control={control}
+                render={(props) => (
+                  <Checkbox
+                    checked={props.field.value}
+                    onClick={props.field.onChange}
+                  />
+                )}
+              />
+            }
           />
           <FormControlLabel
-            control={<Checkbox />}
-            id="sauna"
+            name="hasSauna"
             label="サウナ"
-            onChange={handleInputHasSauna}
-            value={props.hasSauna}
+            onClick={handleInputHasSauna}
+            control={
+              <Controller
+                name="hasSauna"
+                control={control}
+                render={(props) => (
+                  <Checkbox
+                    checked={props.field.value}
+                    onClick={props.field.onChange}
+                  />
+                )}
+              />
+            }
           />
           <FormControlLabel
-            control={<Checkbox />}
-            id="bubbleBath"
+            name="hasBubbleBath"
             label="泡風呂"
-            onChange={handleInputHasBubbleBath}
-            value={props.hasBubbleBath}
+            onClick={handleInputHasBubbleBath}
+            control={
+              <Controller
+                name="hasBubbleBath"
+                control={control}
+                render={(props) => (
+                  <Checkbox
+                    checked={props.field.value}
+                    onClick={props.field.onChange}
+                  />
+                )}
+              />
+            }
           />
           <FormControlLabel
-            control={<Checkbox />}
-            id="jetBathSpa"
+            name="hasJetBathSpa"
             label="ジェットバス"
-            onChange={handleInputHasJetBathSpa}
-            value={props.hasJetBathSpa}
+            onClick={handleInputHasJetBathSpa}
+            control={
+              <Controller
+                name="hasJetBathSpa"
+                control={control}
+                render={(props) => (
+                  <Checkbox
+                    checked={props.field.value}
+                    onClick={props.field.onChange}
+                  />
+                )}
+              />
+            }
           />
           <FormControlLabel
-            control={<Checkbox />}
-            id="shoulderHittingShower"
+            name="hasShoulderHittingShower"
             label="打たせ湯"
-            onChange={handleInputHasShoulderHittingShower}
-            value={props.hasShoulderHittingShower}
+            onClick={handleInputHasShoulderHittingShower}
+            control={
+              <Controller
+                name="hasShoulderHittingShower"
+                control={control}
+                render={(props) => (
+                  <Checkbox
+                    checked={props.field.value}
+                    onClick={props.field.onChange}
+                  />
+                )}
+              />
+            }
           />
           <FormControlLabel
-            control={<Checkbox />}
-            id="sleepingBath"
+            name="hasSleepingBath"
             label="寝湯"
-            onChange={handleInputHasSleepingBath}
-            value={props.hasSleepingBath}
+            onClick={handleInputHasSleepingBath}
+            control={
+              <Controller
+                name="hasSleepingBath"
+                control={control}
+                render={(props) => (
+                  <Checkbox
+                    checked={props.field.value}
+                    onClick={props.field.onChange}
+                  />
+                )}
+              />
+            }
           />
           <FormControlLabel
-            control={<Checkbox />}
-            id="cypressBath"
+            name="hasCypressBath"
             label="檜風呂"
-            onChange={handleInputHasCypressBath}
-            value={props.hasCypressBath}
+            onClick={handleInputHasCypressBath}
+            control={
+              <Controller
+                name="hasCypressBath"
+                control={control}
+                render={(props) => (
+                  <Checkbox
+                    checked={props.field.value}
+                    onClick={props.field.onChange}
+                  />
+                )}
+              />
+            }
           />
           <FormControlLabel
-            control={<Checkbox />}
-            id="bedrockBath"
+            name="hasBedrockBath"
             label="岩盤浴"
             onChange={handleInputHasBedrockBath}
-            value={props.hasBedrockBath}
+            control={
+              <Controller
+                name="hasBedrockBath"
+                control={control}
+                render={(props) => (
+                  <Checkbox
+                    checked={props.field.value}
+                    onClick={props.field.onChange}
+                  />
+                )}
+              />
+            }
           />
           <FormControlLabel
-            control={<Checkbox />}
-            id="electricBath"
+            name="hasElectricBath"
             label="電気風呂"
-            onChange={handleInputHasElectricBath}
-            value={props.hasElectricBath}
+            onClick={handleInputHasElectricBath}
+            control={
+              <Controller
+                name="hasElectricBath"
+                control={control}
+                render={(props) => (
+                  <Checkbox
+                    checked={props.field.value}
+                    onClick={props.field.onChange}
+                  />
+                )}
+              />
+            }
           />
           <FormControlLabel
-            control={<Checkbox />}
-            id="familyBath"
+            name="hasFamilyBath"
             label="家族風呂"
-            onChange={handleInputHasFamilyBath}
-            value={props.hasFamilyBath}
+            onClick={handleInputHasFamilyBath}
+            control={
+              <Controller
+                name="hasFamilyBath"
+                control={control}
+                render={(props) => (
+                  <Checkbox
+                    checked={props.field.value}
+                    onClick={props.field.onChange}
+                  />
+                )}
+              />
+            }
           />
         </FormGroup>
         <FormControl
@@ -744,7 +978,6 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
               },
               onBlur: handleInputCustomSpa,
             }}
-            defaultValue={props.customSpa}
             render={({ field }) => (
               <TextField {...field} variant="outlined" label="独自施設" />
             )}
@@ -755,39 +988,89 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
         </Typography>
         <FormGroup>
           <FormControlLabel
-            control={<Checkbox />}
-            id="restaurant"
+            name="hasRestaurant"
             label="レストラン"
-            onChange={handleInputHasRestaurant}
-            value={props.hasRestaurant}
+            onClick={handleInputHasRestaurant}
+            control={
+              <Controller
+                name="hasRestaurant"
+                control={control}
+                render={(props) => (
+                  <Checkbox
+                    checked={props.field.value}
+                    onClick={props.field.onChange}
+                  />
+                )}
+              />
+            }
           />
           <FormControlLabel
-            control={<Checkbox />}
-            id="breakPlace"
+            name="hasBreakPlace"
             label="休憩所"
-            onChange={handleInputHasBreakPlace}
-            value={props.hasBreakPlace}
+            onClick={handleInputHasBreakPlace}
+            control={
+              <Controller
+                name="hasBreakPlace"
+                control={control}
+                render={(props) => (
+                  <Checkbox
+                    checked={props.field.value}
+                    onClick={props.field.onChange}
+                  />
+                )}
+              />
+            }
           />
           <FormControlLabel
-            control={<Checkbox />}
-            id="massageMachine"
+            name="hasMassageMachine"
             label="マッサージ機"
-            onChange={handleInputHasMassageMachine}
-            value={props.hasMassageMachine}
+            onClick={handleInputHasMassageMachine}
+            control={
+              <Controller
+                name="hasMassageMachine"
+                control={control}
+                render={(props) => (
+                  <Checkbox
+                    checked={props.field.value}
+                    onClick={props.field.onChange}
+                  />
+                )}
+              />
+            }
           />
           <FormControlLabel
-            control={<Checkbox />}
-            id="vendingMachine"
+            name="hasVendingMachine"
             label="自動販売機"
-            onChange={handleInputHasVendingMachine}
-            value={props.hasVendingMachine}
+            onClick={handleInputHasVendingMachine}
+            control={
+              <Controller
+                name="hasVendingMachine"
+                control={control}
+                render={(props) => (
+                  <Checkbox
+                    checked={props.field.value}
+                    onClick={props.field.onChange}
+                  />
+                )}
+              />
+            }
           />
           <FormControlLabel
-            control={<Checkbox />}
-            id="store"
+            name="hasStore"
             label="売店"
-            onChange={handleInputHasStore}
-            value={props.hasStore}
+            onClick={handleInputHasStore}
+            control={
+              <Controller
+                name="hasStore"
+                control={control}
+                render={(props) => (
+                  <Checkbox
+                    checked={props.field.value}
+                    onClick={props.field.onChange}
+                  />
+                )}
+              />
+            }
           />
         </FormGroup>
         <FormControl
@@ -809,7 +1092,6 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
               },
               onBlur: handleInputCustomFacility,
             }}
-            defaultValue={props.customFacility}
             render={({ field }) => (
               <TextField {...field} variant="outlined" label="独自施設" />
             )}
@@ -825,7 +1107,6 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
         <Typography variant="h5" gutterBottom component="div">
           MAP
         </Typography>
-
         <Button variant="contained" color="primary" type="submit">
           次へ
         </Button>

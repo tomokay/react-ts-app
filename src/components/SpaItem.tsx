@@ -1,5 +1,5 @@
 import React from "react";
-import { SpaListType } from "src/components/SpaPage";
+import { SpaListModel } from "src/components/Types";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
@@ -9,19 +9,19 @@ import CardMedia from "@mui/material/CardMedia";
 import { Link } from "react-router-dom";
 
 type SpaItemProps = {
-  spa: SpaListType;
+  spa: SpaListModel;
+  spas: SpaListModel[];
 };
 
 const SpaItem = (props: SpaItemProps) => {
-  console.log("props.spa: ", props.spa.id);
   return (
     <>
-      <Grid item xs={6} md={8}>
+      <Grid item xs={9}>
         <CardActionArea>
           <Card sx={{ display: "flex" }}>
             <CardContent sx={{ flex: 1 }}>
               <Typography component="h2" variant="h5">
-                {props.spa.name}
+                {props.spa.spaName}
               </Typography>
               <Typography variant="subtitle1" color="text.secondary">
                 {props.spa.address}
@@ -37,7 +37,7 @@ const SpaItem = (props: SpaItemProps) => {
             </CardContent>
             <CardMedia
               component="img"
-              sx={{ width: 160, display: { xs: "none", sm: "block" } }}
+              sx={{ width: 151, display: { xs: "none", sm: "block" } }}
             />
           </Card>
         </CardActionArea>

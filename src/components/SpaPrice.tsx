@@ -1,5 +1,5 @@
 import React from "react";
-import { Spa } from "src/components/Types";
+import { Price } from "src/components/Types";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableHead from "@mui/material/TableHead";
@@ -16,7 +16,7 @@ const StyledTableCell = styled(TableCell)(() => ({
 }));
 
 type SpaPriceProps = {
-  spa: Spa;
+  spa: Price;
 };
 
 const SpaPrice = (props: SpaPriceProps) => {
@@ -24,20 +24,21 @@ const SpaPrice = (props: SpaPriceProps) => {
     {
       type: "adultPrice",
       title: "大人",
-      price: props.spa.price.adultPrice,
-      weekendPrice: props.spa.price.adultWeekendPrice,
+      price: props.spa.adultPrice,
+      weekendPrice: props.spa.adultWeekendPrice,
     },
 
     {
       type: "childPrice",
       title: "子ども",
-      price: props.spa.price.childPrice,
-      weekendPrice: props.spa.price.childWeekendPrice,
+      price: props.spa.childPrice,
+      weekendPrice: props.spa.childWeekendPrice,
     },
   ];
+
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="simple table">
+      <Table sx={{ minWidth: 100 }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <StyledTableCell align="left"></StyledTableCell>
@@ -53,8 +54,8 @@ const SpaPrice = (props: SpaPriceProps) => {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 {spaPriceinfo.title}
-                <StyledTableCell>{spaPriceinfo.price}</StyledTableCell>
-                <StyledTableCell>{spaPriceinfo.weekendPrice}</StyledTableCell>
+                <StyledTableCell>{spaPriceinfo.price}円</StyledTableCell>
+                <StyledTableCell>{spaPriceinfo.weekendPrice}円</StyledTableCell>
               </TableRow>
             );
           })}

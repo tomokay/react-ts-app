@@ -1,8 +1,8 @@
 import React from "react";
-import { Spa } from "src/components/Types";
+import { Amenity } from "src/components/Types";
 
 type SpaAmenitiesProps = {
-  spa: Spa;
+  spa: Amenity;
 };
 
 const SpaAmenities = (props: SpaAmenitiesProps) => {
@@ -10,32 +10,32 @@ const SpaAmenities = (props: SpaAmenitiesProps) => {
     {
       type: "freeShampoo",
       title: "無料シャンプー",
-      isExist: props.spa.amenity.hasFreeShampoo,
+      isExist: props.spa.hasFreeShampoo,
     },
     {
       type: "paidShampoo",
       title: "有料シャンプー",
-      isExist: props.spa.amenity.hasPaidShampoo,
+      isExist: props.spa.hasPaidShampoo,
     },
     {
       type: "towel",
       title: "貸し出しタオル",
-      isExist: props.spa.amenity.hasTowel,
+      isExist: props.spa.hasTowel,
     },
     {
       type: "freeHairdryer",
       title: "無料ドライヤー",
-      isExist: props.spa.amenity.hasFreeHairdryer,
+      isExist: props.spa.hasFreeHairdryer,
     },
     {
       type: "paidHairdryer",
       title: "有料ドライヤー",
-      isExist: props.spa.amenity.hasPaidHairdryer,
+      isExist: props.spa.hasPaidHairdryer,
     },
     {
       type: "creditCard",
       title: "クレジットカードOK",
-      isExist: props.spa.amenity.hasCreditCard,
+      isExist: props.spa.hasCreditCard,
     },
   ];
   return (

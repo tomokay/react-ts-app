@@ -1,10 +1,10 @@
 import React from "react";
-import { SpaListType } from "src/components/SpaPage";
+import { SpaListModel } from "src/components/Types";
 import SpaItem from "src/components/SpaItem";
 
 type SpaListProps = {
-  spas: SpaListType[];
-  setSpas: React.Dispatch<React.SetStateAction<SpaListType[]>>;
+  spas: SpaListModel[];
+  setSpas: React.Dispatch<React.SetStateAction<SpaListModel[]>>;
 };
 
 const SpaList = (props: SpaListProps) => {
@@ -12,7 +12,7 @@ const SpaList = (props: SpaListProps) => {
     <div>
       <ul>
         {props.spas.map((spa) => (
-          <SpaItem key={spa.id} spa={spa} />
+          <SpaItem key={spa.id} spas={props.spas} spa={spa} />
         ))}
       </ul>
     </div>
