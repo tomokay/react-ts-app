@@ -62,7 +62,6 @@ const SpaEntryPage = () => {
   const location = useLocation() as any;
   const id: string | null =
     new URLSearchParams(location.search).get("id") || null;
-  console.log("id", id);
 
   useEffect(() => {
     const fetchInitialSpa = async () => {

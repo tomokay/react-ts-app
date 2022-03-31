@@ -7,10 +7,13 @@ import SpaFacilities from "src/components/SpaFacilities";
 import AnothreFacilities from "src/components/AnotherFacilities";
 import { Button, Grid } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { GET_SPA } from "src/graphql/query";
+import { DELETE_SPA } from "src/graphql/deleteSpa";
 
 const SpaDetailPage = () => {
+  const [deleteSpa] = useMutation(DELETE_SPA);
+
   const location = useLocation() as any;
   const id: string | null =
     new URLSearchParams(location.search).get("id") || null;
@@ -195,6 +198,10 @@ const SpaDetailPage = () => {
     },
   ];
 
+  const handleDelete = (id: number) => {
+    deleteSpa({ variables: { deleteSpaId: id } });
+  };
+
   return (
     <div>
       <Grid item xs>
@@ -219,6 +226,7 @@ const SpaDetailPage = () => {
       </Button>
       <Button
         variant="contained"
+        color="secondary"
         component={Link}
         to={{
           pathname: "/spainput",
@@ -226,6 +234,17 @@ const SpaDetailPage = () => {
         }}
       >
         編集
+      </Button>
+      <Button
+        variant="contained"
+        color="error"
+        component={Link}
+        to={{
+          pathname: "/spa",
+        }}
+        onClick={() => handleDelete(data.spa.id)}
+      >
+        削除
       </Button>
     </div>
   );
