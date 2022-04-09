@@ -234,8 +234,8 @@ const SpaEntryPage = () => {
       case 2:
         return (
           <>
-            <span>登録完了</span>
-            <NavLink to="/spa">温泉一覧</NavLink>
+            <>登録完了</>
+            {/* <NavLink to="/spa">温泉一覧</NavLink> */}
           </>
         );
       default:
