@@ -341,18 +341,7 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
 
   return (
     <>
-      <Box
-        component="form"
-        onSubmit={onSubmit}
-        sx={{
-          "& .MuiTextField-root": { m: 1, width: "60ch" },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <Typography variant="h2" gutterBottom component="div">
-          温泉情報入力
-        </Typography>
+      <Box component="form" onSubmit={onSubmit} noValidate autoComplete="off">
         <Typography variant="h5" gutterBottom component="div">
           基本情報
         </Typography>

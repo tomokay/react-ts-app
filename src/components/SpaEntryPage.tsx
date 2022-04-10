@@ -10,6 +10,21 @@ import { useMutation } from "@apollo/client";
 import { NavLink, useLocation } from "react-router-dom";
 import { fetchSpa } from "src/lib/fetchSpa";
 import { UPDATE_SPA } from "src/graphql/updateSpa";
+import { TitleHeader } from "src/components/commons/TitleHeader";
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles({
+  contents: {
+    marginTop: "40px",
+  },
+  stepper: {
+    minWidth: "60%",
+  },
+  forms: {
+    marginTop: "40px",
+    minWidth: "60%",
+  },
+});
 
 const SpaEntryPage = () => {
   const [activeStep, setActiveStep] = useState<number>(0);
@@ -108,7 +123,7 @@ const SpaEntryPage = () => {
   }, []);
 
   const getSteps = () => {
-    return ["入力画面", "確認", "完了"];
+    return ["入力", "確認", "完了"];
   };
 
   const getStepContent = (stepIndex: number) => {
@@ -252,17 +267,32 @@ const SpaEntryPage = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  const classes = useStyles();
+
   return (
     <>
-      <Grid>
-        <Stepper activeStep={activeStep} alternativeLabel>
-          {steps.map((label) => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
-        {getStepContent(activeStep)}
+      <TitleHeader HeaderTitle="温泉情報入力" />
+
+      <Grid
+        container
+        direction="column"
+        justifyContent="space-around"
+        alignItems="center"
+        className={classes.contents}
+      >
+        <Grid item xs={12} className={classes.stepper}>
+          <Stepper activeStep={activeStep} alternativeLabel>
+            {steps.map((label) => (
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+        </Grid>
+
+        <Grid item xs={12} className={classes.forms}>
+          {getStepContent(activeStep)}
+        </Grid>
       </Grid>
     </>
   );
