@@ -1,51 +1,11 @@
 import { Spa } from "src/components/Types";
 import { fetchSpaFromDB } from "src/graphql/query";
 
-export type FetchSpaResponse = {
-  id: number;
-  spaName: string;
-  address: string;
-  phoneNumber: string;
-  businessHours: string;
-  regularHoliday: string;
-  adultPrice: number;
-  childPrice: number;
-  adultWeekendPrice: number;
-  childWeekendPrice: number;
-  hasFreeShampoo: boolean;
-  hasPaidShampoo: boolean;
-  hasTowel: boolean;
-  hasFreeHairdryer: boolean;
-  hasPaidHairdryer: boolean;
-  hasCreditCard: boolean;
-  hasOpenAirBath: boolean;
-  hasWaterBath: boolean;
-  hasSauna: boolean;
-  hasBubbleBath: boolean;
-  hasJetBathSpa: boolean;
-  hasShoulderHittingShower: boolean;
-  hasSleepingBath: boolean;
-  hasCypressBath: boolean;
-  hasBedrockBath: boolean;
-  hasElectricBath: boolean;
-  hasFamilyBath: boolean;
-  customSpa: string | null;
-  hasRestaurant: boolean;
-  hasBreakPlace: boolean;
-  hasMassageMachine: boolean;
-  hasVendingMachine: boolean;
-  hasStore: boolean;
-  customFacility: string | null;
-  picture: string;
-  lat: string;
-  lng: string;
-};
-
 export const fetchSpa = async (id: number): Promise<Spa> => {
   // validateFetchSpa(idはnumber型のみ undefinedや０はエラーをだす)
   const validateFetchSpa = (id: number) => {
     if (id === undefined) {
-      throw new Error(`Can't　find Spa data`);
+      throw new Error(`Can't find Spa data`);
     }
   };
   validateFetchSpa(id);
@@ -57,7 +17,7 @@ export const fetchSpa = async (id: number): Promise<Spa> => {
   return adjustedSpa;
 };
 
-export const shapeFetchSpa = (spa: FetchSpaResponse) => {
+const shapeFetchSpa = (spa: any) => {
   return {
     id: spa.id,
     basic: {
