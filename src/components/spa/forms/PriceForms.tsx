@@ -5,7 +5,7 @@ import { Price } from "src/components/Types";
 
 type PriceFormsProps = {
   spaPriceInfo: Price;
-  handleSpaPrice: (key: string, value: string) => void;
+  handleSpaPrice: (key: string, value: number) => void;
 };
 
 const MAX_ADULT_PRICE = 9999999;

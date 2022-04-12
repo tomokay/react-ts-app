@@ -35,30 +35,42 @@ export type Price = {
 };
 
 //備品
+export const amenityKeys = [
+  "hasFreeShampoo",
+  "hasPaidShampoo",
+  "hasTowel",
+  "hasFreeHairdryer",
+  "hasPaidHairdryer",
+  "hasCreditCard",
+] as const;
+
 export type Amenity = {
-  hasFreeShampoo: boolean;
-  hasPaidShampoo: boolean;
-  hasTowel: boolean;
-  hasFreeHairdryer: boolean;
-  hasPaidHairdryer: boolean;
-  hasCreditCard: boolean;
+  [k in ArrayElement<typeof amenityKeys>]: boolean;
 };
 
 //温泉施設
-export type SpaFacility = {
-  hasOpenAirBath: boolean;
-  hasWaterBath: boolean;
-  hasSauna: boolean;
-  hasBubbleBath: boolean;
-  hasJetBathSpa: boolean;
-  hasShoulderHittingShower: boolean;
-  hasSleepingBath: boolean;
-  hasCypressBath: boolean;
-  hasBedrockBath: boolean;
-  hasElectricBath: boolean;
-  hasFamilyBath: boolean;
-  customSpa: string | null;
+export const defaultFacilityKeys = [
+  "hasOpenAirBath",
+  "hasWaterBath",
+  "hasSauna",
+  "hasBubbleBath",
+  "hasJetBathSpa",
+  "hasShoulderHittingShower",
+  "hasSleepingBath",
+  "hasCypressBath",
+  "hasBedrockBath",
+  "hasElectricBath",
+  "hasFamilyBath",
+] as const;
+
+type defaultFacilities = {
+  [k in ArrayElement<typeof defaultFacilityKeys>]: boolean;
 };
+
+export interface SpaFacility extends defaultFacilities {
+  customSpa: string;
+}
+
 //その他施設
 export type AnotherFacility = {
   hasRestaurant: boolean;
@@ -68,3 +80,5 @@ export type AnotherFacility = {
   hasStore: boolean;
   customFacility: string | null;
 };
+
+type ArrayElement<ArrayType extends readonly unknown[]> = ArrayType[number];

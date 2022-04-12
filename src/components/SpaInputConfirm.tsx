@@ -298,7 +298,7 @@ const SpaInputConfirm = (props: SpaInputConfilmProps) => {
         hasBedrockBath: hasBedrockBath,
         hasElectricBath: hasElectricBath,
         hasFamilyBath: hasFamilyBath,
-        customSpa: customSpa,
+        customSpa: "customSpa",
       };
     };
 

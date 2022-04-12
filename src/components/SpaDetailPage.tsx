@@ -186,11 +186,11 @@ const SpaDetailPage = () => {
       title: "備品",
       component: <SpaAmenities spa={spaAmenity} />,
     },
-    {
-      type: "spaFacility",
-      title: "温泉施設",
-      component: <SpaFacilities spa={spaFacility} />,
-    },
+    // {
+    //   type: "spaFacility",
+    //   title: "温泉施設",
+    //   component: <SpaFacilities spa={spaFacility} />,
+    // },
     {
       type: "anothorFacility",
       title: "その他施設",
