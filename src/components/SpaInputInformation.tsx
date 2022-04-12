@@ -1,5 +1,4 @@
 import React from "react";
-import Box from "@mui/material/Box";
 import {
   amenityKeys,
   defaultAnothorFacilityKeys,
@@ -7,8 +6,7 @@ import {
   Spa,
 } from "src/components/Types";
 import { BasicForms } from "src/components/spa/forms/BasicForms";
-import { Button, Grid } from "@mui/material";
-import { DefaultInputNumberForm } from "src/components/spa/forms/Form";
+import { Grid } from "@mui/material";
 import { PriceForms } from "src/components/spa/forms/PriceForms";
 import { AmenityForms } from "src/components/spa/forms/AmenityForms";
 import { SpaFacilityForms } from "src/components/spa/forms/SpaFacilityForms";
@@ -20,7 +18,7 @@ type SpaInputInfomationProps = {
   handleNext: any;
 };
 
-const SpaInputInfomation = (props: SpaInputInfomationProps) => {
+export const SpaInputInfomation = (props: SpaInputInfomationProps) => {
   // Basic情報更新関数
   const handleSpaBasic = (key: string, value: string): void => {
     const newBasic = { ...props.spa.basic, [key]: value };
@@ -83,34 +81,36 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
 
   return (
     <>
-      <div>
+      <div style={{ margin: "40px" }}>
         <Grid
           container
           direction="row"
           justifyContent="center"
-          spacing={4}
-          style={{ textAlign: "center" }}
+          alignItems="flex-start"
+          spacing={5}
         >
-          <Grid item xs={12}>
+          <Grid item xs={12} md={6} style={{ textAlign: "center" }}>
             <BasicForms
               spaBasicInfo={props.spa.basic}
               handleSpaBasic={handleSpaBasic}
             />
           </Grid>
-          <Grid item xs={12}>
+
+          <Grid item xs={12} md={6} style={{ textAlign: "center" }}>
             <PriceForms
               spaPriceInfo={props.spa.price}
               handleSpaPrice={handleSpaPrice}
             />
           </Grid>
         </Grid>
-
+      </div>
+      <div style={{ margin: "40px" }}>
         <Grid
           container
           direction="row"
           justifyContent="center"
           alignItems="flex-start"
-          spacing={4}
+          spacing={5}
         >
           <Grid item xs={12} md={4}>
             <AmenityForms
@@ -130,15 +130,8 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
               handleAnotherFacility={handleAnotherFacility}
             />
           </Grid>
-
-          {/* 次へボタンはエラーがないこと、かつ初期値から更新があった場合に押下できるようにする */}
-          {/* <Button variant="contained" color="primary" type="submit">
-          次へ
-        </Button> */}
         </Grid>
       </div>
     </>
   );
 };
-
-export default SpaInputInfomation;

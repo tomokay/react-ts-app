@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
-import { Grid } from "@mui/material";
-import SpaInputInfomation from "src/components/SpaInputInformation";
+import { Button, Grid } from "@mui/material";
+import { SpaInputInfomation } from "src/components/SpaInputInformation";
 import SpaInputConfirm from "src/components/SpaInputConfirm";
 import { CREATE_SPA } from "src/graphql/createSpa";
 import { useMutation } from "@apollo/client";
@@ -16,14 +16,20 @@ import { Spa } from "src/components/Types";
 
 const useStyles = makeStyles({
   contents: {
-    marginTop: "40px",
+    textAlign: "center",
+    marginBottom: "60px",
   },
   stepper: {
-    minWidth: "60%",
+    marginTop: "40px",
   },
   forms: {
     marginTop: "40px",
     minWidth: "80%",
+  },
+  button: {
+    margin: "15px",
+    minHeight: "60px",
+    minWidth: "280px",
   },
 });
 
@@ -100,32 +106,33 @@ const SpaEntryPage = () => {
     return ["入力", "確認", "完了"];
   };
 
-  // const getStepContent = (stepIndex: number) => {
-  //   switch (stepIndex) {
-  //     case 0:
-  //       return (
-  //         <SpaInputInfomation
-  //           handleNext={handleNext}
-  //           spa={spa}
-  //           setSpa={setSpa}
-  //         />
-  //       );
-  //     // case 1:
-  //     //   return (
-  //     //     // <SpaInputConfirm
-  //     //     // />
-  //     //   );
-  //     case 2:
-  //       return (
-  //         <>
-  //           <span>登録完了</span>
-  //           <NavLink to="/spa">温泉一覧</NavLink>
-  //         </>
-  //       );
-  //     default:
-  //       return "Unknown stepIndex";
-  //   }
-  // };
+  const getStepContent = (stepIndex: number) => {
+    switch (stepIndex) {
+      case 0:
+        return (
+          <SpaInputInfomation
+            handleNext={handleNext}
+            spa={spa}
+            setSpa={setSpa}
+          />
+        );
+      case 1:
+        return (
+          <div>s</div>
+          // <SpaInputConfirm
+          // />
+        );
+      case 2:
+        return (
+          <>
+            <span>登録完了</span>
+            <NavLink to="/spa">温泉一覧</NavLink>
+          </>
+        );
+      default:
+        return "Unknown stepIndex";
+    }
+  };
 
   const steps = getSteps();
 
@@ -140,33 +147,43 @@ const SpaEntryPage = () => {
 
   return (
     <>
-      <TitleHeader HeaderTitle="温泉情報入力" />
-
-      <Grid
-        container
-        direction="column"
-        justifyContent="space-around"
-        alignItems="center"
-        className={classes.contents}
-      >
-        <Grid item xs={12} className={classes.stepper}>
-          <Stepper activeStep={activeStep} alternativeLabel>
-            {steps.map((label) => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
+      <div className={classes.contents}>
+        <TitleHeader HeaderTitle="温泉情報入力" />
+        <Stepper
+          activeStep={activeStep}
+          alternativeLabel
+          className={classes.stepper}
+        >
+          {steps.map((label) => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+        <Grid container direction="column" alignItems="center">
+          <Grid item>{getStepContent(activeStep)}</Grid>
         </Grid>
-
-        <Grid item className={classes.forms}>
-          <SpaInputInfomation
-            handleNext={handleNext}
-            spa={spa}
-            setSpa={setSpa}
-          />
-        </Grid>
-      </Grid>
+        <div>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            onClick={handleNext}
+          >
+            次へ
+          </Button>
+        </div>
+        <div>
+          <Button
+            hidden={activeStep === 0}
+            variant="outlined"
+            className={classes.button}
+            onClick={handleBack}
+          >
+            戻る
+          </Button>
+        </div>
+      </div>
     </>
   );
 };
