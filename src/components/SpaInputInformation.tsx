@@ -7,7 +7,7 @@ import {
   Spa,
 } from "src/components/Types";
 import { BasicForms } from "src/components/spa/forms/BasicForms";
-import { Button } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { DefaultInputNumberForm } from "src/components/spa/forms/Form";
 import { PriceForms } from "src/components/spa/forms/PriceForms";
 import { AmenityForms } from "src/components/spa/forms/AmenityForms";
@@ -83,37 +83,60 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
 
   return (
     <>
-      <Box component="form" noValidate autoComplete="off">
-        <BasicForms
-          spaBasicInfo={props.spa.basic}
-          handleSpaBasic={handleSpaBasic}
-        />
+      <div>
+        <Grid
+          container
+          direction="row"
+          justifyContent="center"
+          spacing={4}
+          style={{ textAlign: "center" }}
+        >
+          <Grid item xs={12}>
+            <BasicForms
+              spaBasicInfo={props.spa.basic}
+              handleSpaBasic={handleSpaBasic}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <PriceForms
+              spaPriceInfo={props.spa.price}
+              handleSpaPrice={handleSpaPrice}
+            />
+          </Grid>
+        </Grid>
 
-        <PriceForms
-          spaPriceInfo={props.spa.price}
-          handleSpaPrice={handleSpaPrice}
-        />
+        <Grid
+          container
+          direction="row"
+          justifyContent="center"
+          alignItems="flex-start"
+          spacing={4}
+        >
+          <Grid item xs={12} md={4}>
+            <AmenityForms
+              spaAmenityInfo={props.spa.amenity}
+              handleSpaAmenity={handleSpaAmenity}
+            />
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <SpaFacilityForms
+              spaFacilityInfo={props.spa.spaFacility}
+              handleSpaFacility={handleSpaFacility}
+            />
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <AnotherFacilityForms
+              spaAnotherFacilityInfo={props.spa.anotherFacility}
+              handleAnotherFacility={handleAnotherFacility}
+            />
+          </Grid>
 
-        <AmenityForms
-          spaAmenityInfo={props.spa.amenity}
-          handleSpaAmenity={handleSpaAmenity}
-        />
-
-        <SpaFacilityForms
-          spaFacilityInfo={props.spa.spaFacility}
-          handleSpaFacility={handleSpaFacility}
-        />
-
-        <AnotherFacilityForms
-          spaAnotherFacilityInfo={props.spa.anotherFacility}
-          handleAnotherFacility={handleAnotherFacility}
-        />
-
-        {/* 次へボタンはエラーがないこと、かつ初期値から更新があった場合に押下できるようにする */}
-        {/* <Button variant="contained" color="primary" type="submit">
+          {/* 次へボタンはエラーがないこと、かつ初期値から更新があった場合に押下できるようにする */}
+          {/* <Button variant="contained" color="primary" type="submit">
           次へ
         </Button> */}
-      </Box>
+        </Grid>
+      </div>
     </>
   );
 };

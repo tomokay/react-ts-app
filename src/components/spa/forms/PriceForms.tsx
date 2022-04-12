@@ -2,6 +2,7 @@ import { Grid, Typography } from "@mui/material";
 import { useState } from "react";
 import { DefaultInputNumberForm } from "src/components/spa/forms/Form";
 import { Price } from "src/components/Types";
+import { makeStyles } from "@mui/styles";
 
 type PriceFormsProps = {
   spaPriceInfo: Price;
@@ -10,6 +11,13 @@ type PriceFormsProps = {
 
 const MAX_ADULT_PRICE = 9999999;
 const MAX_CHILD_PRICE = 9999999;
+
+const useStyles = makeStyles({
+  forms: {
+    margin: "10px 0px",
+    minWidth: "80%",
+  },
+});
 
 export const PriceForms = (props: PriceFormsProps) => {
   const [spaAdultPriceInput, setSpaAdultPriceInput] = useState<number>(
@@ -24,64 +32,68 @@ export const PriceForms = (props: PriceFormsProps) => {
   const [spaChildWeekendPriceInput, setSpaChildWeekendPriceInput] =
     useState<number>(props.spaPriceInfo.childWeekendPrice);
 
+  const classes = useStyles();
+
   return (
     <>
-      <Typography variant="h5" gutterBottom component="div">
-        料金設定
-      </Typography>
-      <Grid container direction="column" alignItems="flex-start" spacing={2}>
-        <Grid item xs={12}>
-          <DefaultInputNumberForm
-            label="平日：大人料金"
-            type="adultPrice"
-            required={true}
-            defaultValue={props.spaPriceInfo.adultPrice}
-            state={spaAdultPriceInput}
-            updateState={setSpaAdultPriceInput}
-            validation={validateAdultPrice}
-            handleSpa={props.handleSpaPrice}
-          />
-        </Grid>
+      <div>
+        <Grid>
+          <Typography variant="h5" gutterBottom component="div">
+            料金設定
+          </Typography>
+          <Grid item xs={12} className={classes.forms}>
+            <DefaultInputNumberForm
+              label="平日：大人料金"
+              type="adultPrice"
+              required={true}
+              defaultValue={props.spaPriceInfo.adultPrice}
+              state={spaAdultPriceInput}
+              updateState={setSpaAdultPriceInput}
+              validation={validateAdultPrice}
+              handleSpa={props.handleSpaPrice}
+            />
+          </Grid>
 
-        <Grid item xs={12}>
-          <DefaultInputNumberForm
-            label="休日：大人料金"
-            type="adultWeekendPrice"
-            required={true}
-            defaultValue={props.spaPriceInfo.adultWeekendPrice}
-            state={spaAdultWeekendPriceInput}
-            updateState={setSpaAdultWeekendPriceInput}
-            validation={validateAdultPrice}
-            handleSpa={props.handleSpaPrice}
-          />
-        </Grid>
+          <Grid item xs={12} className={classes.forms}>
+            <DefaultInputNumberForm
+              label="休日：大人料金"
+              type="adultWeekendPrice"
+              required={true}
+              defaultValue={props.spaPriceInfo.adultWeekendPrice}
+              state={spaAdultWeekendPriceInput}
+              updateState={setSpaAdultWeekendPriceInput}
+              validation={validateAdultPrice}
+              handleSpa={props.handleSpaPrice}
+            />
+          </Grid>
 
-        <Grid item xs={12}>
-          <DefaultInputNumberForm
-            label="平日：子ども料金"
-            type="childPrice"
-            required={true}
-            defaultValue={props.spaPriceInfo.childPrice}
-            state={spaChildPriceInput}
-            updateState={setSpaChildPriceInput}
-            validation={validateChildPrice}
-            handleSpa={props.handleSpaPrice}
-          />
-        </Grid>
+          <Grid item xs={12} className={classes.forms}>
+            <DefaultInputNumberForm
+              label="平日：子ども料金"
+              type="childPrice"
+              required={true}
+              defaultValue={props.spaPriceInfo.childPrice}
+              state={spaChildPriceInput}
+              updateState={setSpaChildPriceInput}
+              validation={validateChildPrice}
+              handleSpa={props.handleSpaPrice}
+            />
+          </Grid>
 
-        <Grid item xs={12}>
-          <DefaultInputNumberForm
-            label="休日：子ども料金"
-            type="childWeekendPrice"
-            required={true}
-            defaultValue={props.spaPriceInfo.childWeekendPrice}
-            state={spaChildWeekendPriceInput}
-            updateState={setSpaChildWeekendPriceInput}
-            validation={validateChildPrice}
-            handleSpa={props.handleSpaPrice}
-          />
+          <Grid item xs={12} className={classes.forms}>
+            <DefaultInputNumberForm
+              label="休日：子ども料金"
+              type="childWeekendPrice"
+              required={true}
+              defaultValue={props.spaPriceInfo.childWeekendPrice}
+              state={spaChildWeekendPriceInput}
+              updateState={setSpaChildWeekendPriceInput}
+              validation={validateChildPrice}
+              handleSpa={props.handleSpaPrice}
+            />
+          </Grid>
         </Grid>
-      </Grid>
+      </div>
     </>
   );
 };

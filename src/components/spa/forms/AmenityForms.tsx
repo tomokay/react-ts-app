@@ -4,6 +4,7 @@ import {
   FormControlLabel,
   Checkbox,
   Typography,
+  Grid,
 } from "@mui/material";
 import { Amenity, amenityKeys } from "src/components/Types";
 
@@ -24,32 +25,34 @@ const checkboxLabels = [
 export const AmenityForms = (props: AmenityFormsProps) => {
   return (
     <>
-      <FormControl component="fieldset" variant="standard">
+      <div style={{ textAlign: "center" }}>
         <Typography variant="h5" gutterBottom component="div">
           アメニティー
         </Typography>
-        <FormGroup>
-          {checkboxLabels.map((label, index) => {
-            return (
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={props.spaAmenityInfo[amenityKeys[index]]}
-                    onChange={(event) =>
-                      props.handleSpaAmenity(
-                        amenityKeys[index],
-                        event.target.checked
-                      )
-                    }
-                    name={label}
-                  />
-                }
-                label={label}
-              />
-            );
-          })}
-        </FormGroup>
-      </FormControl>
+        <FormControl>
+          <FormGroup>
+            {checkboxLabels.map((label, index) => {
+              return (
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={props.spaAmenityInfo[amenityKeys[index]]}
+                      onChange={(event) =>
+                        props.handleSpaAmenity(
+                          amenityKeys[index],
+                          event.target.checked
+                        )
+                      }
+                      name={label}
+                    />
+                  }
+                  label={label}
+                />
+              );
+            })}
+          </FormGroup>
+        </FormControl>
+      </div>
     </>
   );
 };

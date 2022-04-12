@@ -2,6 +2,7 @@ import { Grid, Typography } from "@mui/material";
 import { useState } from "react";
 import { DefaultInputForm } from "src/components/spa/forms/Form";
 import { Basic } from "src/components/Types";
+import { makeStyles } from "@mui/styles";
 
 type BasicFormsProps = {
   spaBasicInfo: Basic;
@@ -11,6 +12,13 @@ type BasicFormsProps = {
 const SPA_NAME_MAX_LENGTH = 50;
 const SPA_ADDRESS_MAX_LENGTH = 50;
 const SPA_PHONE_NUMBER_MAX_LENGTH = 30;
+
+const useStyles = makeStyles({
+  forms: {
+    margin: "10px 0px",
+    minWidth: "80%",
+  },
+});
 
 export const BasicForms = (props: BasicFormsProps) => {
   const [spaNameInput, setSpaNameInput] = useState<string>(
@@ -31,77 +39,83 @@ export const BasicForms = (props: BasicFormsProps) => {
     props.spaBasicInfo.regularHoliday
   );
 
+  const classes = useStyles();
+
   return (
     <>
-      <Typography variant="h5" gutterBottom component="div">
-        基本情報
-      </Typography>
-      <Grid container direction="column" alignItems="flex-start" spacing={2}>
-        <Grid item xs={12}>
-          <DefaultInputForm
-            label="店名"
-            type="spaName"
-            required={true}
-            defaultValue={props.spaBasicInfo.spaName}
-            state={spaNameInput}
-            updateState={setSpaNameInput}
-            validation={validateSpaName}
-            handleSpa={props.handleSpaBasic}
-          />
-        </Grid>
+      <div>
+        <Grid>
+          <Typography variant="h5" gutterBottom component="div">
+            基本情報
+          </Typography>
+          <Grid item xs={12} className={classes.forms}>
+            <div>
+              <DefaultInputForm
+                label="店名"
+                type="spaName"
+                required={true}
+                defaultValue={props.spaBasicInfo.spaName}
+                state={spaNameInput}
+                updateState={setSpaNameInput}
+                validation={validateSpaName}
+                handleSpa={props.handleSpaBasic}
+              />
+            </div>
+          </Grid>
 
-        <Grid item xs={12}>
-          <DefaultInputForm
-            label="所在地"
-            type="address"
-            required={true}
-            defaultValue={props.spaBasicInfo.address}
-            state={spaAddressInput}
-            updateState={setSpaAddressInput}
-            validation={validateSpaAddress}
-            handleSpa={props.handleSpaBasic}
-          />
-        </Grid>
+          <Grid item xs={12} className={classes.forms}>
+            <DefaultInputForm
+              label="所在地"
+              type="address"
+              required={true}
+              defaultValue={props.spaBasicInfo.address}
+              state={spaAddressInput}
+              updateState={setSpaAddressInput}
+              validation={validateSpaAddress}
+              handleSpa={props.handleSpaBasic}
+            />
+          </Grid>
 
-        <Grid item xs={12}>
-          <DefaultInputForm
-            label="電話番号"
-            type="phoneNumber"
-            required={true}
-            defaultValue={props.spaBasicInfo.phoneNumber}
-            state={spaPhoneNumberInput}
-            updateState={setSpaPhoneNumberInput}
-            validation={validateSpaPhoneNumber}
-            handleSpa={props.handleSpaBasic}
-          />
-        </Grid>
+          <Grid item xs={12} className={classes.forms}>
+            <DefaultInputForm
+              label="電話番号"
+              type="phoneNumber"
+              required={true}
+              defaultValue={props.spaBasicInfo.phoneNumber}
+              state={spaPhoneNumberInput}
+              updateState={setSpaPhoneNumberInput}
+              validation={validateSpaPhoneNumber}
+              handleSpa={props.handleSpaBasic}
+            />
+          </Grid>
 
-        <Grid item xs={12}>
-          <DefaultInputForm
-            label="営業時間"
-            type="businessHours"
-            required={true}
-            defaultValue={props.spaBasicInfo.businessHours}
-            state={spaBusinessHoursInput}
-            updateState={setSpaBusinessHoursInput}
-            validation={validateSpaBusinessHours}
-            handleSpa={props.handleSpaBasic}
-          />
-        </Grid>
+          <Grid item xs={12} className={classes.forms}>
+            <DefaultInputForm
+              label="営業時間"
+              type="businessHours"
+              required={true}
+              defaultValue={props.spaBasicInfo.businessHours}
+              state={spaBusinessHoursInput}
+              updateState={setSpaBusinessHoursInput}
+              validation={validateSpaBusinessHours}
+              handleSpa={props.handleSpaBasic}
+            />
+          </Grid>
 
-        <Grid item xs={12}>
-          <DefaultInputForm
-            label="基本休館日"
-            type="regularHoliday"
-            required={true}
-            defaultValue={props.spaBasicInfo.regularHoliday}
-            state={spaRegularHolidayInput}
-            updateState={setSpaRegularHolidayInput}
-            validation={validatespaRegularHoliday}
-            handleSpa={props.handleSpaBasic}
-          />
+          <Grid item xs={12} className={classes.forms}>
+            <DefaultInputForm
+              label="基本休館日"
+              type="regularHoliday"
+              required={true}
+              defaultValue={props.spaBasicInfo.regularHoliday}
+              state={spaRegularHolidayInput}
+              updateState={setSpaRegularHolidayInput}
+              validation={validatespaRegularHoliday}
+              handleSpa={props.handleSpaBasic}
+            />
+          </Grid>
         </Grid>
-      </Grid>
+      </div>
     </>
   );
 };

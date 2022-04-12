@@ -37,46 +37,48 @@ export const AnotherFacilityForms = (props: AnotherFacilityFormsProps) => {
 
   return (
     <>
-      <FormControl component="fieldset" variant="standard">
+      <div style={{ textAlign: "center" }}>
         <Typography variant="h5" gutterBottom component="div">
           そのほかの施設
         </Typography>
-        <FormGroup>
-          {checkboxLabels.map((label, index) => {
-            return (
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={
-                      props.spaAnotherFacilityInfo[
-                        defaultAnothorFacilityKeys[index]
-                      ]
-                    }
-                    onChange={(event) =>
-                      props.handleAnotherFacility(
-                        defaultAnothorFacilityKeys[index],
-                        event.target.checked
-                      )
-                    }
-                    name={label}
-                  />
-                }
-                label={label}
-              />
-            );
-          })}
-        </FormGroup>
-        <DefaultInputForm
-          label="オリジナル設備"
-          type="customFacility"
-          required={false}
-          defaultValue={props.spaAnotherFacilityInfo.customFacility}
-          state={customFacilityInput}
-          updateState={setcustomFacilityInput}
-          validation={validateCustomFacility}
-          handleSpa={props.handleAnotherFacility}
-        />
-      </FormControl>
+        <FormControl>
+          <FormGroup>
+            {checkboxLabels.map((label, index) => {
+              return (
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={
+                        props.spaAnotherFacilityInfo[
+                          defaultAnothorFacilityKeys[index]
+                        ]
+                      }
+                      onChange={(event) =>
+                        props.handleAnotherFacility(
+                          defaultAnothorFacilityKeys[index],
+                          event.target.checked
+                        )
+                      }
+                      name={label}
+                    />
+                  }
+                  label={label}
+                />
+              );
+            })}
+          </FormGroup>
+          <DefaultInputForm
+            label="オリジナル設備"
+            type="customFacility"
+            required={false}
+            defaultValue={props.spaAnotherFacilityInfo.customFacility}
+            state={customFacilityInput}
+            updateState={setcustomFacilityInput}
+            validation={validateCustomFacility}
+            handleSpa={props.handleAnotherFacility}
+          />
+        </FormControl>
+      </div>
     </>
   );
 };

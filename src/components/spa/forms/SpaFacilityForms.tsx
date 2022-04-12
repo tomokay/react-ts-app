@@ -40,42 +40,46 @@ export const SpaFacilityForms = (props: SpaFacilityFormsProps) => {
 
   return (
     <>
-      <FormControl component="fieldset" variant="standard">
+      <div style={{ textAlign: "center" }}>
         <Typography variant="h5" gutterBottom component="div">
           温泉施設
         </Typography>
-        <FormGroup>
-          {checkboxLabels.map((label, index) => {
-            return (
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={props.spaFacilityInfo[defaultFacilityKeys[index]]}
-                    onChange={(event) =>
-                      props.handleSpaFacility(
-                        defaultFacilityKeys[index],
-                        event.target.checked
-                      )
-                    }
-                    name={label}
-                  />
-                }
-                label={label}
-              />
-            );
-          })}
-        </FormGroup>
-        <DefaultInputForm
-          label="オリジナル温泉"
-          type="customSpa"
-          required={false}
-          defaultValue={props.spaFacilityInfo.customSpa}
-          state={customSpaInput}
-          updateState={setCustomSpaInput}
-          validation={validateCustomSpa}
-          handleSpa={props.handleSpaFacility}
-        />
-      </FormControl>
+        <FormControl>
+          <FormGroup>
+            {checkboxLabels.map((label, index) => {
+              return (
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={
+                        props.spaFacilityInfo[defaultFacilityKeys[index]]
+                      }
+                      onChange={(event) =>
+                        props.handleSpaFacility(
+                          defaultFacilityKeys[index],
+                          event.target.checked
+                        )
+                      }
+                      name={label}
+                    />
+                  }
+                  label={label}
+                />
+              );
+            })}
+          </FormGroup>
+          <DefaultInputForm
+            label="オリジナル温泉"
+            type="customSpa"
+            required={false}
+            defaultValue={props.spaFacilityInfo.customSpa}
+            state={customSpaInput}
+            updateState={setCustomSpaInput}
+            validation={validateCustomSpa}
+            handleSpa={props.handleSpaFacility}
+          />
+        </FormControl>
+      </div>
     </>
   );
 };

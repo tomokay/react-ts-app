@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   },
   forms: {
     marginTop: "40px",
-    minWidth: "60%",
+    minWidth: "80%",
   },
 });
 
@@ -77,7 +77,7 @@ const SpaEntryPage = () => {
     lat: "",
     lng: "",
   });
-  console.log("spa: ", spa);
+
   const [createSpa] = useMutation(CREATE_SPA);
   const [updateSpa] = useMutation(UPDATE_SPA);
 
@@ -159,7 +159,7 @@ const SpaEntryPage = () => {
           </Stepper>
         </Grid>
 
-        <Grid item xs={12} className={classes.forms}>
+        <Grid item className={classes.forms}>
           <SpaInputInfomation
             handleNext={handleNext}
             spa={spa}
