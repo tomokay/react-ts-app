@@ -1,5 +1,6 @@
-import { Grid, TextField } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useState } from "react";
+import { DefaultInputForm } from "src/components/spa/forms/Form";
 import { Basic } from "src/components/Types";
 
 type BasicFormsProps = {
@@ -20,67 +21,79 @@ export const BasicForms = (props: BasicFormsProps) => {
     props.spaBasicInfo.phoneNumber
   );
 
+  const [spaBusinessHoursInput, setSpaBusinessHoursInput] = useState<string>(
+    props.spaBasicInfo.businessHours
+  );
+
+  const [spaRegularHolidayInput, setSpaRegularHolidayInput] = useState<string>(
+    props.spaBasicInfo.regularHoliday
+  );
+
   return (
     <>
       <Grid container direction="column" alignItems="flex-start" spacing={3}>
         <Grid item xs={12}>
-          <TextField
-            required
-            id="spa-name"
+          <DefaultInputForm
             label="店名"
+            type="spaName"
+            required={true}
             defaultValue={props.spaBasicInfo.spaName}
-            onChange={(event) => setSpaNameInput(event.target.value)}
-            onBlur={(event) => {
-              if (!validateSpaName(spaNameInput).isError) {
-                props.handleSpaBasic("spaName", event.target.value);
-              }
-            }}
-            error={validateSpaName(spaNameInput).isError}
-            helperText={
-              validateSpaName(spaNameInput).isError
-                ? validateSpaName(spaNameInput).message
-                : ""
-            }
+            state={spaNameInput}
+            updateState={setSpaNameInput}
+            validation={validateSpaName}
+            handleSpa={props.handleSpaBasic}
           />
         </Grid>
+
         <Grid item xs={12}>
-          <TextField
-            required
-            id="address"
+          <DefaultInputForm
             label="所在地"
+            type="address"
+            required={true}
             defaultValue={props.spaBasicInfo.address}
-            onChange={(event) => setSpaAddressInput(event.target.value)}
-            onBlur={(event) => {
-              if (!validateSpaAddress(spaAddressInput).isError) {
-                props.handleSpaBasic("address", event.target.value);
-              }
-            }}
-            error={validateSpaAddress(spaAddressInput).isError}
-            helperText={
-              validateSpaName(spaAddressInput).isError
-                ? validateSpaName(spaAddressInput).message
-                : ""
-            }
+            state={spaAddressInput}
+            updateState={setSpaAddressInput}
+            validation={validateSpaAddress}
+            handleSpa={props.handleSpaBasic}
           />
         </Grid>
+
         <Grid item xs={12}>
-          <TextField
-            required
-            id="phoneNumber"
+          <DefaultInputForm
             label="電話番号"
+            type="phoneNumber"
+            required={true}
             defaultValue={props.spaBasicInfo.phoneNumber}
-            onChange={(event) => setSpaAddressInput(event.target.value)}
-            onBlur={(event) => {
-              if (!validateSpaPhoneNumber(spaPhoneNumberInput).isError) {
-                props.handleSpaBasic("address", event.target.value);
-              }
-            }}
-            error={validateSpaPhoneNumber(spaPhoneNumberInput).isError}
-            helperText={
-              validateSpaPhoneNumber(spaPhoneNumberInput).isError
-                ? validateSpaPhoneNumber(spaPhoneNumberInput).message
-                : ""
-            }
+            state={spaPhoneNumberInput}
+            updateState={setSpaPhoneNumberInput}
+            validation={validateSpaPhoneNumber}
+            handleSpa={props.handleSpaBasic}
+          />
+        </Grid>
+
+        <Grid item xs={12}>
+          <DefaultInputForm
+            label="営業時間"
+            type="businessHours"
+            required={true}
+            defaultValue={props.spaBasicInfo.businessHours}
+            state={spaBusinessHoursInput}
+            updateState={setSpaBusinessHoursInput}
+            validation={validateSpaBusinessHours}
+            handleSpa={props.handleSpaBasic}
+          />
+        </Grid>
+
+        <Grid item xs={12}>
+          <DefaultInputForm
+            label="基本休館日"
+            type="regularHoliday"
+            required={true}
+            defaultValue={props.spaBasicInfo.regularHoliday}
+            state={spaRegularHolidayInput}
+            updateState={setSpaRegularHolidayInput}
+            validation={validatespaRegularHoliday}
+            handleSpa={props.handleSpaBasic}
           />
         </Grid>
       </Grid>
@@ -154,13 +167,55 @@ const validateSpaPhoneNumber = (
     };
   }
 
-  const phoneNumber = Number(input.replace("-", ""));
+  const phoneNumber = Number(input.replaceAll("-", ""));
 
   if (isNaN(phoneNumber)) {
     return {
       isError: true,
       errorCode: "INVALID_SPA_SPA_PHONE_NUMBER",
       message: "正しい電話番号を入力してくだい。",
+    };
+  }
+
+  return {
+    isError: false,
+  };
+};
+
+// 営業時間のバリデーション
+const validateSpaBusinessHours = (
+  input: string
+): {
+  isError: boolean;
+  errorCode?: string;
+  message?: string;
+} => {
+  if (!input) {
+    return {
+      isError: true,
+      errorCode: "INVALID_SPA_BUSINESS_HOURS",
+      message: "営業時間を入力してください。",
+    };
+  }
+
+  return {
+    isError: false,
+  };
+};
+
+// 休館日のバリデーション
+const validatespaRegularHoliday = (
+  input: string
+): {
+  isError: boolean;
+  errorCode?: string;
+  message?: string;
+} => {
+  if (!input) {
+    return {
+      isError: true,
+      errorCode: "INVALID_SPA_REGULAR_HOLIDAY",
+      message: "休館日を入力してください。",
     };
   }
 
