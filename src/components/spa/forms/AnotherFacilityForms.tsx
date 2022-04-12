@@ -31,13 +31,9 @@ const checkboxLabels = [
 ];
 
 export const AnotherFacilityForms = (props: AnotherFacilityFormsProps) => {
-  const [customSpaInput, setCustomSpaInput] = useState<string>(
+  const [customFacilityInput, setcustomFacilityInput] = useState<string>(
     props.spaAnotherFacilityInfo.customFacility
   );
-
-  const handleCustomSpa = (value: string) => {
-    props.handleAnotherFacility("customFacility", value);
-  };
 
   return (
     <>
@@ -71,14 +67,14 @@ export const AnotherFacilityForms = (props: AnotherFacilityFormsProps) => {
           })}
         </FormGroup>
         <DefaultInputForm
-          label="オリジナル温泉"
-          type="customSpa"
+          label="オリジナル設備"
+          type="customFacility"
           required={false}
           defaultValue={props.spaAnotherFacilityInfo.customFacility}
-          state={customSpaInput}
-          updateState={setCustomSpaInput}
+          state={customFacilityInput}
+          updateState={setcustomFacilityInput}
           validation={validateCustomFacility}
-          handleSpa={handleCustomSpa}
+          handleSpa={props.handleAnotherFacility}
         />
       </FormControl>
     </>

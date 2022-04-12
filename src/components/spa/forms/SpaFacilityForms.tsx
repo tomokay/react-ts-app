@@ -38,10 +38,6 @@ export const SpaFacilityForms = (props: SpaFacilityFormsProps) => {
     props.spaFacilityInfo.customSpa
   );
 
-  const handleCustomSpa = (value: string) => {
-    props.handleSpaFacility("customSpa", value);
-  };
-
   return (
     <>
       <FormControl component="fieldset" variant="standard">
@@ -77,7 +73,7 @@ export const SpaFacilityForms = (props: SpaFacilityFormsProps) => {
           state={customSpaInput}
           updateState={setCustomSpaInput}
           validation={validateCustomSpa}
-          handleSpa={handleCustomSpa}
+          handleSpa={props.handleSpaFacility}
         />
       </FormControl>
     </>

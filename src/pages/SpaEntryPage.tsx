@@ -77,7 +77,7 @@ const SpaEntryPage = () => {
     lat: "",
     lng: "",
   });
-
+  console.log("spa: ", spa);
   const [createSpa] = useMutation(CREATE_SPA);
   const [updateSpa] = useMutation(UPDATE_SPA);
 

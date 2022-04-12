@@ -15,7 +15,7 @@ interface DefaultInputFormProps extends InputFormProps {
     errorCode?: string;
     message?: string;
   };
-  handleSpa: (key: string, value: string) => void;
+  handleSpa: (key: any, value: string) => void;
 }
 
 interface DefaultInputNumberFormProps extends InputFormProps {
@@ -39,6 +39,7 @@ export const DefaultInputForm = (props: DefaultInputFormProps) => {
       onChange={(event) => props.updateState(event.target.value)}
       onBlur={(event) => {
         if (!props.validation(props.state).isError) {
+          console.log("event.target.value: ", event.target.value);
           props.handleSpa(props.type, event.target.value);
         }
       }}
