@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { useState } from "react";
 import { DefaultInputForm } from "src/components/spa/forms/Form";
 import { Basic } from "src/components/Types";
@@ -8,7 +8,9 @@ type BasicFormsProps = {
   handleSpaBasic: (key: string, value: string) => void;
 };
 
-const SPA_NAME_MAX_LENGTH = 25;
+const SPA_NAME_MAX_LENGTH = 50;
+const SPA_ADDRESS_MAX_LENGTH = 50;
+const SPA_PHONE_NUMBER_MAX_LENGTH = 30;
 
 export const BasicForms = (props: BasicFormsProps) => {
   const [spaNameInput, setSpaNameInput] = useState<string>(
@@ -31,7 +33,10 @@ export const BasicForms = (props: BasicFormsProps) => {
 
   return (
     <>
-      <Grid container direction="column" alignItems="flex-start" spacing={3}>
+      <Typography variant="h5" gutterBottom component="div">
+        基本情報
+      </Typography>
+      <Grid container direction="column" alignItems="flex-start" spacing={2}>
         <Grid item xs={12}>
           <DefaultInputForm
             label="店名"
@@ -146,6 +151,14 @@ const validateSpaAddress = (
     };
   }
 
+  if (input.length > SPA_ADDRESS_MAX_LENGTH) {
+    return {
+      isError: true,
+      errorCode: "INVALID_SPA_ADDRESS",
+      message: `所在地は${SPA_ADDRESS_MAX_LENGTH}文字以内で入力してください。`,
+    };
+  }
+
   return {
     isError: false,
   };
@@ -174,6 +187,14 @@ const validateSpaPhoneNumber = (
       isError: true,
       errorCode: "INVALID_SPA_SPA_PHONE_NUMBER",
       message: "正しい電話番号を入力してくだい。",
+    };
+  }
+
+  if (input.length > SPA_PHONE_NUMBER_MAX_LENGTH) {
+    return {
+      isError: true,
+      errorCode: "INVALID_SPA_PHONE_NUMBER",
+      message: "電話番号は３０文字以内で入力してください。",
     };
   }
 
