@@ -316,7 +316,7 @@ const SpaInputConfirm = (props: SpaInputConfilmProps) => {
         hasMassageMachine: hasMassageMachine,
         hasVendingMachine: hasVendingMachine,
         hasStore: hasStore,
-        customFacility: customFacility,
+        customFacility: "customFacility",
       };
     };
     const basicObj = createBasicObj(

@@ -191,11 +191,11 @@ const SpaDetailPage = () => {
     //   title: "温泉施設",
     //   component: <SpaFacilities spa={spaFacility} />,
     // },
-    {
-      type: "anothorFacility",
-      title: "その他施設",
-      component: <AnothreFacilities spa={anothorFacility} />,
-    },
+    // {
+    //   type: "anothorFacility",
+    //   title: "その他施設",
+    //   component: <AnothreFacilities spa={anothorFacility} />,
+    // },
   ];
 
   const handleDelete = (id: number) => {

@@ -72,13 +72,20 @@ export interface SpaFacility extends defaultFacilities {
 }
 
 //その他施設
-export type AnotherFacility = {
-  hasRestaurant: boolean;
-  hasBreakPlace: boolean;
-  hasMassageMachine: boolean;
-  hasVendingMachine: boolean;
-  hasStore: boolean;
-  customFacility: string | null;
+export const defaultAnothorFacilityKeys = [
+  "hasRestaurant",
+  "hasBreakPlace",
+  "hasMassageMachine",
+  "hasVendingMachine",
+  "hasStore",
+] as const;
+
+type defaultAnotherFacilities = {
+  [k in ArrayElement<typeof defaultAnothorFacilityKeys>]: boolean;
 };
+
+export interface AnotherFacility extends defaultAnotherFacilities {
+  customFacility: string;
+}
 
 type ArrayElement<ArrayType extends readonly unknown[]> = ArrayType[number];

@@ -1,12 +1,18 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import { amenityKeys, defaultFacilityKeys, Spa } from "src/components/Types";
+import {
+  amenityKeys,
+  defaultAnothorFacilityKeys,
+  defaultFacilityKeys,
+  Spa,
+} from "src/components/Types";
 import { BasicForms } from "src/components/spa/forms/BasicForms";
 import { Button } from "@mui/material";
 import { DefaultInputNumberForm } from "src/components/spa/forms/Form";
 import { PriceForms } from "src/components/spa/forms/PriceForms";
 import { AmenityForms } from "src/components/spa/forms/AmenityForms";
 import { SpaFacilityForms } from "src/components/spa/forms/SpaFacilityForms";
+import { AnotherFacilityForms } from "src/components/spa/forms/AnotherFacilityForms";
 
 type SpaInputInfomationProps = {
   spa: Spa;
@@ -58,6 +64,23 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
     });
   };
 
+  // そのほかの施設更新関数
+  const handleAnotherFacility = (
+    key: typeof defaultAnothorFacilityKeys[number] | "customFacility",
+    value: boolean | string
+  ): void => {
+    let newAnothorFacilities = { ...props.spa.anotherFacility };
+    if (key === "customFacility") {
+      newAnothorFacilities[key] = String(value);
+    } else {
+      newAnothorFacilities[key] = Boolean(value);
+    }
+
+    props.setSpa((prev) => {
+      return { ...prev, anotherFacility: newAnothorFacilities };
+    });
+  };
+
   return (
     <>
       <Box component="form" noValidate autoComplete="off">
@@ -79,6 +102,11 @@ const SpaInputInfomation = (props: SpaInputInfomationProps) => {
         <SpaFacilityForms
           spaFacilityInfo={props.spa.spaFacility}
           handleSpaFacility={handleSpaFacility}
+        />
+
+        <AnotherFacilityForms
+          spaAnotherFacilityInfo={props.spa.anotherFacility}
+          handleAnotherFacility={handleAnotherFacility}
         />
 
         {/* 次へボタンはエラーがないこと、かつ初期値から更新があった場合に押下できるようにする */}
