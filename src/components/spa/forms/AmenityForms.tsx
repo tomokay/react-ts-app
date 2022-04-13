@@ -4,8 +4,8 @@ import {
   FormControlLabel,
   Checkbox,
   Typography,
-  Grid,
 } from "@mui/material";
+import { amenityKeyTitles, spaKeyTitles } from "src/components/spa/keyTitles";
 import { Amenity, amenityKeys } from "src/components/Types";
 
 type AmenityFormsProps = {
@@ -13,43 +13,36 @@ type AmenityFormsProps = {
   handleSpaAmenity: (key: typeof amenityKeys[number], value: boolean) => void;
 };
 
-const checkboxLabels = [
-  "無料シャンプー",
-  "有料シャンプー",
-  "タオル",
-  "無料ドライヤー",
-  "有料ドライヤー",
-  "クレジットカード",
-];
-
 export const AmenityForms = (props: AmenityFormsProps) => {
   return (
     <>
       <div style={{ textAlign: "center" }}>
         <Typography variant="h5" gutterBottom component="div">
-          アメニティー
+          {spaKeyTitles.amenity}
         </Typography>
         <FormControl>
           <FormGroup>
-            {checkboxLabels.map((label, index) => {
-              return (
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={props.spaAmenityInfo[amenityKeys[index]]}
-                      onChange={(event) =>
-                        props.handleSpaAmenity(
-                          amenityKeys[index],
-                          event.target.checked
-                        )
-                      }
-                      name={label}
-                    />
-                  }
-                  label={label}
-                />
-              );
-            })}
+            {Object.values(amenityKeyTitles).map(
+              (label: string, index: number) => {
+                return (
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={props.spaAmenityInfo[amenityKeys[index]]}
+                        onChange={(event) =>
+                          props.handleSpaAmenity(
+                            amenityKeys[index],
+                            event.target.checked
+                          )
+                        }
+                        name={label}
+                      />
+                    }
+                    label={label}
+                  />
+                );
+              }
+            )}
           </FormGroup>
         </FormControl>
       </div>

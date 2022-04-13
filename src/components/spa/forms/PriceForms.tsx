@@ -3,6 +3,7 @@ import { useState } from "react";
 import { DefaultInputNumberForm } from "src/components/spa/forms/Form";
 import { Price } from "src/components/Types";
 import { makeStyles } from "@mui/styles";
+import { priceKeyTitles, spaKeyTitles } from "src/components/spa/keyTitles";
 
 type PriceFormsProps = {
   spaPriceInfo: Price;
@@ -39,11 +40,11 @@ export const PriceForms = (props: PriceFormsProps) => {
       <div>
         <Grid>
           <Typography variant="h5" gutterBottom component="div">
-            料金設定
+            {spaKeyTitles.price}
           </Typography>
           <Grid item xs={12} className={classes.forms}>
             <DefaultInputNumberForm
-              label="平日：大人料金"
+              label={priceKeyTitles.adultPrice}
               type="adultPrice"
               required={true}
               defaultValue={props.spaPriceInfo.adultPrice}
@@ -56,7 +57,7 @@ export const PriceForms = (props: PriceFormsProps) => {
 
           <Grid item xs={12} className={classes.forms}>
             <DefaultInputNumberForm
-              label="休日：大人料金"
+              label={priceKeyTitles.adultWeekendPrice}
               type="adultWeekendPrice"
               required={true}
               defaultValue={props.spaPriceInfo.adultWeekendPrice}
@@ -69,7 +70,7 @@ export const PriceForms = (props: PriceFormsProps) => {
 
           <Grid item xs={12} className={classes.forms}>
             <DefaultInputNumberForm
-              label="平日：子ども料金"
+              label={priceKeyTitles.childPrice}
               type="childPrice"
               required={true}
               defaultValue={props.spaPriceInfo.childPrice}
@@ -82,7 +83,7 @@ export const PriceForms = (props: PriceFormsProps) => {
 
           <Grid item xs={12} className={classes.forms}>
             <DefaultInputNumberForm
-              label="休日：子ども料金"
+              label={priceKeyTitles.childWeekendPrice}
               type="childWeekendPrice"
               required={true}
               defaultValue={props.spaPriceInfo.childWeekendPrice}

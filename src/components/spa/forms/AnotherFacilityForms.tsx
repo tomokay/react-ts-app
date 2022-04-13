@@ -5,8 +5,12 @@ import {
   Checkbox,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { JSXElementConstructor, ReactElement, useState } from "react";
 import { DefaultInputForm } from "src/components/spa/forms/Form";
+import {
+  anotherFacilityKeyTitles,
+  spaKeyTitles,
+} from "src/components/spa/keyTitles";
 import {
   AnotherFacility,
   defaultAnothorFacilityKeys,
@@ -22,14 +26,6 @@ type AnotherFacilityFormsProps = {
 
 const CUSTOM_FACILITY_MAX_LENGTH = 50;
 
-const checkboxLabels = [
-  "レストラン",
-  "休憩所",
-  "マッサージ機",
-  "自動販売機",
-  "売店",
-];
-
 export const AnotherFacilityForms = (props: AnotherFacilityFormsProps) => {
   const [customFacilityInput, setcustomFacilityInput] = useState<string>(
     props.spaAnotherFacilityInfo.customFacility
@@ -39,36 +35,41 @@ export const AnotherFacilityForms = (props: AnotherFacilityFormsProps) => {
     <>
       <div style={{ textAlign: "center" }}>
         <Typography variant="h5" gutterBottom component="div">
-          そのほかの施設
+          {spaKeyTitles.anotherFacility}
         </Typography>
         <FormControl>
           <FormGroup>
-            {checkboxLabels.map((label, index) => {
-              return (
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={
-                        props.spaAnotherFacilityInfo[
-                          defaultAnothorFacilityKeys[index]
-                        ]
-                      }
-                      onChange={(event) =>
-                        props.handleAnotherFacility(
-                          defaultAnothorFacilityKeys[index],
-                          event.target.checked
-                        )
-                      }
-                      name={label}
-                    />
-                  }
-                  label={label}
-                />
-              );
-            })}
+            {Object.values(anotherFacilityKeyTitles).map(
+              (label: string, index: number) => {
+                if (label === "customFacility") {
+                  return;
+                }
+                return (
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={
+                          props.spaAnotherFacilityInfo[
+                            defaultAnothorFacilityKeys[index]
+                          ]
+                        }
+                        onChange={(event) =>
+                          props.handleAnotherFacility(
+                            defaultAnothorFacilityKeys[index],
+                            event.target.checked
+                          )
+                        }
+                        name={label}
+                      />
+                    }
+                    label={label}
+                  />
+                );
+              }
+            )}
           </FormGroup>
           <DefaultInputForm
-            label="オリジナル設備"
+            label={anotherFacilityKeyTitles.customFacility}
             type="customFacility"
             required={false}
             defaultValue={props.spaAnotherFacilityInfo.customFacility}
@@ -95,7 +96,7 @@ const validateCustomFacility = (
     return {
       isError: true,
       errorCode: "INVALID_CUSTOM_SPA",
-      message: `オリジナル施設は${CUSTOM_FACILITY_MAX_LENGTH}文字以内で入力してください。`,
+      message: `${anotherFacilityKeyTitles.customFacility}は${CUSTOM_FACILITY_MAX_LENGTH}文字以内で入力してください。`,
     };
   }
 

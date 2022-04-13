@@ -3,6 +3,7 @@ import { useState } from "react";
 import { DefaultInputForm } from "src/components/spa/forms/Form";
 import { Basic } from "src/components/Types";
 import { makeStyles } from "@mui/styles";
+import { basicKeyTitles, spaKeyTitles } from "src/components/spa/keyTitles";
 
 type BasicFormsProps = {
   spaBasicInfo: Basic;
@@ -46,12 +47,12 @@ export const BasicForms = (props: BasicFormsProps) => {
       <div>
         <Grid>
           <Typography variant="h5" gutterBottom component="div">
-            基本情報
+            {spaKeyTitles.basic}
           </Typography>
           <Grid item xs={12} className={classes.forms}>
             <div>
               <DefaultInputForm
-                label="店名"
+                label={basicKeyTitles.spaName}
                 type="spaName"
                 required={true}
                 defaultValue={props.spaBasicInfo.spaName}
@@ -65,7 +66,7 @@ export const BasicForms = (props: BasicFormsProps) => {
 
           <Grid item xs={12} className={classes.forms}>
             <DefaultInputForm
-              label="所在地"
+              label={basicKeyTitles.address}
               type="address"
               required={true}
               defaultValue={props.spaBasicInfo.address}
@@ -78,7 +79,7 @@ export const BasicForms = (props: BasicFormsProps) => {
 
           <Grid item xs={12} className={classes.forms}>
             <DefaultInputForm
-              label="電話番号"
+              label={basicKeyTitles.phoneNumber}
               type="phoneNumber"
               required={true}
               defaultValue={props.spaBasicInfo.phoneNumber}
@@ -91,7 +92,7 @@ export const BasicForms = (props: BasicFormsProps) => {
 
           <Grid item xs={12} className={classes.forms}>
             <DefaultInputForm
-              label="営業時間"
+              label={basicKeyTitles.businessHours}
               type="businessHours"
               required={true}
               defaultValue={props.spaBasicInfo.businessHours}
@@ -104,7 +105,7 @@ export const BasicForms = (props: BasicFormsProps) => {
 
           <Grid item xs={12} className={classes.forms}>
             <DefaultInputForm
-              label="基本休館日"
+              label={basicKeyTitles.regularHoliday}
               type="regularHoliday"
               required={true}
               defaultValue={props.spaBasicInfo.regularHoliday}
@@ -132,7 +133,7 @@ const validateSpaName = (
     return {
       isError: true,
       errorCode: "INVALID_SPA_NAME",
-      message: "店名を入力してください。",
+      message: `${basicKeyTitles.spaName}を入力してください。`,
     };
   }
 
@@ -140,7 +141,7 @@ const validateSpaName = (
     return {
       isError: true,
       errorCode: "INVALID_SPA_NAME",
-      message: `店名は${SPA_NAME_MAX_LENGTH}文字以内で入力してください。`,
+      message: `${basicKeyTitles.spaName}は${SPA_NAME_MAX_LENGTH}文字以内で入力してください。`,
     };
   }
 
@@ -161,7 +162,7 @@ const validateSpaAddress = (
     return {
       isError: true,
       errorCode: "INVALID_SPA_ADDRESS",
-      message: "所在地を入力してください。",
+      message: `${basicKeyTitles.address}を入力してください。`,
     };
   }
 
@@ -169,7 +170,7 @@ const validateSpaAddress = (
     return {
       isError: true,
       errorCode: "INVALID_SPA_ADDRESS",
-      message: `所在地は${SPA_ADDRESS_MAX_LENGTH}文字以内で入力してください。`,
+      message: `${basicKeyTitles.address}は${SPA_ADDRESS_MAX_LENGTH}文字以内で入力してください。`,
     };
   }
 
@@ -190,7 +191,7 @@ const validateSpaPhoneNumber = (
     return {
       isError: true,
       errorCode: "INVALID_SPA_PHONE_NUMBER",
-      message: "電話番号を入力してください。",
+      message: `${basicKeyTitles.phoneNumber}を入力してください。`,
     };
   }
 
@@ -200,7 +201,7 @@ const validateSpaPhoneNumber = (
     return {
       isError: true,
       errorCode: "INVALID_SPA_SPA_PHONE_NUMBER",
-      message: "正しい電話番号を入力してくだい。",
+      message: `正しい${basicKeyTitles.phoneNumber}を入力してくだい。`,
     };
   }
 
@@ -208,7 +209,7 @@ const validateSpaPhoneNumber = (
     return {
       isError: true,
       errorCode: "INVALID_SPA_PHONE_NUMBER",
-      message: "電話番号は３０文字以内で入力してください。",
+      message: `${basicKeyTitles.phoneNumber}は３０文字以内で入力してください。`,
     };
   }
 
@@ -229,7 +230,7 @@ const validateSpaBusinessHours = (
     return {
       isError: true,
       errorCode: "INVALID_SPA_BUSINESS_HOURS",
-      message: "営業時間を入力してください。",
+      message: `${basicKeyTitles.businessHours}を入力してください。`,
     };
   }
 
@@ -250,7 +251,7 @@ const validatespaRegularHoliday = (
     return {
       isError: true,
       errorCode: "INVALID_SPA_REGULAR_HOLIDAY",
-      message: "休館日を入力してください。",
+      message: `${basicKeyTitles.regularHoliday}を入力してください。`,
     };
   }
 

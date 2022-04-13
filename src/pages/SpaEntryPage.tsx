@@ -3,8 +3,7 @@ import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import { Button, Grid } from "@mui/material";
-import { SpaInputInfomation } from "src/components/SpaInputInformation";
-import SpaInputConfirm from "src/components/SpaInputConfirm";
+import { SpaInputInfomation } from "src/components/spa/SpaInputInformation";
 import { CREATE_SPA } from "src/graphql/createSpa";
 import { useMutation } from "@apollo/client";
 import { NavLink, useLocation } from "react-router-dom";
@@ -13,6 +12,7 @@ import { UPDATE_SPA } from "src/graphql/updateSpa";
 import { TitleHeader } from "src/components/commons/TitleHeader";
 import { makeStyles } from "@mui/styles";
 import { Spa } from "src/components/Types";
+import { SpaInputConfirm } from "src/components/spa/SpaInputConfirm";
 
 const useStyles = makeStyles({
   contents: {
@@ -117,11 +117,7 @@ const SpaEntryPage = () => {
           />
         );
       case 1:
-        return (
-          <div>s</div>
-          // <SpaInputConfirm
-          // />
-        );
+        return <SpaInputConfirm spa={spa} />;
       case 2:
         return (
           <>

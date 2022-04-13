@@ -7,6 +7,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { DefaultInputForm } from "src/components/spa/forms/Form";
+import { facilityKeysTitles, spaKeyTitles } from "src/components/spa/keyTitles";
 import { defaultFacilityKeys, SpaFacility } from "src/components/Types";
 
 type SpaFacilityFormsProps = {
@@ -19,20 +20,6 @@ type SpaFacilityFormsProps = {
 
 const CUSTOM_SPA_MAX_LENGTH = 50;
 
-const checkboxLabels = [
-  "露天風呂",
-  "水風呂",
-  "サウナ",
-  "泡風呂",
-  "ジェットバス",
-  "打たせ湯",
-  "寝湯",
-  "檜風呂",
-  "岩盤浴",
-  "電気風呂",
-  "家族風呂",
-];
-
 export const SpaFacilityForms = (props: SpaFacilityFormsProps) => {
   const [customSpaInput, setCustomSpaInput] = useState<string>(
     props.spaFacilityInfo.customSpa
@@ -42,34 +29,39 @@ export const SpaFacilityForms = (props: SpaFacilityFormsProps) => {
     <>
       <div style={{ textAlign: "center" }}>
         <Typography variant="h5" gutterBottom component="div">
-          温泉施設
+          {spaKeyTitles.spaFacility}
         </Typography>
         <FormControl>
           <FormGroup>
-            {checkboxLabels.map((label, index) => {
-              return (
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={
-                        props.spaFacilityInfo[defaultFacilityKeys[index]]
-                      }
-                      onChange={(event) =>
-                        props.handleSpaFacility(
-                          defaultFacilityKeys[index],
-                          event.target.checked
-                        )
-                      }
-                      name={label}
-                    />
-                  }
-                  label={label}
-                />
-              );
-            })}
+            {Object.values(facilityKeysTitles).map(
+              (label: string, index: number) => {
+                if (label === "customSpa") {
+                  return;
+                }
+                return (
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={
+                          props.spaFacilityInfo[defaultFacilityKeys[index]]
+                        }
+                        onChange={(event) =>
+                          props.handleSpaFacility(
+                            defaultFacilityKeys[index],
+                            event.target.checked
+                          )
+                        }
+                        name={label}
+                      />
+                    }
+                    label={label}
+                  />
+                );
+              }
+            )}
           </FormGroup>
           <DefaultInputForm
-            label="オリジナル温泉"
+            label={facilityKeysTitles.customSpa}
             type="customSpa"
             required={false}
             defaultValue={props.spaFacilityInfo.customSpa}
@@ -96,7 +88,7 @@ const validateCustomSpa = (
     return {
       isError: true,
       errorCode: "INVALID_CUSTOM_SPA",
-      message: `オリジナル温泉は${CUSTOM_SPA_MAX_LENGTH}文字以内で入力してください。`,
+      message: `${facilityKeysTitles.customSpa}は${CUSTOM_SPA_MAX_LENGTH}文字以内で入力してください。`,
     };
   }
 
