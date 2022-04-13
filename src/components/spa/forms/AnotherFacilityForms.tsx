@@ -5,7 +5,7 @@ import {
   Checkbox,
   Typography,
 } from "@mui/material";
-import { JSXElementConstructor, ReactElement, useState } from "react";
+import { useState } from "react";
 import { DefaultInputForm } from "src/components/spa/forms/Form";
 import {
   anotherFacilityKeyTitles,
@@ -42,7 +42,7 @@ export const AnotherFacilityForms = (props: AnotherFacilityFormsProps) => {
             {Object.values(anotherFacilityKeyTitles).map(
               (label: string, index: number) => {
                 if (label === "customFacility") {
-                  return;
+                  return <></>;
                 }
                 return (
                   <FormControlLabel

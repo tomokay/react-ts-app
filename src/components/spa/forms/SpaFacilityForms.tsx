@@ -36,7 +36,7 @@ export const SpaFacilityForms = (props: SpaFacilityFormsProps) => {
             {Object.values(facilityKeysTitles).map(
               (label: string, index: number) => {
                 if (label === "customSpa") {
-                  return;
+                  return <></>;
                 }
                 return (
                   <FormControlLabel
