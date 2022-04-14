@@ -137,7 +137,6 @@ const SpaEntryPage = () => {
           setActiveStep((prevActiveStep) => prevActiveStep + 1);
         }
       } catch (err) {
-        console.log("err: ", err);
         setIsAlertModalOpen(true);
       } finally {
         setLoading(false);

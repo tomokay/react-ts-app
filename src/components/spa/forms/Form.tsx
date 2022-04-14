@@ -39,7 +39,6 @@ export const DefaultInputForm = (props: DefaultInputFormProps) => {
       onChange={(event) => props.updateState(event.target.value)}
       onBlur={(event) => {
         if (!props.validation(props.state).isError) {
-          console.log("event.target.value: ", event.target.value);
           props.handleSpa(props.type, event.target.value);
         }
       }}
