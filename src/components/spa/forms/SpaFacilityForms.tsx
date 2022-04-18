@@ -5,7 +5,7 @@ import {
   Checkbox,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DefaultInputForm } from "src/components/spa/forms/Form";
 import { facilityKeysTitles, spaKeyTitles } from "src/components/spa/keyTitles";
 import { defaultFacilityKeys, SpaFacility } from "src/components/Types";
@@ -24,6 +24,10 @@ export const SpaFacilityForms = (props: SpaFacilityFormsProps) => {
   const [customSpaInput, setCustomSpaInput] = useState<string>(
     props.spaFacilityInfo.customSpa
   );
+
+  useEffect(() => {
+    setCustomSpaInput(props.spaFacilityInfo.customSpa);
+  }, [props.spaFacilityInfo.customSpa]);
 
   return (
     <>
@@ -64,7 +68,6 @@ export const SpaFacilityForms = (props: SpaFacilityFormsProps) => {
             label={facilityKeysTitles.customSpa}
             type="customSpa"
             required={false}
-            defaultValue={props.spaFacilityInfo.customSpa}
             state={customSpaInput}
             updateState={setCustomSpaInput}
             validation={validateCustomSpa}

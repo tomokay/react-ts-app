@@ -1,5 +1,5 @@
 import { Grid, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DefaultInputNumberForm } from "src/components/spa/forms/Form";
 import { Price } from "src/components/Types";
 import { makeStyles } from "@mui/styles";
@@ -24,14 +24,32 @@ export const PriceForms = (props: PriceFormsProps) => {
   const [spaAdultPriceInput, setSpaAdultPriceInput] = useState<number>(
     props.spaPriceInfo.adultPrice
   );
+
   const [spaAdultWeekendPriceInput, setSpaAdultWeekendPriceInput] =
     useState<number>(props.spaPriceInfo.adultWeekendPrice);
+
   const [spaChildPriceInput, setSpaChildPriceInput] = useState<number>(
     props.spaPriceInfo.childPrice
   );
 
   const [spaChildWeekendPriceInput, setSpaChildWeekendPriceInput] =
     useState<number>(props.spaPriceInfo.childWeekendPrice);
+
+  useEffect(() => {
+    setSpaAdultPriceInput(props.spaPriceInfo.adultPrice);
+  }, [props.spaPriceInfo.adultPrice]);
+
+  useEffect(() => {
+    setSpaAdultWeekendPriceInput(props.spaPriceInfo.adultWeekendPrice);
+  }, [props.spaPriceInfo.adultWeekendPrice]);
+
+  useEffect(() => {
+    setSpaChildPriceInput(props.spaPriceInfo.childPrice);
+  }, [props.spaPriceInfo.childPrice]);
+
+  useEffect(() => {
+    setSpaChildWeekendPriceInput(props.spaPriceInfo.childWeekendPrice);
+  }, [props.spaPriceInfo.childWeekendPrice]);
 
   const classes = useStyles();
 
@@ -47,7 +65,6 @@ export const PriceForms = (props: PriceFormsProps) => {
               label={priceKeyTitles.adultPrice}
               type="adultPrice"
               required={true}
-              defaultValue={props.spaPriceInfo.adultPrice}
               state={spaAdultPriceInput}
               updateState={setSpaAdultPriceInput}
               validation={validateAdultPrice}
@@ -60,7 +77,6 @@ export const PriceForms = (props: PriceFormsProps) => {
               label={priceKeyTitles.adultWeekendPrice}
               type="adultWeekendPrice"
               required={true}
-              defaultValue={props.spaPriceInfo.adultWeekendPrice}
               state={spaAdultWeekendPriceInput}
               updateState={setSpaAdultWeekendPriceInput}
               validation={validateAdultPrice}
@@ -73,7 +89,6 @@ export const PriceForms = (props: PriceFormsProps) => {
               label={priceKeyTitles.childPrice}
               type="childPrice"
               required={true}
-              defaultValue={props.spaPriceInfo.childPrice}
               state={spaChildPriceInput}
               updateState={setSpaChildPriceInput}
               validation={validateChildPrice}
@@ -86,7 +101,6 @@ export const PriceForms = (props: PriceFormsProps) => {
               label={priceKeyTitles.childWeekendPrice}
               type="childWeekendPrice"
               required={true}
-              defaultValue={props.spaPriceInfo.childWeekendPrice}
               state={spaChildWeekendPriceInput}
               updateState={setSpaChildWeekendPriceInput}
               validation={validateChildPrice}
