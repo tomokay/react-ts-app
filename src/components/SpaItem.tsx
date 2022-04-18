@@ -5,7 +5,6 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import { Link } from "react-router-dom";
 
 type SpaItemProps = {
@@ -13,33 +12,35 @@ type SpaItemProps = {
   spas: SpaListModel[];
 };
 
+var cardStyle = {
+  height: "100%",
+  width: "100%",
+  margin: "10px",
+};
+
 const SpaItem = (props: SpaItemProps) => {
   return (
     <>
-      <Grid item xs={9}>
+      <Grid>
         <CardActionArea>
-          <Card sx={{ display: "flex" }}>
-            <CardContent sx={{ flex: 1 }}>
-              <Typography component="h2" variant="h5">
-                {props.spa.spaName}
-              </Typography>
-              <Typography variant="subtitle1" color="text.secondary">
-                {props.spa.address}
-              </Typography>
-              <Link
-                to={{
-                  pathname: "/spadetail",
-                  search: `?id=${props.spa.id}`,
-                }}
-              >
-                詳細
-              </Link>
-            </CardContent>
-            <CardMedia
-              component="img"
-              sx={{ width: 151, display: { xs: "none", sm: "block" } }}
-            />
-          </Card>
+          <Link
+            style={{ textDecoration: "none" }}
+            to={{
+              pathname: "/spadetail",
+              search: `?id=${props.spa.id}`,
+            }}
+          >
+            <Card style={cardStyle}>
+              <CardContent>
+                <Typography component="h2" variant="h5">
+                  {props.spa.spaName}
+                </Typography>
+                <Typography variant="subtitle1" color="text.secondary">
+                  {props.spa.address}
+                </Typography>
+              </CardContent>
+            </Card>
+          </Link>
         </CardActionArea>
       </Grid>
     </>
