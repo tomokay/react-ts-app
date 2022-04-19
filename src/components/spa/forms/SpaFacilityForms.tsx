@@ -38,6 +38,11 @@ export const SpaFacilityForms = (props: SpaFacilityFormsProps) => {
                 if (label === "customSpa") {
                   return <></>;
                 }
+
+                // key最後の要素は自由入力なので、チェックボックス生成対象から外す
+                if (index === Object.values(facilityKeysTitles).length - 1) {
+                  return <></>;
+                }
                 return (
                   <FormControlLabel
                     control={
