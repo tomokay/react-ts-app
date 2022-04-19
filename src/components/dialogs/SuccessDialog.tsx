@@ -6,6 +6,7 @@ import {
   DialogActions,
   Button,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 
 type SuccessDialogProps = {
   isOpen: boolean;
@@ -28,7 +29,15 @@ export const SuccessDialog = (props: SuccessDialogProps) => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={props.handleClose}>OK</Button>
+        <Button
+          onClick={props.handleClose}
+          component={Link}
+          to={{
+            pathname: "/",
+          }}
+        >
+          OK
+        </Button>
       </DialogActions>
     </Dialog>
   );

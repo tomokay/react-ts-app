@@ -230,6 +230,7 @@ const SpaEntryPage = () => {
                 variant="outlined"
                 className={classes.button}
                 onClick={handleBack}
+                disabled={activeStep === 0}
               >
                 戻る
               </Button>
