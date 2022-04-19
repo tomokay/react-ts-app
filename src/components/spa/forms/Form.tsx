@@ -8,7 +8,6 @@ interface InputFormProps {
 }
 
 interface DefaultInputFormProps extends InputFormProps {
-  defaultValue: string;
   state: string;
   validation: (input: string) => {
     isError: boolean;
@@ -19,7 +18,6 @@ interface DefaultInputFormProps extends InputFormProps {
 }
 
 interface DefaultInputNumberFormProps extends InputFormProps {
-  defaultValue: number;
   state: number;
   validation: (input: number) => {
     isError: boolean;
@@ -35,7 +33,7 @@ export const DefaultInputForm = (props: DefaultInputFormProps) => {
       required={props.required}
       id={props.type}
       label={props.label}
-      defaultValue={props.defaultValue}
+      value={props.state}
       onChange={(event) => props.updateState(event.target.value)}
       onBlur={(event) => {
         if (!props.validation(props.state).isError) {
@@ -59,7 +57,7 @@ export const DefaultInputNumberForm = (props: DefaultInputNumberFormProps) => {
       required={props.required}
       id={props.type}
       label={props.label}
-      defaultValue={props.defaultValue}
+      value={props.state}
       onChange={(event) => props.updateState(event.target.value)}
       onBlur={(event) => {
         if (!props.validation(props.state).isError) {

@@ -118,6 +118,30 @@ const SpaEntryPage = () => {
     }
 
     if (activeStep === 1) {
+      if (spa.id) {
+        try {
+          //更新の処理
+          const updateResult = await updateSpa({
+            variables: {
+              update: spa,
+            },
+          });
+
+          if (!updateResult.data) {
+            throw new Error(`${updateResult.errors}`);
+          }
+
+          if (updateResult.data) {
+            setIsSuccessModalOpen(true);
+            setActiveStep((prevActiveStep) => prevActiveStep + 1);
+          }
+        } catch (err) {
+          setIsAlertModalOpen(true);
+        } finally {
+          setLoading(false);
+        }
+        return;
+      }
       try {
         // 新規登録の処理
 
