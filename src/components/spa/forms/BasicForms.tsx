@@ -1,5 +1,5 @@
 import { Grid, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DefaultInputForm } from "src/components/spa/forms/Form";
 import { Basic } from "src/components/Types";
 import { makeStyles } from "@mui/styles";
@@ -40,6 +40,26 @@ export const BasicForms = (props: BasicFormsProps) => {
     props.spaBasicInfo.regularHoliday
   );
 
+  useEffect(() => {
+    setSpaNameInput(props.spaBasicInfo.spaName);
+  }, [props.spaBasicInfo.spaName]);
+
+  useEffect(() => {
+    setSpaAddressInput(props.spaBasicInfo.address);
+  }, [props.spaBasicInfo.address]);
+
+  useEffect(() => {
+    setSpaPhoneNumberInput(props.spaBasicInfo.phoneNumber);
+  }, [props.spaBasicInfo.phoneNumber]);
+
+  useEffect(() => {
+    setSpaBusinessHoursInput(props.spaBasicInfo.businessHours);
+  }, [props.spaBasicInfo.businessHours]);
+
+  useEffect(() => {
+    setSpaRegularHolidayInput(props.spaBasicInfo.regularHoliday);
+  }, [props.spaBasicInfo.regularHoliday]);
+
   const classes = useStyles();
 
   return (
@@ -55,7 +75,6 @@ export const BasicForms = (props: BasicFormsProps) => {
                 label={basicKeyTitles.spaName}
                 type="spaName"
                 required={true}
-                defaultValue={props.spaBasicInfo.spaName}
                 state={spaNameInput}
                 updateState={setSpaNameInput}
                 validation={validateSpaName}
@@ -69,7 +88,6 @@ export const BasicForms = (props: BasicFormsProps) => {
               label={basicKeyTitles.address}
               type="address"
               required={true}
-              defaultValue={props.spaBasicInfo.address}
               state={spaAddressInput}
               updateState={setSpaAddressInput}
               validation={validateSpaAddress}
@@ -82,7 +100,6 @@ export const BasicForms = (props: BasicFormsProps) => {
               label={basicKeyTitles.phoneNumber}
               type="phoneNumber"
               required={true}
-              defaultValue={props.spaBasicInfo.phoneNumber}
               state={spaPhoneNumberInput}
               updateState={setSpaPhoneNumberInput}
               validation={validateSpaPhoneNumber}
@@ -95,7 +112,6 @@ export const BasicForms = (props: BasicFormsProps) => {
               label={basicKeyTitles.businessHours}
               type="businessHours"
               required={true}
-              defaultValue={props.spaBasicInfo.businessHours}
               state={spaBusinessHoursInput}
               updateState={setSpaBusinessHoursInput}
               validation={validateSpaBusinessHours}
@@ -108,7 +124,6 @@ export const BasicForms = (props: BasicFormsProps) => {
               label={basicKeyTitles.regularHoliday}
               type="regularHoliday"
               required={true}
-              defaultValue={props.spaBasicInfo.regularHoliday}
               state={spaRegularHolidayInput}
               updateState={setSpaRegularHolidayInput}
               validation={validatespaRegularHoliday}
