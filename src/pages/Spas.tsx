@@ -20,7 +20,7 @@ export const Spas = () => {
       <TitleHeader HeaderTitle="温泉一覧" />
 
       <Grid container justifyContent="center" alignItems="center">
-        <Grid item xs={7}>
+        <Grid item xs={10}>
           <SpaList spas={spas} setSpas={setSpas} />
         </Grid>
       </Grid>

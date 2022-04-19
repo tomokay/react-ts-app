@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
-import { Box, Button, CircularProgress, Grid, Typography } from "@mui/material";
+import { Button, CircularProgress, Grid, Typography } from "@mui/material";
 import { SpaInputInfomation } from "src/components/spa/SpaInputInformation";
 import { CREATE_SPA } from "src/graphql/createSpa";
 import { useMutation } from "@apollo/client";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { fetchSpa } from "src/lib/fetchSpa";
 import { UPDATE_SPA } from "src/graphql/updateSpa";
 import { TitleHeader } from "src/components/commons/TitleHeader";
@@ -118,6 +118,30 @@ const SpaEntryPage = () => {
     }
 
     if (activeStep === 1) {
+      if (spa.id) {
+        try {
+          //更新の処理
+          const updateResult = await updateSpa({
+            variables: {
+              update: spa,
+            },
+          });
+
+          if (!updateResult.data) {
+            throw new Error(`${updateResult.errors}`);
+          }
+
+          if (updateResult.data) {
+            setIsSuccessModalOpen(true);
+            setActiveStep((prevActiveStep) => prevActiveStep + 1);
+          }
+        } catch (err) {
+          setIsAlertModalOpen(true);
+        } finally {
+          setLoading(false);
+        }
+        return;
+      }
       try {
         // 新規登録の処理
 

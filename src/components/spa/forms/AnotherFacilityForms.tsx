@@ -5,7 +5,7 @@ import {
   Checkbox,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DefaultInputForm } from "src/components/spa/forms/Form";
 import {
   anotherFacilityKeyTitles,
@@ -30,6 +30,10 @@ export const AnotherFacilityForms = (props: AnotherFacilityFormsProps) => {
   const [customFacilityInput, setcustomFacilityInput] = useState<string>(
     props.spaAnotherFacilityInfo.customFacility
   );
+
+  useEffect(() => {
+    setcustomFacilityInput(props.spaAnotherFacilityInfo.customFacility);
+  }, [props.spaAnotherFacilityInfo.customFacility]);
 
   return (
     <>
@@ -81,7 +85,6 @@ export const AnotherFacilityForms = (props: AnotherFacilityFormsProps) => {
             label={anotherFacilityKeyTitles.customFacility}
             type="customFacility"
             required={false}
-            defaultValue={props.spaAnotherFacilityInfo.customFacility}
             state={customFacilityInput}
             updateState={setcustomFacilityInput}
             validation={validateCustomFacility}
