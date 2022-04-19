@@ -10,7 +10,7 @@ import { useMutation } from "@apollo/client";
 import { DELETE_SPA } from "src/graphql/deleteSpa";
 import React, { useState } from "react";
 import { AlertDialog } from "src/components/dialogs/AlertDialog";
-import { SuccessDialog } from "src/components/dialogs/SuccessDialog";
+import { DeleteSuccessDialog } from "src/components/dialogs/DeleteSuccessDialog";
 
 type DeleteComfilmDialogProps = {
   isOpen: boolean;
@@ -69,7 +69,7 @@ export const DeleteComfilmDialog = (props: DeleteComfilmDialogProps) => {
         </DialogActions>
       </Dialog>
       <div>
-        <SuccessDialog
+        <DeleteSuccessDialog
           isOpen={isSuccesModalOpen}
           message="温泉情報を削除しました。"
           handleClose={handleSuccessModalClose}

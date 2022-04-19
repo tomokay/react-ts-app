@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
-import { Button, CircularProgress, Grid, Typography } from "@mui/material";
+import { Button, CircularProgress, Grid } from "@mui/material";
 import { SpaInputInfomation } from "src/components/spa/SpaInputInformation";
 import { CREATE_SPA } from "src/graphql/createSpa";
 import { useMutation } from "@apollo/client";
@@ -90,9 +90,6 @@ const SpaEntryPage = () => {
               style={{ marginTop: "150px" }}
             >
               <Grid item>
-                <Typography variant="h5" gutterBottom component="div">
-                  登録完了
-                </Typography>
                 <Button
                   color="inherit"
                   variant="outlined"
