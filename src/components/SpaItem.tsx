@@ -12,7 +12,7 @@ type SpaItemProps = {
   spas: SpaListModel[];
 };
 
-var cardStyle = {
+const cardStyle = {
   height: "100%",
   width: "100%",
   margin: "10px",
