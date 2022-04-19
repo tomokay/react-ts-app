@@ -5,7 +5,6 @@ export type FetchSpaListResponse = {
   id: number;
   spaName: string;
   address: string;
-  picture: string;
 };
 
 export const fetchSpaList = async (): Promise<SpaListModel[]> => {
@@ -16,7 +15,6 @@ export const fetchSpaList = async (): Promise<SpaListModel[]> => {
       id: spa.id,
       spaName: spa.spaName,
       address: spa.address,
-      picture: spa.picture,
     };
   });
 };

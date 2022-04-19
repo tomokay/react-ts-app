@@ -1,4 +1,3 @@
-import React from "react";
 import { AnotherFacility } from "src/components/Types";
 import Typography from "@mui/material/Typography";
 

@@ -5,7 +5,7 @@ import SpaBasicInformation from "src/components/SpaBasicInformation";
 import SpaAmenities from "src/components/SpaAmenities";
 import SpaFacilities from "src/components/SpaFacilities";
 import AnothreFacilities from "src/components/AnotherFacilities";
-import { Button, Grid } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
 import { GET_SPA } from "src/graphql/query";
@@ -110,7 +110,7 @@ const SpaDetailPage = () => {
     hasBedrockBath: boolean,
     hasElectricBath: boolean,
     hasFamilyBath: boolean,
-    customSpa: string | null
+    customSpa: string
   ) => {
     return {
       hasOpenAirBath: hasOpenAirBath,
@@ -149,7 +149,7 @@ const SpaDetailPage = () => {
     hasMassageMachine: boolean,
     hasVendingMachine: boolean,
     hasStore: boolean,
-    customFacility: string | null
+    customFacility: string
   ) => {
     return {
       hasRestaurant: hasRestaurant,
@@ -170,7 +170,7 @@ const SpaDetailPage = () => {
     data.spa.customFacility
   );
 
-  const basicInformations = [
+  const detailInformations = [
     {
       type: "basic",
       title: "基本情報",
@@ -203,25 +203,33 @@ const SpaDetailPage = () => {
   };
 
   return (
-    <div>
-      <Grid item xs>
-        <Typography variant="h2">{data.spa.spaName}</Typography>
-      </Grid>
-      {basicInformations.map((basicInfo) => {
+    <div style={{ margin: "40px" }}>
+      <Typography variant="h2">{data.spa.spaName}</Typography>
+      {detailInformations.map((detailInfo) => {
         return (
-          <Typography
-            id={basicInfo.type}
-            key={basicInfo.type}
-            variant="h5"
-            gutterBottom
-            component="div"
-          >
-            {basicInfo.title}
-            {basicInfo.component}
-          </Typography>
+          <>
+            <Box
+              sx={{
+                width: 10,
+                height: 30,
+              }}
+            />
+
+            <Typography
+              id={detailInfo.type}
+              key={detailInfo.type}
+              variant="h5"
+              gutterBottom
+              component="div"
+              align="left"
+            >
+              {detailInfo.title}
+              {detailInfo.component}
+            </Typography>
+          </>
         );
       })}
-      <Button variant="contained" href="/spa">
+      <Button variant="contained" href="/">
         戻る
       </Button>
       <Button
@@ -229,7 +237,7 @@ const SpaDetailPage = () => {
         color="secondary"
         component={Link}
         to={{
-          pathname: "/spainput",
+          pathname: "/createNewSpa",
           search: `?id=${data.spa.id}`,
         }}
       >
