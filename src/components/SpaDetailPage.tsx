@@ -1,18 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
 import SpaPrice from "src/components/SpaPrice";
 import SpaBasicInformation from "src/components/SpaBasicInformation";
 import SpaAmenities from "src/components/SpaAmenities";
 import SpaFacilities from "src/components/SpaFacilities";
 import AnothreFacilities from "src/components/AnotherFacilities";
-import { Box, Button, Grid } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
-import { useMutation, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { GET_SPA } from "src/graphql/query";
-import { DELETE_SPA } from "src/graphql/deleteSpa";
+import { DeleteComfilmDialog } from "src/components/dialogs/DeleteComfilmDialog";
 
 const SpaDetailPage = () => {
-  const [deleteSpa] = useMutation(DELETE_SPA);
+  const [isDeleteComfilmOpen, setIsDeleteComfilmOpen] =
+    useState<boolean>(false);
 
   const location = useLocation() as any;
   const id: string | null =
@@ -198,8 +199,12 @@ const SpaDetailPage = () => {
     },
   ];
 
-  const handleDelete = (id: number) => {
-    deleteSpa({ variables: { deleteSpaId: id } });
+  const handleDeleteComfilmOpen = () => {
+    setIsDeleteComfilmOpen(true);
+  };
+
+  const hansleComfilmClose = () => {
+    setIsDeleteComfilmOpen(false);
   };
 
   return (
@@ -246,14 +251,15 @@ const SpaDetailPage = () => {
       <Button
         variant="contained"
         color="error"
-        component={Link}
-        to={{
-          pathname: "/spa",
-        }}
-        onClick={() => handleDelete(data.spa.id)}
+        onClick={handleDeleteComfilmOpen}
       >
         削除
       </Button>
+      <DeleteComfilmDialog
+        isOpen={isDeleteComfilmOpen}
+        handleClose={hansleComfilmClose}
+        deleteId={data.spa.id}
+      />
     </div>
   );
 };
