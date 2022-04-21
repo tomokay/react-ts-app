@@ -40,8 +40,13 @@ export const DeleteComfilmDialog = (props: DeleteComfilmDialogProps) => {
     return;
   };
 
+  const refreshPage = () => {
+    window.location.href = "/";
+  };
+
   const handleSuccessModalClose = () => {
     setIsSuccessModalOpen(false);
+    refreshPage();
   };
   const handleAlertModalClose = () => {
     setIsAlertModalOpen(false);

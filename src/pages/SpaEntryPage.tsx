@@ -68,6 +68,10 @@ const SpaEntryPage = () => {
   };
   const pageTitles = ["情報入力", "入力内容確認", "登録完了"];
 
+  const refreshPage = () => {
+    window.location.href = "/";
+  };
+
   const getStepContent = (stepIndex: number) => {
     switch (stepIndex) {
       case 0:
@@ -93,6 +97,7 @@ const SpaEntryPage = () => {
                 <Button
                   color="inherit"
                   variant="outlined"
+                  onClick={refreshPage}
                   component={Link}
                   to="/"
                 >
